@@ -1,4 +1,4 @@
-package edu.kirkwood.emeraldtrails;
+package edu.kirkwood.emeraldpark;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
