@@ -3,4 +3,45 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
          version="6.0">
+
+    <jsp-config>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <page-encoding>UTF-8</page-encoding>
+            <include-prelude>/WEB-INF/top.jspf</include-prelude>
+            <trim-directive-whitespaces>true</trim-directive-whitespaces>
+            <default-content-type>text/html</default-content-type>
+        </jsp-property-group>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <page-encoding>UTF-8</page-encoding>
+            <include-coda>/WEB-INF/bottom.jspf</include-coda>
+            <trim-directive-whitespaces>true</trim-directive-whitespaces>
+            <default-content-type>text/html</default-content-type>
+        </jsp-property-group>
+    </jsp-config>
+
+    <context-param>
+        <param-name>appURLLocal</param-name>
+        <param-value>http://localhost:8080/emerald_trails_war_exploded</param-value>
+    </context-param>
+    <context-param>
+        <param-name>appURLCloud</param-name>
+        <param-value>https://emerald-park.azurewebsites.net/</param-value>
+    </context-param>
+    <context-param>
+        <param-name>debugging</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/fileNotFound</location>
+    </error-page>
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/errorHandler</location>
+    </error-page>
+
 </web-app>
