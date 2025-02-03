@@ -8,7 +8,7 @@
         <c:set var="appURL" value="${initParam['appURLLocal']}"></c:set>
     </c:when>
     <c:otherwise>
-        <%-- Do someting on azure only --%>
+        <%-- Do something on azure only --%>
         <c:set var="appURL" value="${initParam['appURLCloud']}"></c:set>
     </c:otherwise>
 </c:choose>

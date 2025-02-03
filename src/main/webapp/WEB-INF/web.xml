@@ -27,7 +27,7 @@
     </context-param>
     <context-param>
         <param-name>appURLCloud</param-name>
-        <param-value>https://emerald-park.azurewebsites.net/</param-value>
+        <param-value>https://emerald-park.azurewebsites.net</param-value>
     </context-param>
     <context-param>
         <param-name>debugging</param-name>
