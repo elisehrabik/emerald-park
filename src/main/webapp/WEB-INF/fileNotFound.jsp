@@ -1,12 +1,18 @@
-<main>
-    <div class="container pt-5">
-        <div class="row">
-            <div class="col-12 text-center">
+<link rel="stylesheet" href="${appURL}/styles/404.css"/>
+<body>
+<div id="error-page">
+    <div>
+        <div>
+            <div>
+                <img src="${appURL}/images/404_forest.jpg" alt="Aerial view of forest" class="img-fluid">
                 <h1>404</h1>
-                <h2>Page Not Found</h2>
+                <h2>You're Lost!</h2>
                 <p class="mb-4">The page you are looking for does not exist.</p>
-                <a href="${appURL}" class="btn btn-primary">Take me to the Homepage</a>
+                <div class="d-flex justify-content-center">
+                    <a href="${appURL}" class="btn btn-primary">Home</a>
+                </div>
             </div>
         </div>
     </div>
-</main>
+</div>
+</body>

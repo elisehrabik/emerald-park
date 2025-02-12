@@ -1,0 +1,46 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Image below the navbar */
+#error-page img {
+    width: 100%;
+    height: 70vh; /* Adjust this to control the height of the image */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    display: block;
+    margin-top: -3em;
+}
+
+/* Heading and other text */
+#error-page h1, #error-page h2, #error-page p {
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+    text-align: center;
+}
+
+#error-page h1 {
+    margin-top: -12em;
+    font-size: 2rem;
+}
+
+#error-page h2 {
+    font-size: 3rem;
+}
+
+#error-page a{
+    background-color: #16442d;
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    border-radius: 5px;
+}
+
+#error-page a:hover {
+    background-color: #103220;
+}
+
+/* Footer styling */
+footer {
+    margin-top: 10em;
+}
