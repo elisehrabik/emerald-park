@@ -28,6 +28,11 @@ body {
     font-size: 3rem;
 }
 
+#error-page #error-p {
+    margin-top: -22em;
+    margin-bottom: 15em;
+}
+
 #error-page a{
     background-color: #16442d;
     color: white;
