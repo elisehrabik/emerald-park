@@ -8,26 +8,28 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent" style="float:right">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="margin-right: 3rem">
                 <li class="nav-item" style="font-size: 1rem">
-                    <a class="nav-link active" aria-current="page" href="view-trails">Home</a>
+                    <a class="nav-link active" aria-current="page" href="${appURL}/home">Home</a>
                 </li>
                 <li class="nav-item" style="font-size: 1rem">
-                    <a class="nav-link" href="view-trails">Trails</a>
+                    <a class="nav-link" href="${appURL}/view-trails">Trails</a>
                 </li>
                 <li class="nav-item" style="font-size: 1rem">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link" href="${appURL}#">About</a>
                 </li>
                 <li class="nav-item" style="font-size: 1rem">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" href="${appURL}#">Contact</a>
                 </li>
+                <c:if test="${not empty sessionScope.activeUser && sessionScope.activeUser.status == 'active' && sessionScope.activeUser.privileges == 'admin'}">
                 <li class="nav-item dropdown">
                     <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         Admin
                     </button>
                     <ul class="dropdown-menu dropdown-menu-light" style="width: 120px !important; min-width: 120px !important;">
-                        <li><a class="dropdown-item" href="trails">Trails</a></li>
-                        <li><a class="dropdown-item" href="reviews">Reviews</a></li>
-                        <li><a class="dropdown-item" href="visitors">Visitors</a></li>
-                        <li><a class="dropdown-item" href="maintenance">Maintenance</a></li>
+                        <li><a class="dropdown-item" href="${appURL}/users">All Users</a></li>
+                        <li><a class="dropdown-item" href="${appURL}trails">Trails</a></li>
+                        <li><a class="dropdown-item" href="${appURL}reviews">Reviews</a></li>
+                        <li><a class="dropdown-item" href="${appURL}visitors">Visitors</a></li>
+                        <li><a class="dropdown-item" href="${appURL}maintenance">Maintenance</a></li>
 <%--                        --%>
 <%--                        <c:choose>--%>
 <%--                            <c:when test="${empty activeUser}"></c:when>--%>
@@ -36,19 +38,19 @@
 <%--                            <li><a class="dropdown-item" href="signout">Sign Out</a></li>--%>
 <%--                            <li><a class="dropdown-item" href="profile">My Profile</a></li>--%>
 <%--                        </c:choose>--%>
-
                     </ul>
                 </li>
+                </c:if>
             </ul>
         </div>
         <div class="text-end">
             <c:choose>
                 <c:when test="${empty sessionScope.activeUser}">
-                    <a href="#" class="btn btn-outline-dark me-2">Login</a>
+                    <a href="${appURL}/login" class="btn btn-outline-dark me-2">Login</a>
                     <a href="${appURL}/signup" class="btn btn-warning">Sign-up</a>
                 </c:when>
                 <c:otherwise>
-                    <a href="#" class="btn btn-outline-secondary me-2">Sign out</a>
+                    <a href="${appURL}/signout" class="btn btn-outline-secondary me-2">Sign out</a>
                     <a href="#" class="btn btn-primary">My Profile</a>
                 </c:otherwise>
             </c:choose>
