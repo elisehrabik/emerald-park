@@ -1,0 +1,79 @@
+
+:root {
+    --background-light: #ffffff;
+    --background-gray: #939393;
+    --background-dark: #004A32;
+    --text-light: #ffffff;
+    --text-dark: #383A4A;
+    --button-dark: #004A32;
+    --button-light: #ffffff;
+    --link-dark: #004A32;
+    --accent-1: #416955;
+    --accent-2: #a5b6ae;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Raleway", sans-serif;
+}
+
+h2 {
+    font-size: 2.25rem !important;
+    font-weight: 600;
+    line-height: 4rem;
+    color: var(--text-dark);
+}
+
+a {
+    text-decoration: none;
+}
+
+.button-dark {
+    background-color: var(--button-dark);
+    color: white;
+    width: 200px;
+    height: 64px;
+    border-radius: 24px;
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin-top: 1em;
+    display: inline-block;
+    text-align: center;
+    line-height: 64px;
+    text-decoration: none;
+    position: relative;
+    z-index: 2;
+}
+
+.button-dark:hover {
+    background-color: var(--accent-1);
+}
+
+.my-footer {
+    background-color: var(--background-dark);
+    color: var(--text-light);
+    width: 100%;
+    position: relative;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3em;
+    padding-top: 3em;
+}
+
+.my-footer a{
+    color: var(--text-light) !important;
+    text-decoration: none;
+}
+
+.my-footer a:hover{
+    color: var(--accent-2) !important;
+    text-decoration: none;
+}
+
+.footer-img {
+    max-width: 250px;
+    height: auto;
+}

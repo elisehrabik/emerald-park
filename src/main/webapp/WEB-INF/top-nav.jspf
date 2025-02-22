@@ -1,24 +1,55 @@
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top shadow" style="z-index: 3;">
+<%--        Log in, Signup, Signout, Profile--%>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top " style=" height: 1.2rem; z-index: 3;">
+    <div class="container-fluid ">
+        <div class="ms-auto d-flex align-items-center me-4 user-nav">
+            <c:choose>
+                <c:when test="${empty sessionScope.activeUser}">
+                    <a href="${appURL}/login" class="nav-link me-4 hover-bold" style="color: var(--link-dark)">Login</a>
+                    <a href="${appURL}/signup" class="nav-link me-4" style="color: var(--link-dark)">Sign-up</a>
+                </c:when>
+                <c:otherwise>
+                    <a href="${appURL}/signout" class="nav-link me-4" style="color: var(--link-dark)">Sign out</a>
+                    <a href="#" class="nav-link me-4" style="color: var(--link-dark)">My Profile</a>
+                </c:otherwise>
+            </c:choose>
+        </div>
+    </div>
+</nav>
+
+
+<%--    Start Nav Bar --%>
+<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top shadow" style="z-index: 3;" >
     <div class="container-fluid">
-        <img src="images/emerald-park-green.png" style="width:250px; margin-left: 3rem">
+
+<%--        Image--%>
+    <a href="${appURL}">
+        <img src="images/emerald-park-green.png" alt="Emerald Park logo" class="my-logo">
+    </a>
+
+<%--    Mobile Button --%>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
+<%--        Main Menu--%>
         <div class="collapse navbar-collapse" id="navbarSupportedContent" style="float:right">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="margin-right: 3rem">
-                <li class="nav-item" style="font-size: 1rem">
-                    <a class="nav-link active" aria-current="page" href="${appURL}/home">Home</a>
+                <li class="nav-item me-4 my-nav-item" style="font-size: 1rem">
+                    <a class="nav-link active" aria-current="page" href="${appURL}/">Home</a>
                 </li>
-                <li class="nav-item" style="font-size: 1rem">
+                <li class="nav-item me-4 my-nav-item" style="font-size: 1rem">
                     <a class="nav-link" href="${appURL}/view-trails">Trails</a>
                 </li>
-                <li class="nav-item" style="font-size: 1rem">
+                <li class="nav-item me-4 my-nav-item" style="font-size: 1rem">
                     <a class="nav-link" href="${appURL}#">About</a>
                 </li>
-                <li class="nav-item" style="font-size: 1rem">
+                <li class="nav-item me-4 my-nav-item" style="font-size: 1rem">
                     <a class="nav-link" href="${appURL}#">Contact</a>
                 </li>
+
+<%--                Admin Dropdown--%>
                 <c:if test="${not empty sessionScope.activeUser && sessionScope.activeUser.status == 'active' && sessionScope.activeUser.privileges == 'admin'}">
                 <li class="nav-item dropdown">
                     <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -30,31 +61,13 @@
                         <li><a class="dropdown-item" href="${appURL}reviews">Reviews</a></li>
                         <li><a class="dropdown-item" href="${appURL}visitors">Visitors</a></li>
                         <li><a class="dropdown-item" href="${appURL}maintenance">Maintenance</a></li>
-<%--                        --%>
-<%--                        <c:choose>--%>
-<%--                            <c:when test="${empty activeUser}"></c:when>--%>
-<%--                            <li><a class="dropdown-item" href="signup">Sign Up</a></li>--%>
-<%--                            <c:otherwise></c:otherwise>--%>
-<%--                            <li><a class="dropdown-item" href="signout">Sign Out</a></li>--%>
-<%--                            <li><a class="dropdown-item" href="profile">My Profile</a></li>--%>
-<%--                        </c:choose>--%>
                     </ul>
                 </li>
                 </c:if>
+
             </ul>
         </div>
-        <div class="text-end">
-            <c:choose>
-                <c:when test="${empty sessionScope.activeUser}">
-                    <a href="${appURL}/login" class="btn btn-outline-dark me-2">Login</a>
-                    <a href="${appURL}/signup" class="btn btn-warning">Sign-up</a>
-                </c:when>
-                <c:otherwise>
-                    <a href="${appURL}/signout" class="btn btn-outline-secondary me-2">Sign out</a>
-                    <a href="#" class="btn btn-primary">My Profile</a>
-                </c:otherwise>
-            </c:choose>
 
-        </div>
+<%--        End Nav Bar--%>
     </div>
 </nav>

@@ -20,7 +20,6 @@
 <body>
 <!-- Navigation (main and park) -->
 <%--<%@include file="../../main-nav.jsp" %>--%>
-<%@include file="park-nav.jsp" %>
 
 <!-- Header -->
 <h2 style="margin-left: 4rem; margin-top: 2rem; margin-bottom: 2rem;">Trails</h2>

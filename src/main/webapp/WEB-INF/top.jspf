@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
+
 <jsp:useBean id="date" class="java.util.Date" />
 <fmt:setLocale value="en-US" />
 <c:choose>
@@ -14,6 +15,7 @@
         <c:set var="appURL" value="${initParam['appURLCloud']}"></c:set>
     </c:otherwise>
 </c:choose>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -22,13 +24,22 @@
     <title>${pageTitle}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<%--    Fonts    --%>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<%--    CSS --%>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
+    <link rel="stylesheet" href="${appURL}/styles/top-nav.css">
     <c:if test="${pageTitle eq 'Home'}"><link rel="stylesheet" href="${appURL}/styles/home.css"></c:if>
+    <c:if test="${pageTitle eq 'Home'}"><link rel="stylesheet" href="${appURL}/styles/my-home.css"></c:if>
     <c:if test="${pageTitle eq 'Login'}"><link rel="stylesheet" href="${appURL}/styles/login.css"></c:if>
+    <link rel="stylesheet" href="${appURL}/styles/my-styles.css">
 
-<%--  Additional CSS  --%>
-
+<%--  JavaScript  --%>
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
@@ -37,10 +48,13 @@
             crossorigin="anonymous"></script>
     <c:if test="${pageTitle eq 'Login'}"><script src="${appURL}/scripts/remember-me.js"></script></c:if>
 
-    <%--  Additional JavaScript  --%>
 </head>
+
+<%--    Start body --%>
 <body>
 <%@include file="/WEB-INF/top-nav.jspf"%>
+
+<%--    Alert container --%>
 <div class="container">
     <c:choose>
         <c:when test="${not empty sessionScope.flashMessageSuccess}">

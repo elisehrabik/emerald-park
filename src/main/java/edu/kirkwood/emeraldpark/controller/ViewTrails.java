@@ -17,7 +17,7 @@ public class ViewTrails extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Trail> trails = TrailDAO.getTrails();
         req.setAttribute("trails", trails);
-        req.getRequestDispatcher("WEB-INF/emeraldpark/view-trails.jsp").forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/view-trails.jsp").forward(req, resp);
         // forwarding to jsp, inside of web inf because customers should not be able to put in the link, they must access the servlet
     }
 }

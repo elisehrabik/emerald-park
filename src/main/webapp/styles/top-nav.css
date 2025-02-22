@@ -1,0 +1,14 @@
+.my-nav-item {
+    font-weight: 700;
+}
+
+.my-logo {
+    width:250px;
+    margin-left: 3rem;
+}
+
+.user-nav {
+    color: var(--background-gray);
+    height: 0.5em;
+}
+

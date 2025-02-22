@@ -1,0 +1,126 @@
+/*!*  Hero Styles *!*/
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    min-height: 60vh;
+    position: relative;
+    text-align: right;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding-right: 5%;
+}
+
+.hero img {
+
+}
+
+.forest {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.arrow-home {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    z-index: 1;
+}
+
+.hero h1, .hero p {
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    padding: 1rem;
+    text-align: right;
+}
+
+.hero h1, .hero h2, .hero p {
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+    text-align: right;
+}
+
+.hero h2 {
+    font-size: 3rem;
+}
+
+.hero a {
+    background-color: #16442d;
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    border-radius: 5px;
+}
+
+.hero a:hover {
+    background-color: #103220;
+}
+
+
+.hero h1 {
+    font-family: 'Nanum Pen Script', sans-serif;
+    text-transform: uppercase;
+    font-size: 4rem;
+    line-height: 1.2;
+    text-align: right;
+    margin-top: -3em;
+}
+
+.hero h1 span {
+    display: block;
+    line-height: 1.1;
+    font-size: 8rem;
+    margin-right: -.25em;
+}
+
+
+.container.marketing {
+    margin-top: -2vh;
+}
+
+.container.marketing p {
+    font-size: 1.75rem;
+    line-height: 3rem;
+    color: var(--text-dark);
+}
+.container.marketing span {
+    font-weight: 500;
+    color: var(--text-dark) !important;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%;
+    height: 100%;
+    top: 30%;
+    transform: translateY(-50%);
+}
+
+.carousel-control-prev {
+    left: 10px;
+}
+
+.carousel-control-next {
+    right: 10px;
+}
+
+.carousel {
+    margin-bottom: -10em;
+    align-content: center;
+}
+
+.button-dark {
+    z-index: 10;
+}

@@ -1,118 +1,58 @@
 <main>
 
-    <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+<%--    Hero    --%>
+    <div class="hero home-hero">
+        <img src="${appURL}/images/404_forest.jpg" alt="Aerial view of forest" class="img-fluid forest">
+        <img src="${appURL}/images/arrow-home.png" alt="Dashed arrow with x" class="img-fluid arrow-home">
+        <div class="container">
+            <h1>Find Your Next <br><span>Adventure.</span></h1>
         </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-                <div class="container">
-                    <div class="carousel-caption text-start">
-                        <h1>Example headline.</h1>
-                        <p class="opacity-75">Some representative placeholder content for the first slide of the carousel.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-                <div class="container">
-                    <div class="carousel-caption">
-                        <h1>Another example headline.</h1>
-                        <p>Some representative placeholder content for the second slide of the carousel.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-                <div class="container">
-                    <div class="carousel-caption text-end">
-                        <h1>One more for good measure.</h1>
-                        <p>Some representative placeholder content for the third slide of this carousel.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+
     </div>
 
-
-    <!-- Marketing messaging and featurettes
-    ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
-
     <div class="container marketing">
+            <%--    Featurettes (Welcome, Plan your adventure, Join the community    --%>
 
-        <!-- Three columns of text below the carousel -->
-        <div class="row">
-            <div class="col-lg-4">
-                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-                <h2 class="fw-normal">Heading</h2>
-                <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-                <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-            </div><!-- /.col-lg-4 -->
-            <div class="col-lg-4">
-                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-                <h2 class="fw-normal">Heading</h2>
-                <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
-                <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-            </div><!-- /.col-lg-4 -->
-            <div class="col-lg-4">
-                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-                <h2 class="fw-normal">Heading</h2>
-                <p>And lastly this, the third column of representative placeholder content.</p>
-                <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-            </div><!-- /.col-lg-4 -->
-        </div><!-- /.row -->
+            <%--            Welcome     --%>
+
+                <div class="container mt-0 mb-0">
+                    <div class="row justify-content-center text-center">
+                        <div class="col-md-6">
+                            <h2 class="featurette-heading mb-0">Welcome to Emerald Park</h2>
+                            <p class="lead mt-2 mb-0">
+                                Explore our gem-inspired trails, from the rugged Obsidian Trail to the serene Selenite Trail.
+                                Whether you're seeking a challenge or a peaceful walk,
+                                <span class="text-body-secondary">there's a path for you.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
 
-        <!-- START THE FEATURETTES -->
+                <hr class="featurette-divider">
 
-        <hr class="featurette-divider">
-
-        <div class="row featurette">
-            <div class="col-md-7">
-                <h2 class="featurette-heading fw-normal lh-1">First featurette heading. <span class="text-body-secondary">It’ll blow your mind.</span></h2>
-                <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
-            </div>
-            <div class="col-md-5">
-                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
-            </div>
-        </div>
-
-        <hr class="featurette-divider">
-
+            <%--            Plan Your Adventure     --%>
         <div class="row featurette">
             <div class="col-md-7 order-md-2">
-                <h2 class="featurette-heading fw-normal lh-1">Oh yeah, it’s that good. <span class="text-body-secondary">See for yourself.</span></h2>
-                <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
+                <h2 class="featurette-heading lh-1">Plan Your Adventure</h2>
+                <p class="lead">Detailed maps, difficulty-ratings, and reviews make it easy to find what kind of trail you’re looking for. No more biting off more than you can chew. </p>
+                <a class="button-dark" href="${appURL}/view-trails">View All Trails</a>
             </div>
             <div class="col-md-5 order-md-1">
-                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
+                <img src="${appURL}/images/plan-your-adventure.png" alt="Person with yellow jacket walking in forest" height="500rem">
             </div>
         </div>
-
         <hr class="featurette-divider">
 
+            <%--            Join the Community     --%>
         <div class="row featurette">
             <div class="col-md-7">
-                <h2 class="featurette-heading fw-normal lh-1">And lastly, this one. <span class="text-body-secondary">Checkmate.</span></h2>
-                <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
+                <h2 class="featurette-heading lh-1">Join the Community</h2>
+                <p class="lead">The beauty of nature is meant to be shared. Visitors can share their experiences at Emerald Park and be informed of events.</p>
+                <a class="button-dark" href="${appURL}/signup">Sign Up</a>
             </div>
             <div class="col-md-5">
-                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
+                <img src="${appURL}/images/join-the-community.png" alt="Two people hiking and smiling" height="500rem">
             </div>
         </div>
 
@@ -120,5 +60,77 @@
 
         <!-- /END THE FEATURETTES -->
 
+            <%--    Choose Your Adventure   --%>
+                <div>
+                    <h2 class="featurette-heading lh-1">Choose Your Adventure</h2>
+                    <p class="lead mb-5 ">How will you explore? Click to see trails with your chosen mode of transport.</p>
+            <div class="row">
+                <div class="col-lg-4">
+                    <a href="#" class="text-body-secondary">
+                    <img src="${appURL}/images/on-foot.png" alt="Two people running on forest trail" height="300rem">
+                    <h4 class="fw-normal mt-2">On Foot</h4>
+                    </a>
+                </div><!-- /.col-lg-4 -->
+                <div class="col-lg-4">
+                    <a href="#" class="text-body-secondary">
+                    <img src="${appURL}/images/by-bike.png" alt="Person biking on forest trail" height="300rem">
+                    <h4 class="fw-normal mt-2">By Bike</h4>
+                    </a>
+                </div><!-- /.col-lg-4 -->
+                <div class="col-lg-4">
+                    <a href="#" class="text-body-secondary">
+                    <img src="${appURL}/images/by-horse.png" alt="Person riding horse on forest trail" height="300rem">
+                    <h4 class="fw-normal mt-2">By Horse</h4>
+                    </a>
+                </div><!-- /.col-lg-4 -->
+            </div><!-- /.row -->
+    </div>
+
+                <hr class="featurette-divider">
+
+                <%-- Trails --%>
+                <div class="container">
+                    <h2 class="featurette-heading lh-1">Dozens of Trails at Your Fingertips.</h2>
+                    <p class="lead">Emerald Park has 30+ incredible trails for you to explore.</p>
+
+                    <div id="trailCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <c:forEach items="${trails}" var="trail" varStatus="status">
+                                <c:if test="${status.index % 3 == 0}">
+                                    <div class="carousel-item ${status.index == 0 ? 'active' : ''}">
+                                    <div class="row">
+                                </c:if>
+
+                                <div class="col-md-4 mb-4">
+                                    <div class="card h-100">
+                                        <img src="${trail.trail_image}" class="card-img-top" alt="${trail.trail_name} hiking trail at Emerald Park.">
+                                        <div class="card-body">
+                                            <h5 class="card-title">${trail.trail_name} Trail</h5>
+                                            <p class="card-text"><small class="text-muted">${trail.trail_distance} miles | ${trail.trail_difficulty}</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <c:if test="${status.index % 3 == 2 || status.last}">
+                                    </div>
+                                    </div>
+                                </c:if>
+                            </c:forEach>
+                        </div>
+
+                        <button class="carousel-control-prev" type="button" data-bs-target="#trailCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#trailCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <a class="button-dark" href="${appURL}/view-trails">View All Trails</a>
+                    </div>
+                </div>
     </div><!-- /.container -->
 </main>
