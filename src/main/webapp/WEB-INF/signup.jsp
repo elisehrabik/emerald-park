@@ -1,8 +1,8 @@
 <div class="container col-xl-10 col-xxl-8 px-4 py-5">
     <div class="row align-items-center g-lg-5 py-5">
         <div class="col-lg-7 text-center text-lg-start">
-            <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Vertically centered hero sign-up form</h1>
-            <p class="col-lg-10 fs-4">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+            <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Sign Up and Join the Community</h1>
+            <p class="col-lg-10 fs-4">Visitors who sign up can rate trails, share their experience, and get exclusive news about events.</p>
         </div>
         <div class="col-md-10 mx-auto col-lg-5">
             <c:if test="${not empty userAddFail}">
@@ -25,11 +25,11 @@
                     <c:if test="${not empty password2Error}"><div class="invalid-feedback">${password2Error}</div></c:if>
                 </div>
                 <div class="form-checkbox mb-3">
-                    <input type="checkbox" class="<c:if test="${not empty termsError}">is-invalid</c:if>" value="agree" id="terms" name="terms" <c:if test="${terms eq 'agree'}">checked</c:if>>
+                    <input class="form-check-input <c:if test="${not empty termsError}">is-invalid</c:if>" type="checkbox" value="agree" id="terms" name="terms" <c:if test="${terms eq 'agree'}">checked</c:if>>
                     <label for="terms">Agree to the <a href="${appURL}/terms">Terms of Service</a></label>
                     <c:if test="${not empty termsError}"><div class="invalid-feedback">${termsError}</div></c:if>
                 </div>
-                <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+                <button class="w-100 btn btn-lg btn-primary button-dark button-signup" type="submit">Sign up</button>
                 <hr class="my-4">
                 <small class="text-body-secondary">Already have an account? <a href="${appURL}/login">Log in</a></small>
             </form>

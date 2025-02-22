@@ -37,6 +37,8 @@
     <c:if test="${pageTitle eq 'Home'}"><link rel="stylesheet" href="${appURL}/styles/home.css"></c:if>
     <c:if test="${pageTitle eq 'Home'}"><link rel="stylesheet" href="${appURL}/styles/my-home.css"></c:if>
     <c:if test="${pageTitle eq 'Login'}"><link rel="stylesheet" href="${appURL}/styles/login.css"></c:if>
+    <c:if test="${pageTitle eq 'Sign up for an account'}"><link rel="stylesheet" href="${appURL}/styles/signup.css"></c:if>
+
     <link rel="stylesheet" href="${appURL}/styles/my-styles.css">
 
 <%--  JavaScript  --%>
