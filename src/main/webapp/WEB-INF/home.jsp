@@ -127,7 +127,7 @@
                             <span class="visually-hidden">Next</span>
                         </button>
                     </div>
-
+<br>
                     <div class="text-center mt-4">
                         <a class="button-dark" href="${appURL}/view-trails">View All Trails</a>
                     </div>
