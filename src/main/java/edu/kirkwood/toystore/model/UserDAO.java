@@ -1,5 +1,7 @@
 package edu.kirkwood.toystore.model;
 
+import edu.kirkwood.shared.EmailThread;
+import jakarta.servlet.http.HttpServletRequest;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.CallableStatement;
@@ -9,6 +11,7 @@ import java.sql.SQLException;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import static edu.kirkwood.shared.MySQL_Connect.getConnection;
 
@@ -21,6 +24,58 @@ public class UserDAO {
         user.setPassword("P@ssw0rd".toCharArray());
         add(user);
     }
+
+
+    public static String passwordReset(String email, HttpServletRequest req) {
+        User user = get(email);
+        if(user == null) {
+            return "No user found that matches that email";
+        } else {
+            try(Connection connection = getConnection()) {
+                String uuid = String.valueOf(UUID.randomUUID());
+                CallableStatement statement = connection.prepareCall("{call sp_add_password_reset(?,?)}");
+                statement.setString(1, email);
+                statement.setString(2, uuid);
+                int rowsAffected = statement.executeUpdate();
+                if(rowsAffected > 0) {
+                    // generate email html
+                    String subject = "Reset Password";
+                    String message = "<h2>Reset Password</h2>";
+                    message += "<p>Please click this link to securely reset your password. This link expires in 30 minutes.</p>";
+                    String appURL = "";
+                    if(req.isSecure()) {
+                        appURL = req.getServletContext().getInitParameter("appURLCloud");
+                    } else {
+                        appURL = req.getServletContext().getInitParameter("appURLLocal");
+                    }
+                    String fullURL = String.format("%s/new-password?token=%s", appURL, uuid);
+                    message += String.format("<p><a href=\"%s\" target=\"_blank\">%s</a></p>", fullURL, fullURL);
+                    message += "<p>If you did not request to reset your password, you can ignore this message and your password will not be changed.</p>";
+                    // send email
+                    EmailThread emailThread = new EmailThread(email, subject, message);
+                    emailThread.start();
+                    try {
+                        emailThread.join();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    String errorMessage = emailThread.getErrorMessage();
+                    if(errorMessage == null || errorMessage.isEmpty()) {
+                        return "If there's an account associated with the email entered, we will send a password reset link.";
+                    } else {
+                        return errorMessage;
+                    }
+                } else {
+                    return "Sorry, we couldn't process your password reset. Try again.";
+                }
+            } catch(SQLException e) {
+                return "SQLException " + e.getMessage();
+            }
+        }
+    }
+
+
+
 
     public static List<User> getAll() {
         List<User> list = new ArrayList<>();

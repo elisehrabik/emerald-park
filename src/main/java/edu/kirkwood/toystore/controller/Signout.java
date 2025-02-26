@@ -15,6 +15,6 @@ public class Signout extends HttpServlet {
         HttpSession session = req.getSession(); // Get existing session
         session.removeAttribute("activeUser");
         session.setAttribute("flashMessageWarning", "You are logged out. See you next time!");
-        resp.sendRedirect(req.getContextPath()); // Redirects to the home page
+        resp.sendRedirect(resp.encodeRedirectURL(req.getContextPath() + "/")); // Redirects to the home page
     }
 }
