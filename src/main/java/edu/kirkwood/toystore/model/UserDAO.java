@@ -8,6 +8,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,6 @@ public class UserDAO {
         user.setPassword("P@ssw0rd".toCharArray());
         add(user);
     }
-
 
     public static String passwordReset(String email, HttpServletRequest req) {
         User user = get(email);
@@ -73,9 +73,6 @@ public class UserDAO {
             }
         }
     }
-
-
-
 
     public static List<User> getAll() {
         List<User> list = new ArrayList<>();
@@ -142,4 +139,48 @@ public class UserDAO {
             throw new RuntimeException(e);
         }
     }
+
+    public static String getPasswordReset(String token) {
+        String email = "";
+        try (Connection connection = getConnection();
+             CallableStatement statement = connection.prepareCall("{CALL sp_get_password_reset(?)}")) {
+            statement.setString(1, token);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                Instant now = Instant.now();
+                Instant created_at = resultSet.getTimestamp("created_at").toInstant();
+                Duration duration = Duration.between(created_at, now);
+                long minutesElapsed = duration.toMinutes();
+                if(minutesElapsed < 30) {
+                    email = resultSet.getString("email");
+                }
+                int id = resultSet.getInt("id");
+                CallableStatement statement2 = connection.prepareCall("{CALL sp_delete_password_reset(?)}");
+                statement2.setInt(1, id);
+                statement2.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return email;
+    }
+
+    public static boolean updatePassword(String email, String password) {
+        try (Connection connection = getConnection()) {
+            if (connection != null) {
+                try (CallableStatement statement = connection.prepareCall("{CALL sp_update_user_password(?, ?)}")) {
+                    statement.setString(1, email);
+                    String encryptedPassword = BCrypt.hashpw(password, BCrypt.gensalt(12));
+                    statement.setString(2, encryptedPassword);
+                    int rowsAffected = statement.executeUpdate();
+                    return rowsAffected == 1;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
+    }
+
+
 }
