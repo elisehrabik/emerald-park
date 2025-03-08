@@ -1,0 +1,27 @@
+<section class="my-4">
+    <div class="container">
+        <div class="row">
+            <!-- Profile banner START -->
+            <div class="col-12">
+                <div class="card bg-light card-body">
+                    <!-- Profile info -->
+                    <div class="col d-flex justify-content-between align-items-center">
+                        <div>
+                            <h4>Good morning<c:if test="${not empty activeUser.firstName}">, ${activeUser.firstName}</c:if>!</h4>
+                            <ul class="list-inline mb-0">
+                                <li class="list-item"><i class="bi bi-calendar-event-fill fs-6"></i> March 1 20XX, 8:00 AM</li>
+                                <li class="list-item"><i class="bi bi-star-fill fs-6"></i> Member since January 1, 20XX</li>
+                            </ul>
+                        </div>
+                        <!-- Responsive toggler START -->
+                        <button class="btn btn-primary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
+                            <i class="bi bi-list fs-4"></i>
+                        </button>
+                        <!-- Responsive toggler END -->
+                    </div>
+                </div>
+            </div>
+            <!-- Profile banner END -->
+        </div>
+    </div>
+</section>
