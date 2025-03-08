@@ -22,13 +22,13 @@ public class ReviewDAO {
             while(rs.next()) { // gets all the data
                 int review_id = rs.getInt("review_id");
                 String trail_name = rs.getString("trail_name");
-                String visitor_email = rs.getString("visitor_email");
+                String email = rs.getString("email");
                 LocalDate review_date = rs.getDate("review_date").toLocalDate();
                 int rating = rs.getInt("rating");
                 LocalTime review_time = rs.getTime("review_time").toLocalTime();
                 String review_notes = rs.getString("review_notes");
 
-                reviews.add(new Review(review_id, trail_name, visitor_email, review_date, rating, review_time, review_notes));
+                reviews.add(new Review(review_id, trail_name, email, review_date, rating, review_time, review_notes));
             }
         } catch(SQLException e) {
             throw new RuntimeException("Query error - " + e.getMessage());

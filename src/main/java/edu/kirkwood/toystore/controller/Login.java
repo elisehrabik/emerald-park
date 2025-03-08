@@ -15,15 +15,21 @@ import java.io.IOException;
 public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String redirect = req.getParameter("redirect");
+        if(redirect != null && !redirect.equals("")) {
+            req.setAttribute(("redirect"), redirect);
+        }
         req.setAttribute("pageTitle", "Login");
         req.getRequestDispatcher("WEB-INF/login.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String redirect = req.getParameter("redirect");
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         String[] rememberMe = req.getParameterValues("rememberMe");
+        req.setAttribute("redirect", redirect);
         req.setAttribute("email", email);
         req.setAttribute("password", password);
         req.setAttribute("rememberMe", (rememberMe != null && rememberMe[0].equals("true")) ? "true" : "");
@@ -70,7 +76,11 @@ public class Login extends HttpServlet {
                 session.setAttribute("activeUser", user);
                 session.setAttribute("flashMessageSuccess", String.format("Welcome back%s!", (user.getFirstName() != null && !user.getFirstName().equals("") ? " " + user.getFirstName() : "")));
 
-                resp.sendRedirect(resp.encodeRedirectURL(req.getContextPath() + "/")); // Redirects to the home page
+                if(redirect != null && !redirect.equals("")) {
+                    resp.sendRedirect(resp.encodeRedirectURL(req.getContextPath() + "/" + redirect));
+                } else {
+                    resp.sendRedirect(resp.encodeRedirectURL(req.getContextPath() + "/")); // Redirects to the home page
+                }
                 return;
             }
         }

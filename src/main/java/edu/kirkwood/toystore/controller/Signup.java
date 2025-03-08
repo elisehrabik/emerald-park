@@ -37,10 +37,10 @@ public class Signup extends HttpServlet {
             errorFound = true;
             req.setAttribute("emailError", e.getMessage());
         }
-//        if(UserDAO.get(email) != null) {
-//            errorFound = true;
-//            req.setAttribute("emailError", "A user with that email already exists. Please login or reset your password.");
-//        }
+        if(!errorFound && UserDAO.get(email) != null) {
+            errorFound = true;
+            req.setAttribute("emailError", "A user with that email already exists. Please login or reset your password.");
+        }
         try {
             user.setPassword(password1.toCharArray());
         } catch(IllegalArgumentException e) {

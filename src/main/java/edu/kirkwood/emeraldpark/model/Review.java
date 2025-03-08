@@ -6,7 +6,7 @@ import java.time.LocalTime;
 public class Review {
     private int review_id;
     private String trail_name;
-    private String visitor_email;
+    private String email;
     private LocalDate review_date;
     private int rating;
     private LocalTime review_time;
@@ -16,10 +16,10 @@ public class Review {
 
     }
 
-    public Review(int review_id, String trail_name, String visitor_email, LocalDate review_date, int rating, LocalTime review_time, String review_notes) {
+    public Review(int review_id, String trail_name, String email, LocalDate review_date, int rating, LocalTime review_time, String review_notes) {
         this.review_id = review_id;
         this.trail_name = trail_name;
-        this.visitor_email = visitor_email;
+        this.email = email;
         this.review_date = review_date;
         this.rating = rating;
         this.review_time = review_time;
@@ -34,12 +34,12 @@ public class Review {
         this.trail_name = trail_name;
     }
 
-    public String getVisitor_email() {
-        return visitor_email;
+    public String getEmail() {
+        return email;
     }
 
-    public void setVisitor_email(String visitor_email) {
-        this.visitor_email = visitor_email;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public LocalDate getReview_date() {
@@ -87,7 +87,7 @@ public class Review {
         return "Review{" +
                 "review_id=" + review_id +
                 ", trail_name='" + trail_name + '\'' +
-                ", visitor_email='" + visitor_email + '\'' +
+                ", email='" + email + '\'' +
                 ", review_date=" + review_date +
                 ", rating=" + rating +
                 ", review_time=" + review_time +

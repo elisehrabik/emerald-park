@@ -3,6 +3,7 @@
         <div class="alert alert-danger mb-2">${loginFail}</div>
     </c:if>
     <form method="post" action="${appURL}/login" id="loginForm">
+        <input type="hidden" name="redirect" value="${redirect}" />
         <h1 class="h3 mb-3 fw-normal mt-5">Please sign in</h1>
 
         <div class="form-floating">

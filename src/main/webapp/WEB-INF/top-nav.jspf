@@ -11,7 +11,7 @@
                 </c:when>
                 <c:otherwise>
                     <a href="${appURL}/signout" class="nav-link me-4" style="color: var(--link-dark)">Sign out</a>
-                    <a href="#" class="nav-link me-4" style="color: var(--link-dark)">My Profile</a>
+                    <a href="${appURL}/edit-profile" class="nav-link me-4" style="color: var(--link-dark)">Edit Profile</a>
                 </c:otherwise>
             </c:choose>
         </div>
@@ -52,15 +52,14 @@
 <%--                Admin Dropdown--%>
                 <c:if test="${not empty sessionScope.activeUser && sessionScope.activeUser.status == 'active' && sessionScope.activeUser.privileges == 'admin'}">
                 <li class="nav-item dropdown">
-                    <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="font-weight: bold; color:#000000A6;  padding: 8px 8px;">
                         Admin
                     </button>
                     <ul class="dropdown-menu dropdown-menu-light" style="width: 120px !important; min-width: 120px !important;">
                         <li><a class="dropdown-item" href="${appURL}/users">All Users</a></li>
-                        <li><a class="dropdown-item" href="${appURL}trails">Trails</a></li>
-                        <li><a class="dropdown-item" href="${appURL}reviews">Reviews</a></li>
-                        <li><a class="dropdown-item" href="${appURL}visitors">Visitors</a></li>
-                        <li><a class="dropdown-item" href="${appURL}maintenance">Maintenance</a></li>
+                        <li><a class="dropdown-item" href="${appURL}/trails">Trails</a></li>
+                        <li><a class="dropdown-item" href="${appURL}/reviews">Reviews</a></li>
+                        <li><a class="dropdown-item" href="${appURL}/maintenance">Maintenance</a></li>
                     </ul>
                 </li>
                 </c:if>

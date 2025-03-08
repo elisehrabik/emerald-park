@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Maintenance {
     private int maintenance_id;
     private String trail_name;
-    private String admin_first_name;
+    private String first_name;
     private String maintenance_type;
     private LocalDate request_date;
     private LocalDate completion_date;
@@ -16,10 +16,10 @@ public class Maintenance {
 
     }
 
-    public Maintenance(int maintenance_id, String trail_name, String admin_first_name, String maintenance_type, LocalDate request_date, LocalDate completion_date, boolean maintenance_complete, String maintenance_notes) {
+    public Maintenance(int maintenance_id, String trail_name, String first_name, String maintenance_type, LocalDate request_date, LocalDate completion_date, boolean maintenance_complete, String maintenance_notes) {
         this.maintenance_id = maintenance_id;
         this.trail_name = trail_name;
-        this.admin_first_name = admin_first_name;
+        this.first_name = first_name;
         this.maintenance_type = maintenance_type;
         this.request_date = request_date;
         this.completion_date = completion_date;
@@ -36,11 +36,11 @@ public class Maintenance {
     }
 
     public String getAdmin_first_name() {
-        return admin_first_name;
+        return first_name;
     }
 
     public void setAdmin_first_name(String admin_first_name) {
-        this.admin_first_name = admin_first_name;
+        this.first_name = first_name;
     }
 
     public String getMaintenance_type() {
@@ -96,7 +96,7 @@ public class Maintenance {
         return "Maintenance{" +
                 "maintenance_id=" + maintenance_id +
                 ", trail_name='" + trail_name + '\'' +
-                ", admin_first_name='" + admin_first_name + '\'' +
+                ", admin_first_name='" + first_name + '\'' +
                 ", maintenance_type='" + maintenance_type + '\'' +
                 ", request_date=" + request_date +
                 ", completion_date=" + completion_date +

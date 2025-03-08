@@ -84,6 +84,9 @@ public class User implements Comparable<User> {
     }
 
     public void setPhone(String phone) {
+        if(!Validators.isValidPhone(phone)) {
+            throw new IllegalArgumentException("Invalid phone number");
+        }
         this.phone = phone;
     }
 
@@ -106,6 +109,9 @@ public class User implements Comparable<User> {
     }
 
     public void setLanguage(String language) {
+        if(!Validators.isValidLanguage(language)) {
+            throw new IllegalArgumentException("Invalid language option");
+        }
         this.language = language;
     }
 
