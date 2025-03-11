@@ -31,14 +31,14 @@
                         <c:forEach items="${users}" var="user">
                         <tr>
                             <td>
-                                <a href="edit-user?user_id=${user.userId}" class="btn btn-sm btn-outline-primary">Edit</a>
-                                <a href="delete-user?user_id=${user.userId}" class="btn btn-sm btn-outline-danger">Delete</a>
+                                <a href="edit-user?user_id=${user.userId}" class="btn btn-sm btn-outline-primary mb-1" style="width:100%">Edit</a>
+                                <a href="delete-user?user_id=${user.userId}" class="btn btn-sm btn-outline-danger" style="width:100%">Delete</a>
                             </td>
                             <td>${user.firstName}</td>
-                            <td>${user.lastName}</td>
+                            <td style="width: 10em;">${user.lastName}</td>
                             <td>${user.email}</td>
                             <td>${user.phone}</td>
-                            <td>${user.language}</td>
+                            <td >${user.language}</td>
                             <td>${user.status}</td>
                             <td>${user.privileges}</td>
                             <td>${user.createdAt}</td>

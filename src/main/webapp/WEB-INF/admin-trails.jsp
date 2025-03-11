@@ -1,14 +1,21 @@
-
-<!-- Header -->
-<h2 style="margin-left: 4rem; margin-top: 2rem; margin-bottom: 2rem;">Trails</h2>
 <div class="container py-4">
-    <a href="admin-add-trail" class="btn btn-primary" role="button">Add New Trail</a>
-    <h2>Admin - All Trails</h2>
-    <div class="table-responsive small">
-        <table class="table table-striped table-sm">
+    <div class="row">
+        <!-- Main content START -->
+        <div class="col-xl-12">
+            <!-- Title -->
+            <h1>All Trails</h1>
+    <p class="lead">
+        <c:choose>
+            <c:when test="${trails.size() == 1}">There is 1 trail</c:when>
+            <c:otherwise>There are ${trails.size()} trails</c:otherwise>
+        </c:choose>
+    </p>
+<c:if test="${trails.size() > 0}">
+    <div class="table-responsive">
+    <table class="table table-bordered">
             <thead>
             <tr>
-                <th scope="col" style="width: 120px;">Edit/Delete</th>
+                <th scope="col" style="width: 120px;"></th>
                 <th scope="col">Name</th>
                 <th scope="col">Distance</th>
                 <th scope="col">Difficulty</th>
@@ -16,13 +23,14 @@
                 <th scope="col">Description</th>
                 <th scope="col" style="width: 120px;">Allows Bikes?</th>
                 <th scope="col">Image</th>
+            </tr>
             </thead>
             <tbody>
             <c:forEach items="${trails}" var="trail">
                 <tr>
-                    <td style="width: 120px;">
-                        <a href="edit-trail?trail_id=${trail.trail_id}" class="btn btn-sm btn-outline-primary">Edit</a>
-                        <a href="delete-trail?trail_id=${trail.trail_id}" class="btn btn-sm btn-outline-danger">Delete</a>
+                    <td>
+                        <a href="edit-trail?trail_id=${trail.trail_id}" class="btn btn-sm btn-outline-primary mb-1" style="width:100%">Edit</a>
+                        <a href="delete-trail?trail_id=${trail.trail_id}" class="btn btn-sm btn-outline-danger" style="width:100%">Delete</a>
                     </td>
 
                     <td>${trail.trail_name}</td>
@@ -32,11 +40,12 @@
                     <td>${trail.trail_description}</td>
                     <td style="width: 120px;">${trail.allows_bikes}</td>
                     <td>${trail.trail_image}</td>
-
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
+                    </c:forEach>
+                </tbody>
+            </table>
+            </div>
+</c:if>
+</div>
     </div>
 </div>
 </body>
