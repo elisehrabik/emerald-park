@@ -23,7 +23,7 @@
                                 <!-- First name -->
                                 <div class="col-md-6">
                                     <label class="form-label" for="firstName">First Name</label>
-                                    <input class="<c:if test="${not empty firstNameError}">is-invalid</c:if> form-control" type="text" id="firstName" name="firstName" value="${sessionScope.activeUser.firstName}">
+                                    <input class="<c:if test="${not empty firstNameError}">is-invalid</c:if> form-control" type="text" id="firstName" name="firstName" value="${fn:escapeXml(sessionScope.activeUser.firstName)}">
                                     <c:if test="${not empty firstNameError}"><div class="invalid-feedback">${firstNameError}</div></c:if>
                                 </div>
 
@@ -58,6 +58,51 @@
                                         <option value="fr-FR" <c:if test="${sessionScope.activeUser.language == 'fr-FR'}">selected</c:if> >French</option>
                                     </select>
                                     <c:if test="${not empty languageError }"><div class="invalid-feedback">${languageError}</div></c:if>
+                                </div>
+
+                                <!-- pronouns -->
+                                <div class="col-md-6">
+                                    <label class="form-label" for="pronouns">Pronouns</label>
+                                    <select class="<c:if test="${not empty pronouns}">is-invalid</c:if> form-select js-choice z-index-9 bg-transparent" aria-label=".form-select-sm" id="pronouns" name="pronouns">
+                                        <option value="--" ${sessionScope.activeUser.pronouns == '--' ? 'selected' : ''}>--</option>
+                                        <option value="she/her" ${sessionScope.activeUser.pronouns == 'she/her' ? 'selected' : ''}>She/Her</option>
+                                        <option value="he/him" ${sessionScope.activeUser.pronouns == 'he/him' ? 'selected' : ''}>He/Him</option>
+                                        <option value="they/them" ${sessionScope.activeUser.pronouns == 'they/them' ? 'selected' : ''}>They/Them</option>
+                                        <option value="she/they" ${sessionScope.activeUser.pronouns == 'she/they' ? 'selected' : ''}>She/They</option>
+                                        <option value="he/they" ${sessionScope.activeUser.pronouns == 'he/they' ? 'selected' : ''}>He/They</option>
+                                        <option value="she/he/they" <c:if test="${sessionScope.activeUser.pronouns == 'she/he/they'}">selected</c:if> >She/He/They</option>
+                                    </select>
+                                    <c:if test="${not empty pronounsError }"><div class="invalid-feedback">${pronounsError}</div></c:if>
+                                </div>
+
+                                <!-- birthday -->
+                                <div class="col-md-6">
+                                    <label class="form-label" for="birthday">Date of Birth</label>
+                                    <input type="date" class="<c:if test='${not empty birthdayError}'>is-invalid</c:if> form-control"
+                                           id="birthday"
+                                           name="birthday"
+                                           value="${sessionScope.activeUser.birthday != null ? sessionScope.activeUser.birthday.toString() : ''}">
+
+                                    <c:if test="${not empty birthdayError}">
+                                        <div class="invalid-feedback">${birthdayError}</div>
+                                    </c:if>
+                                </div>
+
+                                <!-- avatar -->
+                                <div class="col-md-6">
+                                    <label class="form-label" for="avatar">Avatar</label>
+                                    <select class="<c:if test="${not empty avatar}">is-invalid</c:if> form-select js-choice z-index-9 bg-transparent" aria-label=".form-select-sm" id="avatar" name="avatar">
+                                        <option value="tree" ${sessionScope.activeUser.avatar == 'tree' ? 'selected' : ''}>Tree</option>
+                                        <option value="person-hiking" ${sessionScope.activeUser.avatar == 'person-hiking' ? 'selected' : ''}>Hiker</option>
+                                        <option value="bicycle" ${sessionScope.activeUser.avatar == 'bicycle' ? 'selected' : ''}>Bike</option>
+                                        <option value="horse" ${sessionScope.activeUser.avatar == 'horse' ? 'selected' : ''}>Horse</option>
+                                        <option value="dog" ${sessionScope.activeUser.avatar == 'dog' ? 'selected' : ''}>Dog</option>
+                                        <option value="cat" ${sessionScope.activeUser.avatar == 'cat' ? 'selected' : ''}>Cat</option>
+                                        <option value="fish" ${sessionScope.activeUser.avatar == 'fish' ? 'selected' : ''}>Fish</option>
+                                        <option value="mountain-sun" ${sessionScope.activeUser.avatar == 'mountain-sun' ? 'selected' : ''}>Mountain</option>
+                                        <option value="leaf" <c:if test="${sessionScope.activeUser.avatar == 'leaf'}">selected</c:if> >Leaf</option>
+                                    </select>
+                                    <c:if test="${not empty avatarError }"><div class="invalid-feedback">${avatarError}</div></c:if>
                                 </div>
 
                                 <!-- Save button -->

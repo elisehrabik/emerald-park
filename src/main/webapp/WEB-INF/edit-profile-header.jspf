@@ -7,7 +7,7 @@
                     <!-- Profile info -->
                     <div class="col d-flex justify-content-between align-items-center">
                         <div>
-                            <h4>Good morning<c:if test="${not empty activeUser.firstName}">, ${activeUser.firstName}</c:if>!</h4>
+                            <h4>Good morning<c:if test="${not empty activeUser.firstName}">, ${fn:escapeXml(activeUser.firstName)}</c:if>!</h4>
                             <ul class="list-inline mb-0">
                                 <li class="list-item"><i class="bi bi-calendar-event-fill fs-6"></i> March 1 20XX, 8:00 AM</li>
                                 <li class="list-item"><i class="bi bi-star-fill fs-6"></i> Member since January 1, 20XX</li>

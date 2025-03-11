@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.Duration;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -29,7 +30,7 @@ public class UserDAO {
     public static boolean update(String originalEmail, User newUser) {
         User existingUser = get(originalEmail);
         try(Connection connection = getConnection();
-            CallableStatement statement = connection.prepareCall("{CALL sp_update_user(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}")
+            CallableStatement statement = connection.prepareCall("{CALL sp_update_user(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}")
         ) {
             statement.setInt(1, existingUser.getUserId());
             statement.setString(2, existingUser.getFirstName());
@@ -40,20 +41,27 @@ public class UserDAO {
             statement.setString(7, existingUser.getStatus());
             statement.setString(8, existingUser.getPrivileges());
             statement.setString(9, existingUser.getTimezone());
-            statement.setString(10, newUser.getFirstName());
-            statement.setString(11, newUser.getLastName());
-            statement.setString(12, newUser.getEmail());
-            statement.setString(13, newUser.getPhone());
-            statement.setString(14, newUser.getLanguage());
-            statement.setString(15, newUser.getStatus());
-            statement.setString(16, newUser.getPrivileges());
-            statement.setString(17, newUser.getTimezone());
+            statement.setString(10, existingUser.getPronouns());
+            statement.setString(11, existingUser.getBirthday());
+            statement.setString(12, existingUser.getAvatar());
+            statement.setString(13, newUser.getFirstName());
+            statement.setString(14, newUser.getLastName());
+            statement.setString(15, newUser.getEmail());
+            statement.setString(16, newUser.getPhone());
+            statement.setString(17, newUser.getLanguage());
+            statement.setString(18, newUser.getStatus());
+            statement.setString(19, newUser.getPrivileges());
+            statement.setString(20, newUser.getTimezone());
+            statement.setString(21, newUser.getPronouns());
+            statement.setString(22, newUser.getBirthday());
+            statement.setString(23, newUser.getAvatar());
             int rowsAffected = statement.executeUpdate();
             return rowsAffected == 1;
         } catch(SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
 
     public static String passwordReset(String email, HttpServletRequest req) {
         User user = get(email);
@@ -120,7 +128,11 @@ public class UserDAO {
                 String privileges = rs.getString("privileges");
                 Instant createdAt = rs.getTimestamp("created_at").toInstant();
                 String timezone = rs.getString("timezone");
-                User user = new User(userId, firstName, lastName, email, phone, password, language, status, privileges, createdAt, timezone);
+                String pronouns = rs.getString("pronouns");
+                LocalDate birthday = rs.getDate("birthday").toLocalDate();
+                String avatar = rs.getString("avatar");
+
+                User user = new User(userId, firstName, lastName, email, phone, password, language, status, privileges, createdAt, timezone, pronouns, birthday, avatar);
                 list.add(user);
             }
         } catch (SQLException e) {
@@ -133,6 +145,8 @@ public class UserDAO {
         User user = null;
         try(Connection connection = getConnection()) {
             CallableStatement cstmt = connection.prepareCall("{call sp_get_user(?)}");
+
+
             cstmt.setString(1, email);
             ResultSet rs = cstmt.executeQuery();
             if (rs.next()) {
@@ -146,7 +160,16 @@ public class UserDAO {
                 String privileges = rs.getString("privileges");
                 Instant createdAt = rs.getTimestamp("created_at").toInstant();
                 String timezone = rs.getString("timezone");
-                user = new User(userId, firstName, lastName, email, phone, password, language, status, privileges, createdAt, timezone);
+
+                String pronouns = rs.getString("pronouns");
+                if (rs.wasNull()) pronouns = null;
+
+                LocalDate birthday = rs.getDate("birthday") != null ? rs.getDate("birthday").toLocalDate() : null;
+
+                String avatar = rs.getString("avatar");
+                if (rs.wasNull()) avatar = null;
+
+                user = new User(userId, firstName, lastName, email, phone, password, language, status, privileges, createdAt, timezone, pronouns, birthday, avatar);
             }
         } catch(SQLException e) {
             throw new RuntimeException(e);
@@ -211,5 +234,14 @@ public class UserDAO {
         return false;
     }
 
-
+    public static boolean delete(User user) {
+        try(Connection connection = getConnection()) {
+            CallableStatement statement = connection.prepareCall("{CALL sp_delete_user(?)}");
+            statement.setInt(1, user.getUserId());
+            int rowsAffected = statement.executeUpdate();
+            return rowsAffected == 1;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

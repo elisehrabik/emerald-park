@@ -3,6 +3,7 @@ package edu.kirkwood.toystore.model;
 import edu.kirkwood.shared.Validators;
 
 import java.time.Instant;
+import java.time.LocalDate;
 
 public class User implements Comparable<User> {
     private int userId;
@@ -16,6 +17,9 @@ public class User implements Comparable<User> {
     private String privileges;
     private Instant createdAt;
     private String timezone;
+    private String pronouns;
+    private LocalDate birthday = LocalDate.now();
+    private String avatar;
 
     public User() {
     }
@@ -30,7 +34,14 @@ public class User implements Comparable<User> {
                 String status,
                 String privileges,
                 Instant createdAt,
-                String timezone) {
+                String timezone,
+                String pronouns,
+                LocalDate birthday,
+                String avatar
+    ) {
+        this.avatar = avatar;
+        this.birthday = birthday;
+        this.pronouns = pronouns;
         this.timezone = timezone;
         this.createdAt = createdAt;
         this.privileges = privileges;
@@ -145,6 +156,31 @@ public class User implements Comparable<User> {
 
     public void setTimezone(String timezone) {
         this.timezone = timezone;
+    }
+
+    public String getPronouns() {
+        return pronouns;
+    }
+
+    public void setPronouns(String pronouns) {
+        this.pronouns = pronouns;
+    }
+
+    public String getBirthday() {
+        return birthday.toString();
+    }
+
+
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     @Override
