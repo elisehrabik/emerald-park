@@ -10,9 +10,9 @@
                 <!-- Main content START -->
                 <div class="col-lg-9">
                     <!-- Edit profile START -->
-                    <div class="card bg-transparent border rounded-3">
+                    <div class="card transparent-overlay border rounded-3 ">
                         <!-- Card header -->
-                        <div class="card-header bg-light border-bottom">
+                        <div class="card-header transparent-overlay2 border-bottom">
                             <h3 class="card-header-title mb-0">Edit Profile</h3>
                         </div>
                         <!-- Card body START -->
@@ -22,28 +22,28 @@
 
                                 <!-- First name -->
                                 <div class="col-md-6">
-                                    <label class="form-label" for="firstName">First Name</label>
+                                    <label class="form-label text-light" for="firstName">First Name</label>
                                     <input class="<c:if test="${not empty firstNameError}">is-invalid</c:if> form-control" type="text" id="firstName" name="firstName" value="${fn:escapeXml(sessionScope.activeUser.firstName)}">
                                     <c:if test="${not empty firstNameError}"><div class="invalid-feedback">${firstNameError}</div></c:if>
                                 </div>
 
                                 <!-- Last name -->
                                 <div class="col-md-6">
-                                    <label class="form-label" for="lastName">Last Name</label>
+                                    <label class="form-label text-light" for="lastName">Last Name</label>
                                     <input type="text" class="<c:if test="${not empty lastNameError}">is-invalid</c:if> form-control" id="lastName" name="lastName" value="${sessionScope.activeUser.lastName}">
                                     <c:if test="${not empty lastNameError}"><div class="invalid-feedback">${lastNameError}</div></c:if>
                                 </div>
 
                                 <!-- Email id -->
                                 <div class="col-md-6">
-                                    <label class="form-label" for="email">Email</label>
+                                    <label class="form-label text-light" for="email">Email</label>
                                     <input class="<c:if test="${not empty emailError}">is-invalid</c:if> form-control" type="text" id="email" name="email" value="${not empty email ? email : sessionScope.activeUser.email}">
                                     <c:if test="${not empty emailError }"><div class="invalid-feedback">${emailError}</div></c:if>
                                 </div>
 
                                 <!-- Phone number -->
                                 <div class="col-md-6">
-                                    <label class="form-label" for="phone">Phone number</label>
+                                    <label class="form-label text-light" for="phone">Phone number</label>
                                     <input type="text" class="<c:if test="${not empty phoneError}">is-invalid</c:if> form-control" id="phone" name="phone" value="${not empty phone ? phone : sessionScope.activeUser.phone}">
                                     <c:if test="${not empty phoneError }"><div class="invalid-feedback">${phoneError}</div></c:if>
                                 </div>
@@ -51,8 +51,8 @@
                                 <!-- Select option -->
                                 <div class="col-md-6">
                                     <!-- Language Preference -->
-                                    <label class="form-label" for="language">Language</label>
-                                    <select class="<c:if test="${not empty languageError}">is-invalid</c:if> form-select js-choice z-index-9 bg-transparent" aria-label=".form-select-sm" id="language" name="language">
+                                    <label class="form-label text-light" for="language">Language</label>
+                                    <select class="<c:if test="${not empty languageError}">is-invalid</c:if> form-select js-choice z-index-9" aria-label=".form-select-sm" id="language" name="language">
                                         <option value="en-US" ${sessionScope.activeUser.language == 'en-US' ? 'selected' : ''}>English</option>
                                         <option value="es-MX" ${sessionScope.activeUser.language == 'es-MX' ? 'selected' : ''}>Spanish</option>
                                         <option value="fr-FR" <c:if test="${sessionScope.activeUser.language == 'fr-FR'}">selected</c:if> >French</option>
@@ -62,8 +62,8 @@
 
                                 <!-- pronouns -->
                                 <div class="col-md-6">
-                                    <label class="form-label" for="pronouns">Pronouns</label>
-                                    <select class="<c:if test="${not empty pronouns}">is-invalid</c:if> form-select js-choice z-index-9 bg-transparent" aria-label=".form-select-sm" id="pronouns" name="pronouns">
+                                    <label class="form-label text-light" for="pronouns">Pronouns</label>
+                                    <select class="<c:if test="${not empty pronouns}">is-invalid</c:if> form-select js-choice z-index-9" aria-label=".form-select-sm" id="pronouns" name="pronouns">
                                         <option value="--" ${sessionScope.activeUser.pronouns == '--' ? 'selected' : ''}>--</option>
                                         <option value="she/her" ${sessionScope.activeUser.pronouns == 'she/her' ? 'selected' : ''}>She/Her</option>
                                         <option value="he/him" ${sessionScope.activeUser.pronouns == 'he/him' ? 'selected' : ''}>He/Him</option>
@@ -77,7 +77,7 @@
 
                                 <!-- birthday -->
                                 <div class="col-md-6">
-                                    <label class="form-label" for="birthday">Date of Birth</label>
+                                    <label class="form-label text-light" for="birthday">Date of Birth</label>
                                     <input type="date" class="<c:if test='${not empty birthdayError}'>is-invalid</c:if> form-control"
                                            id="birthday"
                                            name="birthday"
@@ -90,8 +90,8 @@
 
                                 <!-- avatar -->
                                 <div class="col-md-6">
-                                    <label class="form-label" for="avatar">Avatar</label>
-                                    <select class="<c:if test="${not empty avatar}">is-invalid</c:if> form-select js-choice z-index-9 bg-transparent" aria-label=".form-select-sm" id="avatar" name="avatar">
+                                    <label class="form-label text-light" for="avatar">Avatar</label>
+                                    <select class="<c:if test="${not empty avatar}">is-invalid</c:if> form-select js-choice z-index-9" aria-label=".form-select-sm" id="avatar" name="avatar">
                                         <option value="tree" ${sessionScope.activeUser.avatar == 'tree' ? 'selected' : ''}>Tree</option>
                                         <option value="person-hiking" ${sessionScope.activeUser.avatar == 'person-hiking' ? 'selected' : ''}>Hiker</option>
                                         <option value="bicycle" ${sessionScope.activeUser.avatar == 'bicycle' ? 'selected' : ''}>Bike</option>
@@ -106,8 +106,8 @@
                                 </div>
 
                                 <!-- Save button -->
-                                <div class="d-sm-flex justify-content-end">
-                                    <button type="submit" class="btn btn-primary mb-0">Save changes</button>
+                                <div class="d-sm-flex justify-content-center">
+                                    <button type="submit" class="btn btn-primary mb-0 table-button">Save changes</button>
                                 </div>
                             </form>
                         </div>

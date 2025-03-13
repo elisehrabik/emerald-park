@@ -1,5 +1,4 @@
 /*!*  Hero Styles *!*/
-
 .hero {
     display: flex;
     flex-direction: column;
@@ -15,7 +14,6 @@
 }
 
 .hero img {
-
 }
 
 .forest {
@@ -56,19 +54,6 @@
     font-size: 3rem;
 }
 
-.hero a {
-    background-color: #16442d;
-    color: white;
-    border: none;
-    font-size: 1.5rem;
-    border-radius: 5px;
-}
-
-.hero a:hover {
-    background-color: #103220;
-}
-
-
 .hero h1 {
     font-family: 'Nanum Pen Script', sans-serif;
     text-transform: uppercase;
@@ -84,6 +69,53 @@
     font-size: 8rem;
     margin-right: -.25em;
 }
+
+
+@media (max-width: 1200px) {
+    .hero h1 {
+        font-size: 3.5rem;
+    }
+
+    .hero h1 span {
+        font-size: 5.5rem;
+    }
+
+    .hero h2 {
+        font-size: 3rem;
+    }
+
+    .arrow-home {
+        margin-top: 4rem;
+    }
+}
+
+@media (max-width: 575px) {
+    .arrow-home {
+        width: 70%;
+        margin-top: 3rem;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+        text-align: right;
+        margin-top: -14rem;
+    }
+
+    .hero h1 span {
+        font-size: 4rem;
+    }
+
+    .hero h2 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+}
+
+
 
 
 .container.marketing {
@@ -124,3 +156,5 @@
 .button-dark {
     z-index: 10;
 }
+
+

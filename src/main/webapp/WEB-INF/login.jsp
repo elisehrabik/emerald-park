@@ -1,5 +1,6 @@
-<main class="form-signin w-100 m-auto">
-    <c:if test="${not empty loginFail}">
+<div class="container d-flex justify-content-center align-items-center mt-5" style="min-height: 50vh;">
+    <main class="form-signin p-4 p-md-5 border rounded-3 bg-body-tertiary" style="width: 100%; max-width: 30rem;">
+        <c:if test="${not empty loginFail}">
         <div class="alert alert-danger mb-2">${loginFail}</div>
     </c:if>
     <form method="post" action="${appURL}/login" id="loginForm">
@@ -25,3 +26,4 @@
         <p class="my-3 text-body-secondary "><a href="${appURL}/reset-password">Forgot password?</a> <br> Don't have an account? <a href="${appURL}/signup">Sign-up</a></p>
     </form>
 </main>
+</div>

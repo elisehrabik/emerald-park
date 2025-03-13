@@ -36,7 +36,7 @@
 <%--        Main Menu--%>
         <div class="collapse navbar-collapse" id="navbarSupportedContent" style="float:right">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="margin-right: 3rem">
-                <li class="nav-item me-4 my-nav-item" style="font-size: 1rem">
+                <li class="nav-item me-4 my-nav-item" style="font-size: 1rem; font-weight:bold; color: var(--background-gray)">
                     <a class="nav-link active" aria-current="page" href="${appURL}/">Home</a>
                 </li>
                 <li class="nav-item me-4 my-nav-item" style="font-size: 1rem">
@@ -56,10 +56,19 @@
                         Admin
                     </button>
                     <ul class="dropdown-menu dropdown-menu-light" style="width: 120px !important; min-width: 120px !important;">
-                        <li><a class="dropdown-item" href="${appURL}/users">All Users</a></li>
-                        <li><a class="dropdown-item" href="${appURL}/trails">Trails</a></li>
-                        <li><a class="dropdown-item" href="${appURL}/reviews">Reviews</a></li>
-                        <li><a class="dropdown-item" href="${appURL}/maintenance">Maintenance</a></li>
+                        <li class="admin-menu">
+                            <a class="dropdown-item" href="${appURL}/users">Users</a>
+                        </li>
+                        <li class="admin-menu">
+                            <a class="dropdown-item" href="${appURL}/trails">Trails</a>
+                        </li>
+                        <li class="admin-menu">
+                            <a class="dropdown-item" href="${appURL}/users">Reviews</a>
+                        </li>
+                        <li class="admin-menu">
+                            <a class="dropdown-item" href="${appURL}/maintenance">Maintenance</a>
+                        </li>
+
                     </ul>
                 </li>
                 </c:if>

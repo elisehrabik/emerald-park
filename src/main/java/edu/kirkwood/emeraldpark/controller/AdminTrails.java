@@ -25,6 +25,7 @@ public class AdminTrails extends HttpServlet {
         }
         List<Trail> trails = TrailDAO.getTrailsAdmin();
         req.setAttribute("trails", trails);
+        req.setAttribute("pageTitle", "All Trails");
         req.getRequestDispatcher("WEB-INF/admin-trails.jsp").forward(req, resp);
 
     }

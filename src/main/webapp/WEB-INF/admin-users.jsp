@@ -4,15 +4,18 @@
         <div class="col-xl-12">
             <!-- Title -->
             <h1>All Users</h1>
-            <p class="lead">
+            <p class="lead admin-result">
                 <c:choose>
                     <c:when test="${users.size() == 1}">There is 1 user</c:when>
                     <c:otherwise>There are ${users.size()} users</c:otherwise>
                 </c:choose>
             </p>
+            <div class="text-center mb-5">
+                <a href="admin-add-user" class="btn btn-primary table-button">Add User</a>
+            </div>
             <c:if test="${users.size() > 0}">
-                <div class="table-responsive">
-                    <table class="table table-bordered">
+                <div class="table-responsive my-table" style="padding:0; border-radius: 5px 5px 5px 5px;">
+                    <table class="table table-bordered my-table">
                         <thead>
                         <tr>
                             <th scope="col"></th>
@@ -31,8 +34,8 @@
                         <c:forEach items="${users}" var="user">
                         <tr>
                             <td>
-                                <a href="edit-user?user_id=${user.userId}" class="btn btn-sm btn-outline-primary mb-1" style="width:100%">Edit</a>
-                                <a href="delete-user?user_id=${user.userId}" class="btn btn-sm btn-outline-danger" style="width:100%">Delete</a>
+                                <a href="edit-user?user_id=${user.userId}" class="btn btn-sm btn-outline-primary mb-1 edit-color" style="width:100%">Edit</a>
+                                <a href="delete-user?user_id=${user.userId}" class="btn btn-sm btn-outline-danger delete-color" style="width:100%">Delete</a>
                             </td>
                             <td>${user.firstName}</td>
                             <td style="width: 10em;">${user.lastName}</td>

@@ -53,7 +53,30 @@
 </head>
 
 <%--    Start body --%>
-<body>
+<c:if test="${pageTitle eq 'All Trails' or pageTitle eq 'All Users' or pageTitle eq 'All Reviews' or pageTitle eq 'All Maintenance Requests' or pageTitle eq 'Edit Profile' or pageTitle eq 'Sign up for an account' or pageTitle eq 'Login' or pageTitle eq 'Reset your password'}">
+<style>
+    body {
+        background: url('${appURL}/images/404_forest.jpg') no-repeat center center fixed;
+        background-size: cover;
+
+    }
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('${appURL}/images/404_forest.jpg') no-repeat center center fixed;
+        background-size: cover;
+        filter: blur(6px);
+        -webkit-filter: blur(6px);
+        z-index: -1;
+    }
+</style>
+</c:if>
+
+
 <%@include file="/WEB-INF/top-nav.jspf"%>
 
 <%--    Alert container --%>

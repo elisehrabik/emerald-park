@@ -3,14 +3,15 @@
         <div class="row">
             <!-- Profile banner START -->
             <div class="col-12">
-                <div class="card bg-light card-body">
+                <div class="card transparent-overlay3 card-body">
                     <!-- Profile info -->
-                    <div class="col d-flex justify-content-between align-items-center">
+                    <div class="col d-flex justify-content-center align-items-center">
                         <div>
-                            <h4>Good morning<c:if test="${not empty activeUser.firstName}">, ${fn:escapeXml(activeUser.firstName)}</c:if>!</h4>
-                            <ul class="list-inline mb-0">
-                                <li class="list-item"><i class="bi bi-calendar-event-fill fs-6"></i> March 1 20XX, 8:00 AM</li>
-                                <li class="list-item"><i class="bi bi-star-fill fs-6"></i> Member since January 1, 20XX</li>
+                            <h4 >Good morning<c:if test="${not empty activeUser.firstName}">, ${fn:escapeXml(activeUser.firstName)}</c:if>!</h4>
+                            <ul class="list-inline mb-0 text-center">
+                                <li class="list-item">Member since January 1, 20XX</li>
+                                <li class="list-item"> March 1 20XX, 8:00 AM</li>
+
                             </ul>
                         </div>
                         <!-- Responsive toggler START -->

@@ -11,12 +11,17 @@
     --accent-1: #416955;
     --accent-2: #a5b6ae;
     --accent-3: #edf2ed;
+    --accent-4: #d9e5d9;
 }
 
 body {
     margin: 0;
     padding: 0;
     font-family: "Raleway", sans-serif;
+}
+h1 {
+    color: var(--text-light);
+    text-align: center;
 }
 
 h2 {
@@ -26,8 +31,14 @@ h2 {
     color: var(--text-dark);
 }
 
+.admin-result {
+    color: var(--text-light);
+    text-align: center;
+}
+
 a {
     text-decoration: none;
+    color: var(--text-dark);
 }
 
 .button-dark {
@@ -90,4 +101,103 @@ a {
     color: var(--accent-1);
     background-color: var(--accent-3);
     border: 2 px solid var(--background-dark) !important;
+}
+
+.side-button {
+    background-color: rgba(255, 255, 255, 0.8) !important;
+    border: none !important;
+    color: var(--text-dark) !important;
+    margin-bottom: 0.5rem;
+    border-radius: 5px 5px ;
+}
+
+.side-button:hover {
+    background-color: white !important;
+    border: none !important;
+    color: var(--text-dark);
+}
+
+.bg-accent-light {
+    background-color: var(--accent-3);
+}
+
+.bg-accent-medium {
+    background-color: var(--accent-2);
+}
+
+.table-button {
+    background-color: var(--button-dark);
+    border: 1px solid white;
+    width: 12rem;
+    height: 3rem;
+    border-radius: 24px;
+    font-size: 1.2rem;
+    align-content: center;
+    color: white;
+}
+
+.table-button:hover {
+    background-color: transparent;
+    border: 1px solid white;
+}
+
+.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active{
+    background-color: transparent !important;
+    border: 1px solid white;
+}
+
+
+.my-table {
+    border-radius: 5px !important;
+}
+
+.edit-color {
+    background-color: var(--accent-3);
+    border: 1px solid var(--accent-3);
+    color: var(--text-dark);
+    font-size: 1rem;
+}
+
+.edit-color:hover {
+    background-color: var(--accent-4);
+    border: 1px solid var(--accent-4);
+    color: var(--text-dark);
+}
+
+.delete-color {
+    background-color: var(--accent-2);
+    border: 1px solid var(--accent-2);
+    color: var(--text-light);
+    font-size: 1rem;
+}
+
+.delete-color:hover {
+    background-color: var(--accent-1);
+    border: 1px solid var(--text-dark);
+}
+
+select {
+    background-color: white !important;
+}
+
+.transparent-overlay {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.transparent-overlay2 {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.transparent-overlay3 {
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus {
+    background-color: var(--accent-3) !important;
+}
+
+.dropdown-menu .dropdown-item:active {
+    background-color: var(--accent-2) !important;
+    color: var(--text-dark);
 }

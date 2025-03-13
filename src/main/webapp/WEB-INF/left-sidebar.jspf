@@ -1,17 +1,17 @@
 <div class="col-lg-3">
     <!-- Responsive offcanvas body START -->
-    <div class="offcanvas-lg offcanvas-end" tabindex="-1" id="offcanvasSidebar">
+    <div class="offcanvas-lg offcanvas-start" tabindex="-1" id="offcanvasSidebar">
         <!-- Offcanvas header -->
         <div class="offcanvas-header bg-light">
             <button  type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasSidebar" aria-label="Close"></button>
         </div>
         <!-- Offcanvas body -->
-        <div class="offcanvas-body p-3 p-lg-0">
-            <div class="bg-light border rounded-3 p-3 w-100">
+        <div style="height: 32rem; " class="offcanvas-body p-3 p-lg-0">
+            <div class="transparent-overlay border rounded-3 p-3 w-100">
                 <!-- Dashboard menu -->
-                <div class="list-group list-group-light list-group-borderless">
-                    <a class="list-group-item ${pageTitle == "Edit Profile" ? "active" : ""}" href="${appURL}/edit-profile"><i class="bi bi-person-gear me-2"></i>Edit Profile</a>
-                    <a class="list-group-item ${pageTitle == "Delete Account" ? "active" : ""}" href="${appURL}/delete-account"><i class="bi bi-trash me-2"></i>Delete Account</a>
+                <div class="list-group list-group-light list-group-borderless" >
+                    <a  class="list-group-item side-button ${pageTitle == "Edit Profile" ? "active" : ""} " href="${appURL}/edit-profile"><i class="bi bi-person-gear me-2"></i>Edit Profile</a>
+                    <a class="list-group-item side-button ${pageTitle == "Delete Account" ? "active" : ""}" href="${appURL}/delete-account"><i class="bi bi-trash me-2"></i>Delete Account</a>
                 </div>
             </div>
         </div>

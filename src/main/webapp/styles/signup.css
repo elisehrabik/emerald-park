@@ -2,8 +2,9 @@ h1 {
     font-size: 3rem !important;
     font-weight: 500;
     line-height: 4rem;
-    color: var(--text-dark);
+    color: white !important;
     font-family: "Raleway", sans-serif;
+    text-align: left !important;
 }
 
 .button-signup {
@@ -40,4 +41,8 @@ a:hover {
     border-color: var(--button-dark);
     box-shadow: 0 0 5px var(--accent-3);
     background-color: var(--background-light);
+}
+
+p {
+    color: white;
 }

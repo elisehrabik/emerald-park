@@ -1,11 +1,9 @@
 <main>
-    <jsp:include page="/WEB-INF/edit-profile-header.jspf"></jsp:include>
-
+    <%@include file="/WEB-INF/edit-profile-header.jspf"%>
     <section class="pt-0">
         <div class="container">
             <div class="row">
-
-                <jsp:include page="/WEB-INF/left-sidebar.jspf"></jsp:include>
+                <%@include file="/WEB-INF/left-sidebar.jspf"%>
 
                 <!-- Main content START -->
                 <div class="col-xl-9">
