@@ -45,6 +45,7 @@ public class EditProfile extends HttpServlet {
         String email = req.getParameter("email");
         String phone = req.getParameter("phone");
         String language = req.getParameter("language");
+        String timezone = req.getParameter("timezone");
         String pronouns = req.getParameter("pronouns");
         String birthday = req.getParameter("birthday");
         String avatar = req.getParameter("avatar");
@@ -92,6 +93,15 @@ public class EditProfile extends HttpServlet {
         } catch(IllegalArgumentException e) {
             errorFound = true;
             req.setAttribute("languageError", e.getMessage());
+        }
+
+        try {
+            if(!timezone.equals(user.getTimezone())) {
+                user.setTimezone(timezone);
+            }
+        } catch(IllegalArgumentException e) {
+            errorFound = true;
+            req.setAttribute("timezoneError", e.getMessage());
         }
 
         try {

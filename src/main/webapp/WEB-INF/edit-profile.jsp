@@ -60,6 +60,24 @@
                                     <c:if test="${not empty languageError }"><div class="invalid-feedback">${languageError}</div></c:if>
                                 </div>
 
+                                <!-- Select option for Time Zone -->
+                                <div class="col-md-6">
+                                    <!-- Time Zone -->
+                                    <label class="form-label text-light" for="timezone">Time Zone</label>
+                                    <select class="<c:if test="${not empty timezoneError}">is-invalid</c:if> form-select js-choice z-index-9" aria-label=".form-select-sm" id="timezone" name="timezone">
+                                        <option value="America/Chicago" ${sessionScope.activeUser.timezone == 'America/Chicago' ? 'selected' : ''}>Central Time (CT)</option>
+                                        <option value="America/New_York" ${sessionScope.activeUser.timezone == 'America/New_York' ? 'selected' : ''}>Eastern Time (ET)</option>
+                                        <option value="America/Denver" ${sessionScope.activeUser.timezone == 'America/Denver' ? 'selected' : ''}>Mountain Time (MT)</option>
+                                        <option value="America/Los_Angeles" ${sessionScope.activeUser.timezone == 'America/Los_Angeles' ? 'selected' : ''}>Pacific Time (PT)</option>
+                                        <option value="America/Anchorage" ${sessionScope.activeUser.timezone == 'America/Anchorage' ? 'selected' : ''}>Alaska Time (AKT)</option>
+                                        <option value="Pacific/Honolulu" ${sessionScope.activeUser.timezone == 'Pacific/Honolulu' ? 'selected' : ''}>Hawaii-Aleutian Time (HST)</option>
+                                    </select>
+                                    <c:if test="${not empty timezoneError }">
+                                        <div class="invalid-feedback">${timezoneError}</div>
+                                    </c:if>
+                                </div>
+
+
                                 <!-- pronouns -->
                                 <div class="col-md-6">
                                     <label class="form-label text-light" for="pronouns">Pronouns</label>

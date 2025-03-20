@@ -7,7 +7,7 @@
                     <!-- Profile info -->
                     <div class="col d-flex justify-content-center align-items-center">
                         <div>
-                            <h4 >Good morning<c:if test="${not empty activeUser.firstName}">, ${fn:escapeXml(activeUser.firstName)}</c:if>!</h4>
+                            <h4 style="text-align: center" >Good morning<c:if test="${not empty activeUser.firstName}">, ${fn:escapeXml(activeUser.firstName)}</c:if>!</h4>
                             <ul class="list-inline mb-0 text-center">
                                 <li class="list-item">Member since January 1, 20XX</li>
                                 <li class="list-item"> March 1 20XX, 8:00 AM</li>

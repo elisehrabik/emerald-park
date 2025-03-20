@@ -155,8 +155,12 @@ public class User implements Comparable<User> {
     }
 
     public void setTimezone(String timezone) {
+        if(!Validators.isValidTimezone(timezone)) {
+            throw new IllegalArgumentException("Invalid timezone option");
+        }
         this.timezone = timezone;
     }
+
 
     public String getPronouns() {
         return pronouns;

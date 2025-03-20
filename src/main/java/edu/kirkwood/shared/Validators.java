@@ -77,5 +77,11 @@ public class Validators {
         return matcher.matches();
     }
 
+    public static boolean isValidTimezone(String timezone) {
+        String regex = "^(America/Chicago|America/New_York|America/Denver|America/Los_Angeles|America/Anchorage|Pacific/Honolulu)$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(timezone);
+        return matcher.matches();
+    }
 
 }
