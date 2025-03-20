@@ -1,50 +1,180 @@
-body {
-    margin: 0;
-    padding: 0;
+/*!*  Hero Styles *!*/
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    min-height: 60vh;
+    position: relative;
+    text-align: right;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding-right: 5%;
 }
 
+.hero img {
+}
 
-#error-page img {
+.forest {
     width: 100%;
-    height: 70vh;
+    height: 100%;
     object-fit: cover;
-    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.arrow-home {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    width: 60%;
+    height: auto;
+    z-index: 1;
+}
+
+.hero h1, .hero p {
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    padding: 1rem;
+    text-align: right;
+}
+
+.hero h1, .hero h2, .hero p {
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+    text-align: right;
+}
+
+/*.hero h2 {*/
+/*    font-size: 3rem;*/
+/*}*/
+
+.hero h1 {
+    font-family: 'Nanum Pen Script', sans-serif;
+    text-transform: uppercase;
+    font-size: 4rem;
+    line-height: 1.2;
+    text-align: right;
     margin-top: -3em;
 }
 
-
-#error-page h1, #error-page h2, #error-page p {
-    color: white;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
-    text-align: center;
+.hero h2  {
+    font-family: 'Nanum Pen Script', sans-serif;
+    display: block;
+    line-height: 1.1;
+    font-size: 8rem !important;
+    margin-right: -.25em;
+    font-weight: normal;
+    margin-top: -0.4em;
 }
 
-#error-page h1 {
-    margin-top: -12em;
-    font-size: 2rem;
+.hero p {
+    margin-top: -2em;
+    font-size: 1.2rem;
 }
 
-#error-page h2 {
-    font-size: 3rem;
+
+@media (max-width: 1200px) {
+    .hero h1 {
+        font-size: 3.5rem;
+    }
+
+    .hero h2 {
+        font-size: 5.5rem !important;
+    }
+
+    .arrow-home {
+        /*margin-top: 4rem;*/
+        width: 90%;
+    }
+
+    p {
+        margin-left: 3rem;
+    }
 }
 
-#error-page #error-p {
-    margin-top: -22em;
-    margin-bottom: 15em;
+@media (max-width: 575px) {
+    .arrow-home {
+        width: 50%;
+        margin-top: -1rem;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+        text-align: right;
+        margin-top: -14rem;
+    }
+
+    .hero h2 {
+        font-size: 4rem !important;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
 }
 
-#error-page a{
-    background-color: #16442d;
-    color: white;
-    border: none;
-    font-size: 1.5rem;
-    border-radius: 5px;
-}
 
-#error-page a:hover {
-    background-color: #103220;
-}
 
-footer {
-    margin-top: 10em;
-}
+
+/*body {*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*}*/
+
+
+/*#error-page img {*/
+/*    width: 100%;*/
+/*    height: 70vh;*/
+/*    object-fit: cover;*/
+/*    display: block;*/
+/*    margin-top: -3em;*/
+/*}*/
+
+
+/*#error-page h1, #error-page h2, #error-page p {*/
+/*    color: white;*/
+/*    text-shadow: 2px 2px 5px rgba(0,0,0,0.7);*/
+/*    text-align: center;*/
+/*}*/
+
+/*#error-page h1 {*/
+/*    margin-top: -12em;*/
+/*    font-size: 2rem;*/
+/*}*/
+
+/*#error-page h2 {*/
+/*    font-family: 'Nanum Pen Script', sans-serif;*/
+/*    text-transform: uppercase;*/
+/*    font-size: 8rem;*/
+/*    line-height: 1.2;*/
+/*    text-align: center;*/
+/*    margin-top: -3em;*/
+/*}*/
+
+/*#error-page #error-p {*/
+/*    margin-top: -22em;*/
+/*    margin-bottom: 15em;*/
+/*}*/
+
+/*#error-page a{*/
+/*    background-color: #16442d;*/
+/*    color: white;*/
+/*    border: none;*/
+/*    font-size: 1.5rem;*/
+/*    border-radius: 5px;*/
+/*}*/
+
+/*#error-page a:hover {*/
+/*    background-color: #103220;*/
+/*}*/
+
+/*footer {*/
+/*    margin-top: 10em;*/
+/*}*/

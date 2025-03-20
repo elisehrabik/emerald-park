@@ -201,3 +201,12 @@ select {
     background-color: var(--accent-2) !important;
     color: var(--text-dark);
 }
+
+.delete-button {
+    background-color: rgba(255, 0, 0, 0.3);
+    width: 15rem;
+}
+
+.delete-button:hover {
+    background-color: rgba(255, 0, 0, 0.6);
+}
