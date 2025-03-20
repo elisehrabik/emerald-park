@@ -36,6 +36,7 @@
     <link rel="stylesheet" href="${appURL}/styles/top-nav.css">
     <c:if test="${pageTitle eq 'Home'}"><link rel="stylesheet" href="${appURL}/styles/home.css"></c:if>
     <c:if test="${pageTitle eq 'Home'}"><link rel="stylesheet" href="${appURL}/styles/my-home.css"></c:if>
+    <c:if test="${pageTitle eq 'File not Found'}"><link rel="stylesheet" href="${appURL}/styles/my-home.css"></c:if>
     <c:if test="${pageTitle eq 'Login'}"><link rel="stylesheet" href="${appURL}/styles/login.css"></c:if>
     <c:if test="${pageTitle eq 'Sign up for an account'}"><link rel="stylesheet" href="${appURL}/styles/signup.css"></c:if>
 
@@ -53,7 +54,7 @@
 </head>
 
 <%--    Start body --%>
-<c:if test="${pageTitle eq 'All Trails' or pageTitle eq 'All Users' or pageTitle eq 'All Reviews' or pageTitle eq 'All Maintenance Requests' or pageTitle eq 'Edit Profile' or pageTitle eq 'Sign up for an account' or pageTitle eq 'Login' or pageTitle eq 'Reset your password'}">
+<c:if test="${pageTitle eq 'All Trails' or pageTitle eq 'All Users' or pageTitle eq 'All Reviews' or pageTitle eq 'All Maintenance Requests' or pageTitle eq 'Edit Profile' or pageTitle eq 'Delete Account' or pageTitle eq 'Sign up for an account' or pageTitle eq 'Login' or pageTitle eq 'Reset your password'}">
 <style>
     body {
         background: url('${appURL}/images/404_forest.jpg') no-repeat center center fixed;
