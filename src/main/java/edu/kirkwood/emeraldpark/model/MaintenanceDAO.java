@@ -36,4 +36,35 @@ public class MaintenanceDAO {
         }
         return maintenances;
     }
+//
+//    public static boolean addMaintenance(Maintenance maintenance) {
+//        try (Connection connection = getConnection()) {
+//            CallableStatement statement = connection.prepareCall("{CALL sp_add_maintenance(?, ?, ?, ?, ?, ?, ?, ?)}");
+//            statement.setInt(1, maintenance.getMaintenance_id());
+//            statement.setString(2, maintenance.getTrail_name());
+//            statement.setString(3, maintenance.getFirst_name());
+//            statement.setString(4, maintenance.getMaintenance_type());
+//
+//            // Used ChatGPT to convert LocalDate to SQL Date
+//            if (maintenance.getRequest_date() != null) {
+//                statement.setDate(5, java.sql.Date.valueOf(maintenance.getRequest_date()));
+//            } else {
+//                statement.setNull(5, java.sql.Types.DATE);
+//            }
+//
+//            if (maintenance.getCompletion_date() != null) {
+//                statement.setDate(6, java.sql.Date.valueOf(maintenance.getCompletion_date()));
+//            } else {
+//                statement.setNull(6, java.sql.Types.DATE);
+//            }
+//
+//            statement.setBoolean(7, maintenance.isMaintenance_complete());
+//            statement.setString(8, maintenance.getMaintenance_notes());
+//
+//            int rowsAffected = statement.executeUpdate();
+//            return rowsAffected == 1;
+//        } catch (SQLException e) {
+//            return false;
+//        }
+//    }
 }

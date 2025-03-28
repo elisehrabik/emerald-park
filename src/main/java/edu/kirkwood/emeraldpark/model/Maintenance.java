@@ -1,6 +1,8 @@
 package edu.kirkwood.emeraldpark.model;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 
 public class Maintenance {
     private int maintenance_id;
@@ -35,11 +37,11 @@ public class Maintenance {
         this.trail_name = trail_name;
     }
 
-    public String getAdmin_first_name() {
+    public String getFirst_name() {
         return first_name;
     }
 
-    public void setAdmin_first_name(String admin_first_name) {
+    public void setFirst_name(String first_name) {
         this.first_name = first_name;
     }
 
@@ -65,6 +67,20 @@ public class Maintenance {
 
     public void setCompletion_date(LocalDate completion_date) {
         this.completion_date = completion_date;
+    }
+
+    public Date getRequest_dateAsDate() {
+        if (request_date != null) {
+            return Date.from(request_date.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        }
+        return null;
+    }
+
+    public Date getCompletion_dateAsDate() {
+        if (completion_date != null) {
+            return Date.from(completion_date.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        }
+        return null;
     }
 
     public boolean isMaintenance_complete() {
@@ -96,7 +112,7 @@ public class Maintenance {
         return "Maintenance{" +
                 "maintenance_id=" + maintenance_id +
                 ", trail_name='" + trail_name + '\'' +
-                ", admin_first_name='" + first_name + '\'' +
+                ", first_name='" + first_name + '\'' +
                 ", maintenance_type='" + maintenance_type + '\'' +
                 ", request_date=" + request_date +
                 ", completion_date=" + completion_date +

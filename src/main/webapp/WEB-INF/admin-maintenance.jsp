@@ -36,10 +36,10 @@
                     </td>
 
                     <td style="width: 100px;">${maintenance.trail_name}</td>
-                    <td>${maintenance.admin_first_name}</td>
+                    <td>${maintenance.first_name}</td>
                     <td>${maintenance.maintenance_type}</td>
-                    <td style="width: 100px;">${maintenance.request_date}</td>
-                    <td style="width: 120px;">${maintenance.completion_date}</td>
+                    <td><fmt:formatDate value="${maintenance.request_dateAsDate}" type="date" dateStyle="long" /></td>
+                    <td><fmt:formatDate value="${maintenance.completion_dateAsDate}" type="date" dateStyle="long" /></td>
                     <td>${maintenance.maintenance_notes}</td>
             </c:forEach>
             </tbody>
