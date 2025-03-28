@@ -63,7 +63,7 @@
                             <a class="dropdown-item" href="${appURL}/trails">Trails</a>
                         </li>
                         <li class="admin-menu">
-                            <a class="dropdown-item" href="${appURL}/users">Reviews</a>
+                            <a class="dropdown-item" href="${appURL}/reviews">Reviews</a>
                         </li>
                         <li class="admin-menu">
                             <a class="dropdown-item" href="${appURL}/maintenance">Maintenance</a>

@@ -60,6 +60,14 @@ a {
     text-align: center;
 }
 
+.basic-button-green {
+    background-color: var(--button-dark);
+    border: none;
+}
+
+.basic-button-green:hover, .basic-button-green:focus{
+    background-color: var(--accent-1) !important;
+}
 
 .button-dark:hover {
     background-color: var(--accent-1);
@@ -67,6 +75,17 @@ a {
 
 .button-dark:active {
     background-color: var(--button-dark) !important;
+}
+
+.form-check-input:focus {
+    box-shadow: 0 0 5px var(--accent-2);
+    border: none;
+}
+
+.form-check-input:checked {
+    background-color: var(--accent-1);
+    box-shadow: 0 0 5px var(--accent-2);
+    border: none;
 }
 
 .my-footer {
@@ -141,10 +160,10 @@ a {
     border: 1px solid white;
 }
 
-.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active{
-    background-color: transparent !important;
-    border: 1px solid white;
-}
+/*.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active{*/
+/*    background-color: transparent !important;*/
+/*    border: 1px solid white;*/
+/*}*/
 
 
 .my-table {

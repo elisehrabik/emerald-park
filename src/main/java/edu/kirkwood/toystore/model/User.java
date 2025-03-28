@@ -4,6 +4,7 @@ import edu.kirkwood.shared.Validators;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.Date;
 
 public class User implements Comparable<User> {
     private int userId;
@@ -144,6 +145,10 @@ public class User implements Comparable<User> {
 
     public Instant getCreatedAt() {
         return createdAt;
+    }
+
+    public Date getCreatedAtDate() {
+        return Date.from(createdAt);
     }
 
     public void setCreatedAt(Instant createdAt) {
