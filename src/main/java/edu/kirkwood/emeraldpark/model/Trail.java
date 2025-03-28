@@ -9,23 +9,28 @@ public class Trail {
     TrailDifficulty trail_difficulty;
     LocalTime trail_time;
     String trail_description;
-    Boolean allows_bikes;
     String trail_image;
+    private int categoryId;
+    private String categoryName;
 
-    public Trail(int trail_id, String trail_name, double trail_distance, TrailDifficulty trail_difficulty, LocalTime trail_time, String trail_description, Boolean allows_bikes, String trail_image) {
+    public Trail(int trail_id, String trail_name, double trail_distance, TrailDifficulty trail_difficulty, LocalTime trail_time, String trail_description, String trail_image , int categoryId, String categoryName) {
         this.trail_id = trail_id;
         this.trail_name = trail_name;
         this.trail_distance = trail_distance;
         this.trail_difficulty = trail_difficulty;
         this.trail_time = trail_time;
         this.trail_description = trail_description;
-        this.allows_bikes = allows_bikes;
         this.trail_image = trail_image;
+        this.categoryId = categoryId;
+        this.categoryName = categoryName;
     }
 
-    public Trail(){
+    public Trail() {
 
-    };
+    }
+
+    public Trail(int id, String trailName, double trailDistance, TrailDifficulty trailDifficulty, LocalTime trailTime, String trailDescription, String trailImage, int categoryId) {
+    }
 
     public String getTrail_name() {
         return trail_name;
@@ -67,14 +72,6 @@ public class Trail {
         this.trail_description = trail_description;
     }
 
-    public Boolean getAllows_bikes() {
-        return allows_bikes;
-    }
-
-    public void setAllows_bikes(Boolean allows_bikes) {
-        this.allows_bikes = allows_bikes;
-    }
-
     public String getTrail_image() {
         return trail_image;
     }
@@ -91,6 +88,22 @@ public class Trail {
         this.trail_id = trail_id;
     }
 
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
     @Override
     public String toString() {
         return "Trail{" +
@@ -100,8 +113,9 @@ public class Trail {
                 ", trail_difficulty=" + trail_difficulty +
                 ", trail_time=" + trail_time +
                 ", trail_description='" + trail_description + '\'' +
-                ", allows_bikes=" + allows_bikes +
                 ", trail_image='" + trail_image + '\'' +
+                ", categoryId=" + categoryId +
+                ", categoryName='" + categoryName + '\'' +
                 '}';
     }
 }

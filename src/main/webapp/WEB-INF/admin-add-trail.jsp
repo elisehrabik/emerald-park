@@ -51,11 +51,13 @@
                 ${trailDescriptionMessage}
             </div>
         </div>
-        <div class="col-md-6">
-            <label for="allowsBikes" class="form-label">Allows Bikes</label>
-            <select class="form-select" id="allowsBikes" name="allowsBikes">
-                <option value="true" <c:if test="${allowsBikes == true}">selected</c:if>>Yes</option>
-                <option value="false" <c:if test="${allowsBikes == false}">selected</c:if>>No</option>
+        <div class="col-md-4">
+            <label for="categoryId" class="form-label">Category:</label>
+            <select class="form-select" id="categoryId" name="categoryId" required>
+                <option value="">Select a category</option>
+                <option value="1" <c:if test="${categoryId == 1}">selected</c:if>>Hiking</option>
+                <option value="2" <c:if test="${categoryId == 2}">selected</c:if>>Biking</option>
+                <option value="3" <c:if test="${categoryId == 3}">selected</c:if>>Scenic</option>
             </select>
         </div>
         <div class="col-md-6">

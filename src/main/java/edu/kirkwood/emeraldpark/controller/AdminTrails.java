@@ -23,7 +23,7 @@ public class AdminTrails extends HttpServlet {
             resp.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
-        List<Trail> trails = TrailDAO.getTrailsAdmin();
+        List<Trail> trails = TrailDAO.getTrailsAdmin(100, 0, "");
         req.setAttribute("trails", trails);
         req.setAttribute("pageTitle", "All Trails");
         req.getRequestDispatcher("WEB-INF/admin-trails.jsp").forward(req, resp);

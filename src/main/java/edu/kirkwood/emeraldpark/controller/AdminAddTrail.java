@@ -25,8 +25,6 @@ public class AdminAddTrail extends HttpServlet {
             resp.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
-        List<Trail> trails = TrailDAO.getTrails();
-        req.setAttribute("trails", trails);
         req.getRequestDispatcher("WEB-INF/admin-add-trail.jsp").forward(req, resp);
     }
 
@@ -39,30 +37,11 @@ public class AdminAddTrail extends HttpServlet {
         String trailDifficulty = req.getParameter("trailDifficulty");
         String trailTime = req.getParameter("trailTime");
         String trailDescription = req.getParameter("trailDescription");
-        String allowsBikesParam = req.getParameter("allowsBikes");
         String trailImage = req.getParameter("trailImage");
+        String categoryIdParam = req.getParameter("categoryId");
 
         boolean validationError = false;
         Trail trail = new Trail();
-
-        /*
-        Trail trailFromDB = TrailDAO.getTrails(trailId);
-        if (trailFromDB != null) {
-            validationError = true;
-            req.setAttribute("trailIdError", true);
-            req.setAttribute("trailIdMessage", "That trail already exists");
-        } else {
-            try {
-                trail.setTrail_id(trailId);
-                req.setAttribute("trailIdError", false);
-                req.setAttribute("trailIdMessage", "Looks good!");
-            } catch (NumberFormatException e) {
-                validationError = true;
-                req.setAttribute("trailIdError", true);
-                req.setAttribute("trailIdMessage", "Invalid Trail ID.");
-            }
-        }
-         */
 
         if (trailName == null || trailName.trim().isEmpty()) {
             validationError = true;
@@ -135,18 +114,6 @@ public class AdminAddTrail extends HttpServlet {
         }
         req.setAttribute("trailDescription", trailDescription);
 
-        try {
-            boolean allowsBikes = Boolean.parseBoolean(allowsBikesParam);
-            trail.setAllows_bikes(allowsBikes);
-            req.setAttribute("allowsBikesError", false);
-            req.setAttribute("allowsBikesMessage", "Looks good!");
-        } catch (Exception e) {
-            validationError = true;
-            req.setAttribute("allowsBikesError", true);
-            req.setAttribute("allowsBikesMessage", "Invalid value for Allows Bikes.");
-        }
-        req.setAttribute("allowsBikes", allowsBikesParam);
-
         if (trailImage == null || trailImage.trim().isEmpty() || !Validators.isValidImage(trailImage)) {
             validationError = true;
             req.setAttribute("trailImageError", true);
@@ -157,6 +124,23 @@ public class AdminAddTrail extends HttpServlet {
             req.setAttribute("trailImageMessage", "Looks good!");
         }
         req.setAttribute("trailImage", trailImage);
+
+        if (categoryIdParam == null || categoryIdParam.trim().isEmpty()) {
+            validationError = true;
+            req.setAttribute("categoryIdError", true);
+            req.setAttribute("categoryIdMessage", "Category must be selected.");
+        } else {
+            try {
+                int categoryId = Integer.parseInt(categoryIdParam);
+                trail.setCategoryId(categoryId);
+                req.setAttribute("categoryIdError", false);
+            } catch (NumberFormatException e) {
+                validationError = true;
+                req.setAttribute("categoryIdError", true);
+                req.setAttribute("categoryIdMessage", "Invalid Category ID.");
+            }
+        }
+        req.setAttribute("categoryId", categoryIdParam);
 
         if (!validationError) {
             boolean trailAdded = TrailDAO.addTrail(trail);
@@ -170,8 +154,5 @@ public class AdminAddTrail extends HttpServlet {
 
         req.getRequestDispatcher("WEB-INF/admin-add-trail.jsp").forward(req, resp);
 
-        /* if (validationError) {
-            return;
-        } */
     }
 }

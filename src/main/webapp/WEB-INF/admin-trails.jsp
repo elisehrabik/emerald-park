@@ -24,7 +24,6 @@
                 <th scope="col">Difficulty</th>
                 <th scope="col" style="width: 150px;">Time to Complete</th>
                 <th scope="col">Description</th>
-                <th scope="col" style="width: 120px;">Allows Bikes?</th>
                 <th scope="col">Image</th>
             </tr>
             </thead>
@@ -32,7 +31,7 @@
             <c:forEach items="${trails}" var="trail">
                 <tr>
                     <td>
-                        <a href="edit-trail?trail_id=${trail.trail_id}" class="btn btn-sm btn-outline-primary mb-1 edit-color" style="width:100%">Edit</a>
+                        <a href="update-trail?trail_id=${trail.trail_id}" class="btn btn-sm btn-outline-primary mb-1 edit-color" style="width:100%">Edit</a>
                         <a href="delete-trail?trail_id=${trail.trail_id}" class="btn btn-sm btn-outline-danger delete-color" style="width:100%">Delete</a>
                     </td>
 
@@ -41,7 +40,6 @@
                     <td>${trail.trail_difficulty}</td>
                     <td style="width: 150px;">${trail.trail_time}</td>
                     <td>${trail.trail_description}</td>
-                    <td style="width: 120px;">${trail.allows_bikes}</td>
                     <td>${trail.trail_image}</td>
                     </c:forEach>
                 </tbody>
