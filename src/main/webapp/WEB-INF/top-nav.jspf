@@ -43,10 +43,10 @@
                     <a class="nav-link" href="${appURL}/view-trails">Trails</a>
                 </li>
                 <li class="nav-item me-4 my-nav-item" style="font-size: 1rem">
-                    <a class="nav-link" href="${appURL}#">About</a>
+                    <a class="nav-link" href="${appURL}/about">About</a>
                 </li>
                 <li class="nav-item me-4 my-nav-item" style="font-size: 1rem">
-                    <a class="nav-link" href="${appURL}#">Contact</a>
+                    <a class="nav-link" href="${appURL}/contact">Contact</a>
                 </li>
 
 <%--                Admin Dropdown--%>
