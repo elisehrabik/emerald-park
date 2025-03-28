@@ -6,7 +6,9 @@ import java.util.Date;
 
 public class Maintenance {
     private int maintenance_id;
+    private int trail_id;
     private String trail_name;
+    private int user_id;
     private String first_name;
     private String maintenance_type;
     private LocalDate request_date;
@@ -14,13 +16,15 @@ public class Maintenance {
     private boolean maintenance_complete;
     private String maintenance_notes;
 
-    public Maintenance() {
+    public Maintenance() {}
 
-    }
-
-    public Maintenance(int maintenance_id, String trail_name, String first_name, String maintenance_type, LocalDate request_date, LocalDate completion_date, boolean maintenance_complete, String maintenance_notes) {
+    public Maintenance(int maintenance_id, int trail_id, String trail_name, int user_id, String first_name,
+                       String maintenance_type, LocalDate request_date, LocalDate completion_date,
+                       boolean maintenance_complete, String maintenance_notes) {
         this.maintenance_id = maintenance_id;
+        this.trail_id = trail_id;
         this.trail_name = trail_name;
+        this.user_id = user_id;
         this.first_name = first_name;
         this.maintenance_type = maintenance_type;
         this.request_date = request_date;
@@ -29,12 +33,36 @@ public class Maintenance {
         this.maintenance_notes = maintenance_notes;
     }
 
+    public int getMaintenance_id() {
+        return maintenance_id;
+    }
+
+    public void setMaintenance_id(int maintenance_id) {
+        this.maintenance_id = maintenance_id;
+    }
+
+    public int getTrail_id() {
+        return trail_id;
+    }
+
+    public void setTrail_id(int trail_id) {
+        this.trail_id = trail_id;
+    }
+
     public String getTrail_name() {
         return trail_name;
     }
 
     public void setTrail_name(String trail_name) {
         this.trail_name = trail_name;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     public String getFirst_name() {
@@ -69,20 +97,6 @@ public class Maintenance {
         this.completion_date = completion_date;
     }
 
-    public Date getRequest_dateAsDate() {
-        if (request_date != null) {
-            return Date.from(request_date.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        }
-        return null;
-    }
-
-    public Date getCompletion_dateAsDate() {
-        if (completion_date != null) {
-            return Date.from(completion_date.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        }
-        return null;
-    }
-
     public boolean isMaintenance_complete() {
         return maintenance_complete;
     }
@@ -99,19 +113,21 @@ public class Maintenance {
         this.maintenance_notes = maintenance_notes;
     }
 
-    public int getMaintenance_id() {
-        return maintenance_id;
+    public Date getRequest_dateAsDate() {
+        return request_date != null ? Date.from(request_date.atStartOfDay(ZoneId.systemDefault()).toInstant()) : null;
     }
 
-    public void setMaintenance_id(int maintenance_id) {
-        this.maintenance_id = maintenance_id;
+    public Date getCompletion_dateAsDate() {
+        return completion_date != null ? Date.from(completion_date.atStartOfDay(ZoneId.systemDefault()).toInstant()) : null;
     }
 
     @Override
     public String toString() {
         return "Maintenance{" +
                 "maintenance_id=" + maintenance_id +
+                ", trail_id=" + trail_id +
                 ", trail_name='" + trail_name + '\'' +
+                ", user_id=" + user_id +
                 ", first_name='" + first_name + '\'' +
                 ", maintenance_type='" + maintenance_type + '\'' +
                 ", request_date=" + request_date +
