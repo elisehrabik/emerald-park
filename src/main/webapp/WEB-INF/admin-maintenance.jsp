@@ -11,7 +11,7 @@
                 </c:choose>
             </p>
             <div class="text-center mb-5">
-                <a href="add-maintenance" class="btn btn-primary table-button" style="width:20rem;">Add Maintenance Request</a>
+                <a href="admin-add-maintenance" class="btn btn-primary table-button" style="width:20rem;">Add Maintenance Request</a>
             </div>
             <c:if test="${not empty maintenances}">
                 <div class="table-responsive my-table" style="padding:0; border-radius: 5px 5px 5px 5px;">

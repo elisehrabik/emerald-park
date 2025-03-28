@@ -42,6 +42,8 @@ public class MaintenanceDAO {
         }
         return maintenances;
     }
+
+
     public static boolean addMaintenance(Maintenance maintenance) {
         try (Connection connection = getConnection()) {
             CallableStatement statement = connection.prepareCall("{CALL sp_add_maintenance(?, ?, ?, ?, ?, ?, ?)}");
