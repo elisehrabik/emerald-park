@@ -9,6 +9,13 @@
     </c:if>
 
     <form class="row g-3" method="POST" action="admin-add-maintenance">
+        <c:if test="${empty trails}">
+            <p style="color: red;">No trails available. Make sure they are being loaded.</p>
+        </c:if>
+        <c:forEach var="trail" items="${trails}">
+            <p>Trail ID: ${trail.trail_id}, Name: ${trail.trail_name}</p>
+        </c:forEach>
+
 
         <!-- Trail Selection -->
         <div class="col-md-12">
@@ -26,7 +33,6 @@
                     </c:otherwise>
                 </c:choose>
 
-                <!-- Loop through trails to populate the select options -->
                 <c:forEach var="trail" items="${trails}">
                     <option value="${trail.trail_id}" ${trail.trail_id == trailId ? 'selected' : ''}>${trail.trail_name}</option>
                 </c:forEach>
@@ -37,23 +43,23 @@
         </div>
 
 
-    <!-- Request Date (Auto-set to today's date) -->
         <div class="col-md-6">
             <label for="requestDate" class="form-label">Request Date</label>
             <input type="date" class="form-control" id="requestDate" name="requestDate"
                    value="<fmt:formatDate value='${requestDate}' pattern='yyyy-MM-dd' />" readonly>
         </div>
 
-        <!-- Completion Date (Optional) -->
         <div class="col-md-6">
             <label for="completionDate" class="form-label">Completion Date</label>
             <input type="date" class="form-control" id="completionDate" name="completionDate"
-                   value="<c:if test='${not empty completionDate}'>
-                       <fmt:formatDate value='${completionDate}' pattern='yyyy-MM-dd'/>
-                   </c:if>">
+                   value="<c:choose>
+                  <c:when test='${not empty completionDate}'>
+                      <fmt:formatDate value='${completionDate}' pattern='yyyy-MM-dd'/>
+                  </c:when>
+                  <c:otherwise></c:otherwise>
+              </c:choose>">
         </div>
 
-    <!-- Maintenance Type -->
     <div class="col-md-6">
         <label for="maintenanceType" class="form-label">Maintenance Type</label>
         <select class="form-select <c:choose><c:when test='${maintenanceTypeError == true}'>is-invalid</c:when><c:when test='${maintenanceTypeError == false}'>is-valid</c:when><c:otherwise></c:otherwise></c:choose>" id="maintenanceType" name="maintenanceType" aria-describedby="maintenanceTypeFeedback">
@@ -92,6 +98,7 @@
     </form>
 </div>
 
+<%-- Added javascript to put in current date --%>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         let requestDateField = document.getElementById("requestDate");

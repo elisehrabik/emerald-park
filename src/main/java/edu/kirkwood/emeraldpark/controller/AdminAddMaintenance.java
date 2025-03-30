@@ -11,6 +11,8 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 @WebServlet("/admin-add-maintenance")
@@ -35,6 +37,7 @@ public class AdminAddMaintenance extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         HttpSession session = req.getSession();
         User userFromSession = (User) session.getAttribute("activeUser");
         if (userFromSession == null) {
@@ -96,14 +99,21 @@ public class AdminAddMaintenance extends HttpServlet {
             }
         }
         maintenance.setRequest_date(requestDate);
-        req.setAttribute("requestDate", requestDate.toString());
+
+        Date requestDateAsDate = Date.from(requestDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+        req.setAttribute("requestDate", requestDateAsDate);
         req.setAttribute("requestDateError", false);
         req.setAttribute("requestDateMessage", "Looks good!");
 
         LocalDate completionDate = null;
+        Date completionDateAsDate = null; // Initialize a Date object
+
         if (completionDateParam != null && !completionDateParam.trim().isEmpty()) {
             try {
                 completionDate = LocalDate.parse(completionDateParam);
+                completionDateAsDate = Date.from(completionDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
                 req.setAttribute("completionDateError", false);
                 req.setAttribute("completionDateMessage", "Looks good!");
             } catch (Exception e) {
@@ -112,8 +122,9 @@ public class AdminAddMaintenance extends HttpServlet {
                 req.setAttribute("completionDateMessage", "Invalid Completion Date. Use YYYY-MM-DD format.");
             }
         }
+
         maintenance.setCompletion_date(completionDate);
-        req.setAttribute("completionDate", completionDateParam);
+        req.setAttribute("completionDate", completionDateAsDate);
 
         boolean maintenanceComplete = "1".equals(maintenanceCompleteParam);
         maintenance.setMaintenance_complete(maintenanceComplete);
@@ -137,6 +148,9 @@ public class AdminAddMaintenance extends HttpServlet {
             req.setAttribute("maintenanceAdded", maintenanceAdded);
             req.setAttribute("maintenanceAddedMessage", maintenanceAdded ? "Successfully added maintenance request!" : "Error adding maintenance request.");
         }
+
+        List<Trail> trails = TrailDAO.getTrails(100, 0, "");
+        req.setAttribute("trails", trails);
 
         req.getRequestDispatcher("WEB-INF/admin-add-maintenance.jsp").forward(req, resp);
     }
