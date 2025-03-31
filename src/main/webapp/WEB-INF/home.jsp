@@ -79,19 +79,19 @@
                     <p class="lead mb-5 ">How will you explore? Click to see trails with your chosen mode of transport.</p>
             <div class="row">
                 <div class="col-lg-4">
-                    <a href="#" class="text-body-secondary">
+                    <a href="${appURL}/view-trails?categories=1" class="text-body-secondary">
                     <img src="${appURL}/images/on-foot.png" alt="Two people running on forest trail" height="300rem">
                     <h4 class="fw-normal mt-2">On Foot</h4>
                     </a>
                 </div><!-- /.col-lg-4 -->
                 <div class="col-lg-4">
-                    <a href="#" class="text-body-secondary">
+                    <a href="${appURL}/view-trails?categories=2" class="text-body-secondary">
                     <img src="${appURL}/images/by-bike.png" alt="Person biking on forest trail" height="300rem">
                     <h4 class="fw-normal mt-2">By Bike</h4>
                     </a>
                 </div><!-- /.col-lg-4 -->
                 <div class="col-lg-4">
-                    <a href="#" class="text-body-secondary">
+                    <a href="${appURL}/view-trails?categories=3" class="text-body-secondary">
                     <img src="${appURL}/images/by-horse.png" alt="Person riding horse on forest trail" height="300rem">
                     <h4 class="fw-normal mt-2">By Horse</h4>
                     </a>
