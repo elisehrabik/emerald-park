@@ -29,7 +29,7 @@ public class AdminAddMaintenance extends HttpServlet {
         List<Maintenance> maintenances = MaintenanceDAO.getMaintenanceAdmin();
         req.setAttribute("maintenances", maintenances);
 
-        List<Trail> trails = TrailDAO.getTrails(100, 0, "");
+        List<Trail> trails = TrailDAO.getTrails(100, 0, "", new String[]{"Easy", "Moderate", "Difficult", "Extreme"});
         req.setAttribute("trails", trails);
 
         req.setAttribute("pageTitle", "Add Maintenance Request");
@@ -151,7 +151,7 @@ public class AdminAddMaintenance extends HttpServlet {
             req.setAttribute("maintenanceAddedMessage", maintenanceAdded ? "Successfully added maintenance request!" : "Error adding maintenance request.");
         }
 
-        List<Trail> trails = TrailDAO.getTrails(100, 0, "");
+        List<Trail> trails = TrailDAO.getTrails(100, 0, "", new String[]{"Easy", "Moderate", "Difficult", "Extreme"});
         req.setAttribute("trails", trails);
         req.setAttribute("pageTitle", "Add Maintenance Request");
 

@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 @WebServlet(value="/view-trails")
@@ -33,13 +34,17 @@ public class ViewTrails extends HttpServlet {
         if (categoriesArr != null && categoriesArr.length > 0) {
             categories = String.join(",", categoriesArr);
         }
+        String[] selectedDifficulties = req.getParameterValues("difficulty");
+        List<Trail> trails = TrailDAO.getTrails(limit, offset, categories, selectedDifficulties);
+        List<TrailCategory> trailCategories = TrailDAO.getAllCategories();
+
+
         req.setAttribute("categories", categories);
         req.setAttribute("limit", limit);
-        List<Trail> trails = TrailDAO.getTrails(limit, offset, categories);
         req.setAttribute("trails", trails);
-        List<TrailCategory> trailCategories = TrailDAO.getAllCategories();
         req.setAttribute("trailCategories", trailCategories);
-        req.setAttribute("pageTitle", "Trails");
+        req.setAttribute("selectedDifficulties", selectedDifficulties != null ? Arrays.asList(selectedDifficulties) : List.of());
+        req.setAttribute("pageTitle", "All Trails");
         req.getRequestDispatcher("WEB-INF/view-trails.jsp").forward(req, resp);
     }
 }

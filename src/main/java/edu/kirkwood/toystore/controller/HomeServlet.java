@@ -16,7 +16,7 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("pageTitle", "Home");
-        List<Trail> trails = TrailDAO.getTrails(100, 0, "");
+        List<Trail> trails = TrailDAO.getTrails(100, 0, "", new String[]{"Easy", "Moderate", "Difficult", "Extreme"});
         req.setAttribute("trails", trails);
         req.getRequestDispatcher("WEB-INF/home.jsp").forward(req, resp);
     }

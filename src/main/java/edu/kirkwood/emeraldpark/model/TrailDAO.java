@@ -14,17 +14,21 @@ import static edu.kirkwood.shared.MySQL_Connect.getConnection;
 public class TrailDAO {
     public static void main(String[] args) {
         getAllCategories().forEach(System.out::println);
-    }
-
-    public static List<Trail> getTrails(int limit, int offset, String categories) {
-        List<Trail> trails = new ArrayList<>(); // makes array list
+    }public static List<Trail> getTrails(int limit, int offset, String categories, String[] difficulties) {
+        List<Trail> trails = new ArrayList<>();
         try (Connection connection = getConnection()) {
-            CallableStatement statement = connection.prepareCall("{CALL sp_get_all_trails_categorized(?,?,?)}"); // call sp
+            CallableStatement statement = connection.prepareCall("{CALL sp_get_all_trails_categorized(?,?,?,?)}");
+
             statement.setInt(1, limit);
             statement.setInt(2, offset);
-            statement.setString(3, categories);
-            ResultSet rs = statement.executeQuery(); // execute query
-            while (rs.next()) { // gets all the data
+            statement.setString(3, categories != null ? categories : "");
+
+            String difficultiesStr = (difficulties != null && difficulties.length > 0) ? String.join(",", difficulties) : "";
+            statement.setString(4, difficultiesStr);
+
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
                 int trail_id = rs.getInt("trail_id");
                 String trail_name = rs.getString("trail_name");
                 double trail_distance = rs.getDouble("trail_distance");
@@ -34,14 +38,15 @@ public class TrailDAO {
                 String trail_image = rs.getString("trail_image");
                 int categoryId = rs.getInt("category_id");
                 String categoryName = rs.getString("category_name");
-                trails.add(new Trail(trail_id, trail_name, trail_distance, trail_difficulty, trail_time, trail_description, trail_image, categoryId, categoryName)); // matches the column names in the sp
-                // instantiates the trail objects
+
+                trails.add(new Trail(trail_id, trail_name, trail_distance, trail_difficulty, trail_time, trail_description, trail_image, categoryId, categoryName));
             }
         } catch (SQLException e) {
             throw new RuntimeException("Query error - " + e.getMessage());
         }
         return trails;
     }
+
     public static List<Trail> getTrailsAdmin(int limit, int offset, String categoryId) {
         List<Trail> trails = new ArrayList<>();
         try (Connection connection = getConnection()) {
@@ -227,5 +232,8 @@ public class TrailDAO {
             return false;
         }
     }
+
+
+
 
 }

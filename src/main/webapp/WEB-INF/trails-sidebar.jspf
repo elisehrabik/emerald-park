@@ -16,25 +16,60 @@
                         <!-- Checkbox -->
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" id="filter-${category.id}" name="categories" value="${category.id}" <c:if test="${fn:contains(categories, category.id)}">checked</c:if>>
-                            <label class="form-check-label" for="filter-${category.id}">${category.name} (${category.numProducts})</label>
+                            <label class="form-check-label" for="filter-${category.id}">${category.name}</label>
                         </div>
                     </c:forEach>
                 </div>
                 <!-- Category END -->
+                <!-- Difficulty Filter START -->
+                <div class="card card-body shadow p-4 mb-4">
+                    <h4 class="mb-2">Difficulty</h4>
+
+                    <!-- Easy -->
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="difficulty-easy" name="difficulty" value="easy"
+                               <c:if test="${fn:contains(selectedDifficulties, 'easy')}">checked</c:if>>
+                        <label class="form-check-label" for="difficulty-easy">Easy</label>
+                    </div>
+
+                    <!-- Moderate -->
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="difficulty-moderate" name="difficulty" value="moderate"
+                               <c:if test="${fn:contains(selectedDifficulties, 'moderate')}">checked</c:if>>
+                        <label class="form-check-label" for="difficulty-moderate">Moderate</label>
+                    </div>
+
+                    <!-- Difficult -->
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="difficulty-difficult" name="difficulty" value="difficult"
+                               <c:if test="${fn:contains(selectedDifficulties, 'difficult')}">checked</c:if>>
+                        <label class="form-check-label" for="difficulty-difficult">Difficult</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="difficulty-extreme" name="difficulty" value="extreme"
+                               <c:if test="${fn:contains(selectedDifficulties, 'extreme')}">checked</c:if>>
+                        <label class="form-check-label" for="difficulty-extreme">Extreme</label>
+                    </div>
+                </div>
+                <!-- Difficulty Filter END -->
+
+
+
 
                 <!-- Limit START -->
                 <div class="card card-body shadow p-4">
                     <!-- Title -->
                     <h4 class="mb-2">Show</h4>
                     <div class="btn-group" role="group" aria-label="Show radio toggle button group">
-                        <input type="radio" class="btn-check" id="show-5" autocomplete="off" name="limit" value="5" <c:if test="${limit eq 5}">checked</c:if>>
-                        <label class="btn btn-outline-success" for="show-5">5</label>
-
                         <input type="radio" class="btn-check" id="show-10" autocomplete="off" name="limit" value="10" <c:if test="${limit eq 10}">checked</c:if>>
                         <label class="btn btn-outline-success" for="show-10">10</label>
 
                         <input type="radio" class="btn-check" id="show-20" autocomplete="off" name="limit" value="20" <c:if test="${limit eq 20}">checked</c:if>>
                         <label class="btn btn-outline-success" for="show-20">20</label>
+
+                        <input type="radio" class="btn-check" id="show-50" autocomplete="off" name="limit" value="50" <c:if test="${limit eq 50}">checked</c:if>>
+                        <label class="btn btn-outline-success" for="show-50">All</label>
                     </div>
                 </div>
 
