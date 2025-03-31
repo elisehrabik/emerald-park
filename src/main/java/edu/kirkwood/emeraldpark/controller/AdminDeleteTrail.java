@@ -17,10 +17,8 @@ public class AdminDeleteTrail extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("DEBUG: Entered doGet() method for Delete Trail.");
 
         HttpSession session = req.getSession();
-        // Check user authorization
         User userFromSession = (User) session.getAttribute("activeUser");
         if (userFromSession == null) {
             System.out.println("DEBUG: User not logged in. Redirecting to 404.");
@@ -33,7 +31,6 @@ public class AdminDeleteTrail extends HttpServlet {
             return;
         }
 
-        // Get 'id' parameter for trail to delete
         String trailId = req.getParameter("trail_id");
         System.out.println("DEBUG: Received trailId = " + trailId);
 
@@ -44,7 +41,6 @@ public class AdminDeleteTrail extends HttpServlet {
             return;
         }
 
-        // Fetch trail from database
         Trail trail = TrailDAO.getTrail(trailId);
         if (trail == null) {
             System.out.println("DEBUG: Trail not found for trailId = " + trailId);
@@ -53,22 +49,21 @@ public class AdminDeleteTrail extends HttpServlet {
             return;
         }
 
-        // Send the trail and id to the JSP for confirmation
         req.setAttribute("trail", trail);
         req.setAttribute("id", trailId);
         System.out.println("DEBUG: Trail retrieved successfully: " + trail);
 
-        // Forward to confirmation page
         req.getRequestDispatcher("WEB-INF/delete-trail.jsp").forward(req, resp);
         System.out.println("DEBUG: Forwarding to delete-trail.jsp completed.");
+
+        req.setAttribute("pageTitle", "Delete Trail");
+
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("DEBUG: Entered doPost() method for Delete Trail.");
 
         HttpSession session = req.getSession();
-        // Check user authorization
         User userFromSession = (User) session.getAttribute("activeUser");
         if (userFromSession == null) {
             System.out.println("DEBUG: User not logged in. Redirecting to 404.");
@@ -81,7 +76,6 @@ public class AdminDeleteTrail extends HttpServlet {
             return;
         }
 
-        // Get trail ID from form submission
         String trailId = req.getParameter("trail_id");
         System.out.println("DEBUG: Received trailId = " + trailId);
 
@@ -92,7 +86,6 @@ public class AdminDeleteTrail extends HttpServlet {
             return;
         }
 
-        // Attempt to delete the trail
         boolean success = TrailDAO.deleteTrail(Integer.parseInt(trailId));
         if (success) {
             System.out.println("DEBUG: Trail deleted successfully.");
@@ -102,7 +95,6 @@ public class AdminDeleteTrail extends HttpServlet {
             req.setAttribute("trailDeletedMessage", "Failed to delete trail.");
         }
 
-        // Redirect to a page with confirmation message (e.g., list of all trails)
         req.getRequestDispatcher("WEB-INF/delete-trail.jsp").forward(req, resp);
         System.out.println("DEBUG: doPost() method completed.");
     }

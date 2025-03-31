@@ -25,7 +25,7 @@ public class AdminReviews extends HttpServlet {
         }
         List<Review> reviews = ReviewDAO.getReviewsAdmin();
         req.setAttribute("reviews", reviews);
-        req.setAttribute("pageTitle", "All Reviews");
+        req.setAttribute("pageTitle", "Reviews");
         req.getRequestDispatcher("WEB-INF/admin-reviews.jsp").forward(req, resp);
     }
 }

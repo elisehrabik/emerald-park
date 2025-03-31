@@ -143,6 +143,7 @@ import java.util.List;
             req.setAttribute("maintenanceUpdatedMessage", maintenanceUpdated ? "Successfully updated maintenance request!" : "Error updating maintenance request.");
 
             req.setAttribute("maintenance", updatedMaintenance);
+            req.setAttribute("pageTitle", "Complete Maintenance Request");
             req.getRequestDispatcher("WEB-INF/edit-maintenance.jsp").forward(req, resp);
         }
     }

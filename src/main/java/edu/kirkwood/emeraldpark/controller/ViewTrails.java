@@ -39,6 +39,7 @@ public class ViewTrails extends HttpServlet {
         req.setAttribute("trails", trails);
         List<TrailCategory> trailCategories = TrailDAO.getAllCategories();
         req.setAttribute("trailCategories", trailCategories);
+        req.setAttribute("pageTitle", "Trails");
         req.getRequestDispatcher("WEB-INF/view-trails.jsp").forward(req, resp);
     }
 }

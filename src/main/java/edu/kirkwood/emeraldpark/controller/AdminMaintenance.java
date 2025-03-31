@@ -25,7 +25,7 @@ public class AdminMaintenance extends HttpServlet {
         }
         List<Maintenance> maintenances = MaintenanceDAO.getMaintenanceAdmin();
         req.setAttribute("maintenances", maintenances);
-        req.setAttribute("pageTitle", "All Maintenance Requests");
+        req.setAttribute("pageTitle", "Maintenance Requests");
         req.getRequestDispatcher("WEB-INF/admin-maintenance.jsp").forward(req, resp);
     }
 }

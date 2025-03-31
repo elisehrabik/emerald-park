@@ -45,6 +45,7 @@ public class AdminUpdateTrail extends HttpServlet {
 
         req.setAttribute("id", trailId);
         req.setAttribute("trail", trail);
+        req.setAttribute("pageTitle", "Edit Trail");
         req.getRequestDispatcher("WEB-INF/update-trail.jsp").forward(req, resp);
     }
 

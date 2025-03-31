@@ -27,7 +27,7 @@ public class AdminUsers extends HttpServlet {
         // throw new ServletException("This is an error");
        List<User> users = UserDAO.getAll();
        req.setAttribute("users", users);
-       req.setAttribute("pageTitle", "All Users");
+       req.setAttribute("pageTitle", "Users");
        req.getRequestDispatcher("WEB-INF/admin-users.jsp").forward(req, resp);
     }
 }
