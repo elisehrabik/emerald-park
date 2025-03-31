@@ -9,7 +9,7 @@
         </div>
     </c:if>
 
-    <form method="POST" action="delete-trail">
+    <form method="POST" action="${appURL}/delete-trail">
         <input type="hidden" name="trail_id" value="${trail.trail_id}" />
         <label class="mt-5 text-light fs-5">Are you sure you want to delete this trail?</label> <br>
         <button class="btn btn-primary table-button delete-button mt-3" type="submit">Delete</button>
