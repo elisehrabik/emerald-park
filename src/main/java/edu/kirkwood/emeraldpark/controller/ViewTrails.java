@@ -20,12 +20,12 @@ public class ViewTrails extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String limitStr = req.getParameter("limit");
-        int limit = 10;
+        int limit = 20;
         try {
             limit = Integer.parseInt(limitStr);
         } catch (NumberFormatException e) {
             if (limit < 0) {
-                limit = 10;
+                limit = 20;
             }
         }
         int offset = 0;
