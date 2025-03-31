@@ -77,4 +77,73 @@ public class MaintenanceDAO {
     }
 
 
+    public static Maintenance getMaintenanceById(int maintenance_id) {
+        Maintenance maintenance = null;
+        try (Connection connection = getConnection()) {
+            CallableStatement statement = connection.prepareCall("{CALL sp_get_maintenance_by_id(?)}");
+            statement.setInt(1, maintenance_id);
+            ResultSet rs = statement.executeQuery();
+
+            if (rs.next()) {
+                int trail_id = rs.getInt("trail_id");
+                String trail_name = rs.getString("trail_name");
+                int user_id = rs.getInt("user_id");
+                String first_name = rs.getString("first_name");
+                String maintenance_type = rs.getString("maintenance_type");
+                LocalDate request_date = rs.getDate("request_date").toLocalDate();
+                java.sql.Date sqlCompletionDate = rs.getDate("completion_date");
+                LocalDate completion_date = (sqlCompletionDate != null) ? sqlCompletionDate.toLocalDate() : null;
+                boolean maintenance_complete = rs.getBoolean("maintenance_complete");
+                String maintenance_notes = rs.getString("maintenance_notes");
+
+                maintenance = new Maintenance(
+                        maintenance_id, trail_id, trail_name, user_id, first_name,
+                        maintenance_type, request_date, completion_date, maintenance_complete, maintenance_notes
+                );
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Query error - " + e.getMessage());
+        }
+        return maintenance;
+    }
+
+
+    public static boolean updateMaintenance(Maintenance maintenanceOriginal, Maintenance maintenanceNew) {
+        try (Connection connection = getConnection()) {
+            if (connection == null) {
+                System.err.println("Database connection is null.");
+                return false;
+            }
+
+            CallableStatement statement = connection.prepareCall("{CALL sp_update_maintenance(?, ?, ?, ?, ?, ?, ?)}");
+
+            statement.setInt(1, maintenanceOriginal.getMaintenance_id());
+
+            if (maintenanceOriginal.getCompletion_date() != null) {
+                statement.setDate(2, java.sql.Date.valueOf(maintenanceOriginal.getCompletion_date()));
+            } else {
+                statement.setNull(2, java.sql.Types.DATE);
+            }
+
+            statement.setBoolean(3, maintenanceOriginal.isMaintenance_complete());
+            statement.setString(4, maintenanceOriginal.getMaintenance_notes());
+
+            if (maintenanceNew.getCompletion_date() != null) {
+                statement.setDate(5, java.sql.Date.valueOf(maintenanceNew.getCompletion_date()));
+            } else {
+                statement.setNull(5, java.sql.Types.DATE);
+            }
+
+            statement.setBoolean(6, maintenanceNew.isMaintenance_complete());
+            statement.setString(7, maintenanceNew.getMaintenance_notes());
+
+            int rowsAffected = statement.executeUpdate();
+            return rowsAffected == 1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("SQL Error: " + e.getMessage());
+            return false;
+        }
+    }
+
 }

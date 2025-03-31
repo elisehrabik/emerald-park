@@ -8,15 +8,7 @@
         </div>
     </c:if>
 
-    <form class="row g-3" method="POST" action="admin-add-maintenance">
-        <c:if test="${empty trails}">
-            <p style="color: red;">No trails available. Make sure they are being loaded.</p>
-        </c:if>
-        <c:forEach var="trail" items="${trails}">
-            <p>Trail ID: ${trail.trail_id}, Name: ${trail.trail_name}</p>
-        </c:forEach>
-
-
+    <form class="row g-3" method="POST" action="${appURL}/admin-add-maintenance">
         <!-- Trail Selection -->
         <div class="col-md-12">
             <label for="trailId" class="form-label">Trail Name</label>
@@ -49,16 +41,16 @@
                    value="<fmt:formatDate value='${requestDate}' pattern='yyyy-MM-dd' />" readonly>
         </div>
 
-        <div class="col-md-6">
-            <label for="completionDate" class="form-label">Completion Date</label>
-            <input type="date" class="form-control" id="completionDate" name="completionDate"
-                   value="<c:choose>
-                  <c:when test='${not empty completionDate}'>
-                      <fmt:formatDate value='${completionDate}' pattern='yyyy-MM-dd'/>
-                  </c:when>
-                  <c:otherwise></c:otherwise>
-              </c:choose>">
-        </div>
+<%--        <div class="col-md-6">--%>
+<%--            <label for="completionDate" class="form-label">Completion Date</label>--%>
+<%--            <input type="date" class="form-control" id="completionDate" name="completionDate"--%>
+<%--                   value="<c:choose>--%>
+<%--                  <c:when test='${not empty completionDate}'>--%>
+<%--                      <fmt:formatDate value='${completionDate}' pattern='yyyy-MM-dd'/>--%>
+<%--                  </c:when>--%>
+<%--                  <c:otherwise></c:otherwise>--%>
+<%--              </c:choose>">--%>
+<%--        </div>--%>
 
     <div class="col-md-6">
         <label for="maintenanceType" class="form-label">Maintenance Type</label>
@@ -82,14 +74,14 @@
             </div>
         </div>
 
-        <!-- Maintenance Complete (Yes/No) -->
-        <div class="col-md-6">
-            <label for="maintenanceComplete" class="form-label">Maintenance Complete</label>
-            <select class="form-select" id="maintenanceComplete" name="maintenanceComplete">
-                <option value="1" <c:if test="${maintenanceComplete == '1'}">selected</c:if>>Yes</option>
-                <option value="0" <c:if test="${maintenanceComplete == '0'}">selected</c:if>>No</option>
-            </select>
-        </div>
+<%--        <!-- Maintenance Complete (Yes/No) -->--%>
+<%--        <div class="col-md-6">--%>
+<%--            <label for="maintenanceComplete" class="form-label">Maintenance Complete</label>--%>
+<%--            <select class="form-select" id="maintenanceComplete" name="maintenanceComplete">--%>
+<%--                <option value="1" <c:if test="${maintenanceComplete == '1'}">selected</c:if>>Yes</option>--%>
+<%--                <option value="0" <c:if test="${maintenanceComplete == '0'}">selected</c:if>>No</option>--%>
+<%--            </select>--%>
+<%--        </div>--%>
 
         <!-- Submit Button -->
         <div class="col-12">

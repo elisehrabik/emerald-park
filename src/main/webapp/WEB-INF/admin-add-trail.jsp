@@ -7,7 +7,7 @@
                 ${trailAddedMessage}
         </div>
     </c:if>
-    <form class="row g-3" method="POST" action="admin-add-trail">
+    <form class="row g-3" method="POST" action="${appURL}/admin-add-trail">
         <!-- <div class="col-md-3">
             <label for="trailId" class="form-label">Trail Id</label>
             <input type="text" class="form-control <c:choose><c:when test='${trailIdError == true}'>is-invalid</c:when><c:when test='${trailIdError == false}'>is-valid</c:when><c:otherwise></c:otherwise></c:choose>" id="trailId" name="trailId" value="${trailId}">

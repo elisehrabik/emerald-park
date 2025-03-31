@@ -31,8 +31,9 @@
                         <c:forEach items="${maintenances}" var="maintenance">
                             <tr>
                                 <td style="width: 120px;">
-                                    <a href="edit-maintenance?maintenance_id=${maintenance.maintenance_id}" class="btn btn-sm btn-outline-primary mb-1 edit-color" style="width:100%">Edit</a>
-                                    <a href="delete-maintenance?maintenance_id=${maintenance.maintenance_id}" class="btn btn-sm btn-outline-danger delete-color" style="width:100%">Delete</a>
+                                    <c:if test="${maintenance.maintenance_complete == '0'}">
+                                        <a href="edit-maintenance?maintenance_id=${maintenance.maintenance_id}" class="btn btn-sm btn-outline-primary mb-1 delete-color" style="width:100%">Complete</a>
+                                    </c:if>
                                 </td>
                                 <td style="width: 100px;">${maintenance.trail_name}</td>
                                 <td>${maintenance.first_name}</td>
@@ -40,7 +41,7 @@
                                 <td>
                                     <c:choose>
                                         <c:when test="${not empty maintenance.request_dateAsDate}">
-                                            <fmt:formatDate value="${maintenance.request_dateAsDate}" pattern="yyyy-MM-dd"/>
+                                            <fmt:formatDate value="${maintenance.request_dateAsDate}" pattern="MMMM dd, yyyy"/>
                                         </c:when>
                                         <c:otherwise>N/A</c:otherwise>
                                     </c:choose>
@@ -48,7 +49,7 @@
                                 <td>
                                     <c:choose>
                                         <c:when test="${not empty maintenance.completion_dateAsDate}">
-                                            <fmt:formatDate value="${maintenance.completion_dateAsDate}" pattern="yyyy-MM-dd"/>
+                                            <fmt:formatDate value="${maintenance.completion_dateAsDate}" pattern="MMMM dd, yyyy"/>
                                         </c:when>
                                         <c:otherwise>Pending</c:otherwise>
                                     </c:choose>

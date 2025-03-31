@@ -10,7 +10,7 @@
     </c:if>
 
     <!-- Form for updating the trail -->
-    <form class="row g-3" method="POST" action="update-trail">
+    <form class="row g-3" method="POST" action="${appURL}/update-trail">
         <!-- Hidden Input for Trail ID -->
         <input type="hidden" name="trail_id" value="${id}" />
 
