@@ -154,6 +154,7 @@ public class AdminAddTrail extends HttpServlet {
             }
         }
 
+        req.setAttribute("pageTitle", "Add Trail");
         req.getRequestDispatcher("WEB-INF/admin-add-trail.jsp").forward(req, resp);
 
     }

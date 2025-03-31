@@ -45,6 +45,7 @@ import java.util.List;
                 resp.sendRedirect("admin-maintenance");
             }
 
+            req.setAttribute("pageTitle", "Complete Maintenance Request");
             req.getRequestDispatcher("WEB-INF/edit-maintenance.jsp").forward(req, resp);
         }
 

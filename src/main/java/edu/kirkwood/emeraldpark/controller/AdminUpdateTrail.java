@@ -182,6 +182,7 @@ public class AdminUpdateTrail extends HttpServlet {
         boolean success = TrailDAO.updateTrail(originalTrail, updatedTrail);
 
         req.setAttribute("trailUpdated", success);
+        req.setAttribute("pageTitle", "Edit Trail");
         req.setAttribute("trailUpdatedMessage", success ? "Trail updated successfully." : "Failed to update trail.");
         req.getRequestDispatcher("WEB-INF/update-trail.jsp").forward(req, resp);
     }

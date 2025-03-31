@@ -153,6 +153,8 @@ public class AdminAddMaintenance extends HttpServlet {
 
         List<Trail> trails = TrailDAO.getTrails(100, 0, "");
         req.setAttribute("trails", trails);
+        req.setAttribute("pageTitle", "Add Maintenance Request");
+
 
         req.getRequestDispatcher("WEB-INF/admin-add-maintenance.jsp").forward(req, resp);
     }

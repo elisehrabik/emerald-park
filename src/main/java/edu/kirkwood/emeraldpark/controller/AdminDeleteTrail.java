@@ -48,7 +48,7 @@ public class AdminDeleteTrail extends HttpServlet {
             req.getRequestDispatcher("WEB-INF/delete-trail.jsp").forward(req, resp);
             return;
         }
-
+        req.setAttribute("pageTitle", "Delete Trail");
         req.setAttribute("trail", trail);
         req.setAttribute("id", trailId);
         System.out.println("DEBUG: Trail retrieved successfully: " + trail);
@@ -56,7 +56,7 @@ public class AdminDeleteTrail extends HttpServlet {
         req.getRequestDispatcher("WEB-INF/delete-trail.jsp").forward(req, resp);
         System.out.println("DEBUG: Forwarding to delete-trail.jsp completed.");
 
-        req.setAttribute("pageTitle", "Delete Trail");
+
 
     }
 
@@ -95,6 +95,7 @@ public class AdminDeleteTrail extends HttpServlet {
             req.setAttribute("trailDeletedMessage", "Failed to delete trail.");
         }
 
+        req.setAttribute("pageTitle", "Delete Trail");
         req.getRequestDispatcher("WEB-INF/delete-trail.jsp").forward(req, resp);
         System.out.println("DEBUG: doPost() method completed.");
     }

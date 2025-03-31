@@ -54,7 +54,7 @@
 </head>
 
 <%--    Start body --%>
-<c:if test="${pageTitle eq 'All Trails' or pageTitle eq 'All Users' or pageTitle eq 'All Reviews' or pageTitle eq 'All Maintenance Requests' or pageTitle eq 'Edit Profile' or pageTitle eq 'Delete Account' or pageTitle eq 'Sign up for an account' or pageTitle eq 'Login' or pageTitle eq 'Reset your password'}">
+<c:if test="${pageTitle eq 'Trails' or pageTitle eq 'Users' or pageTitle eq 'Reviews' or pageTitle eq 'Maintenance Requests' or pageTitle eq 'Edit Profile' or pageTitle eq 'Delete Account' or pageTitle eq 'Sign up for an account' or pageTitle eq 'Login' or pageTitle eq 'Reset your password' or pageTitle eq 'Add Maintenance Request' or pageTitle eq 'Add Trail' or pageTitle eq 'Delete Trail' or pageTitle eq 'Complete Maintenance Request' or pageTitle eq 'Edit Trail'}">
 <style>
     body {
         background: url('${appURL}/images/404_forest.jpg') no-repeat center center fixed;

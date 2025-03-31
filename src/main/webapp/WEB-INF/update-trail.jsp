@@ -1,6 +1,8 @@
 <div class="container py-4">
-    <h2>Update Trail</h2>
-    <a href="trails" class="btn btn-primary long-button">View All Trails</a>
+    <div class="card transparent-overlay border rounded-3 p-5">
+
+    <h2 class="text-light">Update Trail</h2>
+    <a href="trails" class="btn btn-primary table-button mb-5">View All Trails</a>
 
     <!-- Display update message if trail is updated -->
     <c:if test="${not empty trailUpdated}">
@@ -16,7 +18,7 @@
 
         <!-- Trail Name -->
         <div class="col-md-12">
-            <label for="trailName" class="form-label">Trail Name</label>
+            <label for="trailName" class="form-label text-light">Trail Name</label>
             <input type="text" class="form-control ${not empty trailNameError ? 'is-invalid' : ''}"
                    id="trailName" name="trailName" value="${not empty trailName ? trailName : ''}">
             <c:if test="${not empty trailNameError}">
@@ -26,7 +28,7 @@
 
         <!-- Trail Distance -->
         <div class="col-md-4">
-            <label for="trailDistance" class="form-label">Trail Distance (miles)</label>
+            <label for="trailDistance" class="form-label text-light">Trail Distance (miles)</label>
             <input type="text" class="form-control ${not empty trailDistanceError ? 'is-invalid' : ''}"
                    id="trailDistance" name="trailDistance" value="${not empty trailDistance ? trailDistance : ''}">
             <c:if test="${not empty trailDistanceError}">
@@ -36,7 +38,7 @@
 
         <!-- Trail Difficulty -->
         <div class="col-md-4">
-            <label for="trailDifficulty" class="form-label">Trail Difficulty</label>
+            <label for="trailDifficulty" class="form-label text-light">Trail Difficulty</label>
             <select class="form-select ${not empty trailDifficultyError ? 'is-invalid' : ''}"
                     id="trailDifficulty" name="trailDifficulty" required>
                 <option value="EASY" ${trailDifficulty == 'EASY' ? 'selected' : ''}>Easy</option>
@@ -50,7 +52,7 @@
 
         <!-- Trail Time -->
         <div class="col-md-4">
-            <label for="trailTime" class="form-label">Trail Time (HH:mm)</label>
+            <label for="trailTime" class="form-label text-light">Trail Time (HH:mm)</label>
             <input type="text" class="form-control ${not empty trailTimeError ? 'is-invalid' : ''}"
                    id="trailTime" name="trailTime" value="${trailTime != null ? trailTime : ''}">
             <c:if test="${not empty trailTimeError}">
@@ -61,7 +63,7 @@
 
         <!-- Trail Description -->
         <div class="col-md-12">
-            <label for="trailDescription" class="form-label">Trail Description</label>
+            <label for="trailDescription" class="form-label text-light">Trail Description</label>
             <textarea class="form-control ${not empty trailDescriptionError ? 'is-invalid' : ''}"
                       id="trailDescription" name="trailDescription">${trailDescription != null ? trailDescription : ''}</textarea>
             <c:if test="${not empty trailDescriptionError}">
@@ -72,7 +74,7 @@
 
         <!-- Category -->
         <div class="col-md-4">
-            <label for="category_id" class="form-label">Category</label>
+            <label for="category_id" class="form-label text-light">Category</label>
             <select class="form-select ${not empty categoryIdError ? 'is-invalid' : ''}"
                     id="category_id" name="category_id" required>
                 <option value="">Select a category</option>
@@ -87,7 +89,7 @@
 
         <!-- Trail Image URL -->
         <div class="col-md-6">
-            <label for="trailImage" class="form-label">Trail Image URL</label>
+            <label for="trailImage" class="form-label text-light">Trail Image URL</label>
             <input type="text" class="form-control ${not empty trailImageError ? 'is-invalid' : ''}"
                    id="trailImage" name="trailImage" value="${trailImage != null ? trailImage : ''}">
             <c:if test="${not empty trailImageError}">
@@ -98,7 +100,8 @@
 
         <!-- Submit Button -->
         <div class="col-12">
-            <button class="btn btn-dark" type="submit">Update Trail</button>
+            <button class="btn btn-dark table-button" type="submit">Update Trail</button>
         </div>
     </form>
+</div>
 </div>

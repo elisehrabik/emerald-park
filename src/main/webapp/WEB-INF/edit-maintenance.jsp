@@ -1,6 +1,8 @@
 <div class="container py-4">
-    <h2>Complete Maintenance Request</h2>
-    <a href="maintenance" class="btn btn-primary long-button">View All Maintenance Requests</a>
+    <div class="card transparent-overlay border rounded-3 p-5">
+
+    <h2 class="text-light">Complete Maintenance Request</h2>
+    <a href="maintenance" class="btn btn-primary table-button mb-5">View All Maintenance Requests</a>
 
     <c:if test="${not empty maintenanceUpdated}">
         <div class="alert ${maintenanceUpdated ? 'alert-success' : 'alert-danger'}" role="alert">
@@ -13,7 +15,7 @@
 
         <!-- Completion Date -->
         <div class="col-md-6">
-            <label for="completion_date" class="form-label">Completion Date</label>
+            <label for="completion_date" class="form-label text-light">Completion Date</label>
             <input type="date" class="form-control ${not empty completionDateError ? 'is-invalid' : ''}"
                    id="completion_date" name="completion_date" value="${completion_date != null ? completion_date : ''}">
             <c:if test="${not empty completionDateError}">
@@ -23,7 +25,7 @@
 
         <!-- Maintenance Complete -->
         <div class="col-md-6">
-            <label for="maintenance_complete" class="form-label">Maintenance Complete</label>
+            <label for="maintenance_complete" class="form-label text-light">Maintenance Complete</label>
             <select class="form-select ${not empty maintenanceCompleteError ? 'is-invalid' : ''}"
                     id="maintenance_complete" name="maintenance_complete" >
                 <option value="0" ${maintenance_complete == '0' ? 'selected' : ''}>No</option>
@@ -36,7 +38,7 @@
 
         <!-- Maintenance Notes -->
         <div class="col-md-12">
-            <label for="maintenance_notes" class="form-label">Maintenance Notes</label>
+            <label for="maintenance_notes" class="form-label text-light">Maintenance Notes</label>
             <textarea class="form-control ${not empty maintenanceNotesError ? 'is-invalid' : ''}"
                       id="maintenance_notes" name="maintenance_notes">${maintenance_notes != null ? maintenance_notes : ''}</textarea>
             <c:if test="${not empty maintenanceNotesError}">
@@ -46,7 +48,8 @@
 
         <!-- Submit Button -->
         <div class="col-12">
-            <button class="btn btn-dark" type="submit">Confirm Completion</button>
+            <button class="btn btn-dark table-button" type="submit">Confirm Completion</button>
         </div>
     </form>
+</div>
 </div>

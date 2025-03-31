@@ -10,9 +10,9 @@
                     <c:otherwise>There are ${reviews.size()} reviews</c:otherwise>
                 </c:choose>
             </p>
-            <div class="text-center mb-5">
-                <a href="admin-add-review" class="btn btn-primary table-button">Add Review</a>
-            </div>
+<%--            <div class="text-center mb-5">--%>
+<%--                <a href="admin-add-review" class="btn btn-primary table-button">Add Review</a>--%>
+<%--            </div>--%>
             <c:if test="${reviews.size() > 0}">
                 <div class="table-responsive my-table" style="padding:0; border-radius: 5px 5px 5px 5px;">
                     <table class="table table-bordered my-table">
