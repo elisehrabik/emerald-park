@@ -114,10 +114,14 @@ public class EditProfile extends HttpServlet {
         }
 
         try {
-            if(!birthday.equals(user.getBirthday())) {
-                user.setBirthday(LocalDate.parse(birthday));
+            LocalDate parsedBirthday = LocalDate.parse(birthday);
+            if (parsedBirthday.isAfter(LocalDate.now())) {
+                throw new IllegalArgumentException("Birthday cannot be in the future.");
             }
-        } catch(IllegalArgumentException e) {
+            if (!parsedBirthday.equals(user.getBirthday())) {
+                user.setBirthday(parsedBirthday);
+            }
+        } catch (IllegalArgumentException e) {
             errorFound = true;
             req.setAttribute("birthdayError", e.getMessage());
         }

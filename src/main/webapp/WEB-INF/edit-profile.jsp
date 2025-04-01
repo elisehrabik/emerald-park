@@ -93,14 +93,20 @@
                                     <c:if test="${not empty pronounsError }"><div class="invalid-feedback">${pronounsError}</div></c:if>
                                 </div>
 
-                                <!-- birthday -->
+                                <!-- Birthday Field -->
                                 <div class="col-md-6">
                                     <label class="form-label text-light" for="birthday">Date of Birth</label>
                                     <input type="date" class="<c:if test='${not empty birthdayError}'>is-invalid</c:if> form-control"
                                            id="birthday"
                                            name="birthday"
-                                           value="${sessionScope.activeUser.birthday != null ? sessionScope.activeUser.birthday.toString() : ''}">
-
+                                           value="<c:choose>
+                                      <c:when test='${sessionScope.activeUser.birthday != null && sessionScope.activeUser.birthday != "1900-01-01"}'>
+                                          ${sessionScope.activeUser.birthday}
+                                      </c:when>
+                                      <c:otherwise>
+                                      </c:otherwise>
+                                  </c:choose>"
+                                           placeholder="DD/MM/YYYY">
                                     <c:if test="${not empty birthdayError}">
                                         <div class="invalid-feedback">${birthdayError}</div>
                                     </c:if>
