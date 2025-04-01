@@ -34,6 +34,8 @@ public class AdminDeleteTrail extends HttpServlet {
         String trailId = req.getParameter("trail_id");
         System.out.println("DEBUG: Received trailId = " + trailId);
 
+        req.setAttribute("pageTitle", "Delete Trail");
+
         if (trailId == null || trailId.trim().isEmpty() || !trailId.matches("\\d+")) {
             System.out.println("DEBUG: Invalid trailId provided.");
             req.setAttribute("trailDeletedMessage", "Invalid trail ID: must be an integer.");
@@ -48,16 +50,13 @@ public class AdminDeleteTrail extends HttpServlet {
             req.getRequestDispatcher("WEB-INF/delete-trail.jsp").forward(req, resp);
             return;
         }
-        req.setAttribute("pageTitle", "Delete Trail");
+
         req.setAttribute("trail", trail);
         req.setAttribute("id", trailId);
         System.out.println("DEBUG: Trail retrieved successfully: " + trail);
 
         req.getRequestDispatcher("WEB-INF/delete-trail.jsp").forward(req, resp);
         System.out.println("DEBUG: Forwarding to delete-trail.jsp completed.");
-
-
-
     }
 
     @Override

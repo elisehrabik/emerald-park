@@ -32,9 +32,11 @@ import java.util.List;
                 return;
             }
 
+            Maintenance maintenance = null;
+
             try {
                 int maintenanceId = Integer.parseInt(maintenanceIdParam);
-                Maintenance maintenance = MaintenanceDAO.getMaintenanceById(maintenanceId);
+                maintenance = MaintenanceDAO.getMaintenanceById(maintenanceId);
                 if (maintenance == null) {
                     resp.sendRedirect("admin-maintenance");
                     return;
@@ -43,6 +45,11 @@ import java.util.List;
                 req.setAttribute("maintenance", maintenance);
             } catch (NumberFormatException e) {
                 resp.sendRedirect("admin-maintenance");
+                return;
+            }
+
+            if (maintenance != null) {
+                req.setAttribute("maintenance_notes", maintenance.getMaintenance_notes());
             }
 
             req.setAttribute("pageTitle", "Complete Maintenance Request");
@@ -86,7 +93,6 @@ import java.util.List;
             Maintenance updatedMaintenance = new Maintenance();
             updatedMaintenance.setMaintenance_id(maintenanceId);
 
-            // Completion Date Validation
             if (completionDateParam == null || completionDateParam.trim().isEmpty()) {
                 validationError = true;
                 req.setAttribute("completionDateError", true);
@@ -108,7 +114,6 @@ import java.util.List;
                 }
             }
 
-            // Maintenance Complete Validation
             if (maintenanceCompleteParam == null || !maintenanceCompleteParam.equals("1")) {
                 validationError = true;
                 req.setAttribute("maintenanceCompleteError", true);
@@ -117,7 +122,6 @@ import java.util.List;
                 updatedMaintenance.setMaintenance_complete("1".equals(maintenanceCompleteParam));
             }
 
-            // Maintenance Notes Validation
             if (maintenanceNotes == null || maintenanceNotes.trim().isEmpty()) {
                 validationError = true;
                 req.setAttribute("maintenanceNotesError", true);
@@ -125,6 +129,8 @@ import java.util.List;
             } else {
                 updatedMaintenance.setMaintenance_notes(maintenanceNotes);
             }
+
+            req.setAttribute("pageTitle", "Complete Maintenance Request");
 
             if (validationError) {
                 req.setAttribute("maintenanceUpdated", false);
@@ -144,7 +150,7 @@ import java.util.List;
             req.setAttribute("maintenanceUpdatedMessage", maintenanceUpdated ? "Successfully updated maintenance request!" : "Error updating maintenance request.");
 
             req.setAttribute("maintenance", updatedMaintenance);
-            req.setAttribute("pageTitle", "Complete Maintenance Request");
+
             req.getRequestDispatcher("WEB-INF/edit-maintenance.jsp").forward(req, resp);
         }
     }

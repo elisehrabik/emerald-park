@@ -40,7 +40,7 @@
         <div class="col-md-12">
             <label for="maintenance_notes" class="form-label text-light">Maintenance Notes</label>
             <textarea class="form-control ${not empty maintenanceNotesError ? 'is-invalid' : ''}"
-                      id="maintenance_notes" name="maintenance_notes">${maintenance_notes != null ? maintenance_notes : ''}</textarea>
+                      id="maintenance_notes" name="maintenance_notes">${not empty maintenance_notes ? maintenance_notes : ''}</textarea>
             <c:if test="${not empty maintenanceNotesError}">
                 <div class="invalid-feedback">${maintenanceNotesMessage}</div>
             </c:if>
