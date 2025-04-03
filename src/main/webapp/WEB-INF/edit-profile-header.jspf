@@ -8,7 +8,19 @@
                     <div class="col d-flex justify-content-center align-items-center">
                         <div>
                             <jsp:useBean id="now" class="java.util.Date" scope="page" />
-                            <h4>Good morning<c:if test="${not empty activeUser.firstName}">, ${fn:escapeXml(activeUser.firstName)}</c:if>!</h4>
+
+                            <c:choose>
+                                <c:when test="${now.hours >= 5 && now.hours < 12}">
+                                    <h4>Good morning<c:if test="${not empty activeUser.firstName}">, ${fn:escapeXml(activeUser.firstName)}</c:if>!</h4>
+                                </c:when>
+                                <c:when test="${now.hours >= 12 && now.hours < 17}">
+                                    <h4>Good afternoon<c:if test="${not empty activeUser.firstName}">, ${fn:escapeXml(activeUser.firstName)}</c:if>!</h4>
+                                </c:when>
+                                <c:otherwise>
+                                    <h4>Good evening<c:if test="${not empty activeUser.firstName}">, ${fn:escapeXml(activeUser.firstName)}</c:if>!</h4>
+                                </c:otherwise>
+                            </c:choose>
+
                             <ul class="list-inline mb-0">
                                 <li class="list-item"><i class="bi bi-calendar-event-fill fs-6"></i> Today is <fmt:formatDate value="${now}" pattern="MMMM d, YYYY h:mm a z" /></li>
                                 <li class="list-item"><i class="bi bi-star-fill fs-6"></i> Member since <fmt:formatDate value="${activeUser.createdAtDate}" dateStyle="long" /></li>
