@@ -64,6 +64,7 @@ public class Login extends HttpServlet {
                 }
 
                 // Successful login
+                UserDAO.deletePasswordReset(user.getEmail());
                 user.setPassword(null); // Remove the password before setting the User object as a session attribute
 
                 HttpSession session = req.getSession(); // Get existing HttSession object

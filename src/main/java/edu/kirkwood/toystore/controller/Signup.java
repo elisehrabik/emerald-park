@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.time.Instant;
 
 @WebServlet("/signup")
 public class Signup extends HttpServlet {
@@ -71,6 +72,7 @@ public class Signup extends HttpServlet {
             }
             if(userAdded) {
                 user.setPassword(null);
+                user.setCreatedAt(Instant.now());
                 HttpSession session = req.getSession(); // get an existing session if one exists
                 session.invalidate(); // remove any existing sessions
                 session = req.getSession(); // create a brand new session

@@ -15,7 +15,7 @@
                             <h3 class="card-header-title mb-0">Delete Account</h3>
                         </div>
                         <!-- Card body -->
-                        <div class="card-body">
+                        <div class="card-body transparent-overlay">
                             <h6 class="text-light">If you delete your account, you will lose your all data.</h6>
                             <form id="deleteAccountForm" method="POST" action="${appURL}/delete-account">
                                 <!-- Email id -->

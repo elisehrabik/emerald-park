@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
+<%@ taglib prefix="cfn" uri="/WEB-INF/tld/custom-functions.tld" %>
 
 <jsp:useBean id="date" class="java.util.Date" />
 <fmt:setLocale value="en-US" />
@@ -53,13 +54,19 @@
 
 </head>
 
-<%--    Start body --%>
-<c:if test="${pageTitle eq 'Trails' or pageTitle eq 'Users' or pageTitle eq 'Reviews' or pageTitle eq 'Maintenance Requests' or pageTitle eq 'Edit Profile' or pageTitle eq 'Delete Account' or pageTitle eq 'Sign up for an account' or pageTitle eq 'Login' or pageTitle eq 'Reset your password' or pageTitle eq 'Add Maintenance Request' or pageTitle eq 'Add Trail' or pageTitle eq 'Delete Trail' or pageTitle eq 'Complete Maintenance Request' or pageTitle eq 'Edit Trail'}">
+<%-- Start body --%>
+<c:choose>
+<c:when test="${pageTitle eq 'Trails' or pageTitle eq 'Users' or pageTitle eq 'Reviews' or
+                    pageTitle eq 'Maintenance Requests' or pageTitle eq 'Edit Profile' or
+                    pageTitle eq 'Delete Account' or pageTitle eq 'Sign up for an account' or
+                    pageTitle eq 'Login' or pageTitle eq 'Reset your password' or
+                    pageTitle eq 'Add Maintenance Request' or pageTitle eq 'Add Trail' or
+                    pageTitle eq 'Delete Trail' or pageTitle eq 'Complete Maintenance Request' or
+                    pageTitle eq 'Edit Trail' or pageTitle eq 'New password'}">
 <style>
     body {
         background: url('${appURL}/images/404_forest.jpg') no-repeat center center fixed;
         background-size: cover;
-
     }
     body::before {
         content: "";
@@ -75,7 +82,21 @@
         z-index: -1;
     }
 </style>
-</c:if>
+</c:when>
+
+<%--<c:when test="${pageTitle eq 'Home'}">--%>
+<%--<style>--%>
+<%--    body {--%>
+<%--        background: var(--background-accent);--%>
+<%--        background-size: cover;--%>
+<%--    }--%>
+<%--    body::before {--%>
+<%--        z-index: -1;--%>
+<%--    }--%>
+<%--</style>--%>
+<%--</c:when>--%>
+</c:choose>
+
 
 
 <%@include file="/WEB-INF/top-nav.jspf"%>
