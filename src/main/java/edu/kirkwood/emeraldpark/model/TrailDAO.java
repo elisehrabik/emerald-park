@@ -13,7 +13,6 @@ import static edu.kirkwood.shared.MySQL_Connect.getConnection;
 
 public class TrailDAO {
     public static void main(String[] args) {
-        getAllCategories().forEach(System.out::println);
     }public static List<Trail> getTrails(int limit, int offset, String categories, String[] difficulties) {
         List<Trail> trails = new ArrayList<>();
         try (Connection connection = getConnection()) {
@@ -233,6 +232,26 @@ public class TrailDAO {
         }
     }
 
+    public static int getTrailCount(String categories, String[] selectedDifficulties) {
+        try (Connection connection = getConnection();
+             CallableStatement statement = connection.prepareCall("{CALL sp_get_total_trails(?, ?)}")) {
+
+            statement.setString(1, categories);
+            String difficultyFilter = (selectedDifficulties != null && selectedDifficulties.length > 0)
+                    ? String.join(",", selectedDifficulties)
+                    : "";
+            statement.setString(2, difficultyFilter);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getInt("total_trails");
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return 0;
+    }
 
 
 

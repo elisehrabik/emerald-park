@@ -8,7 +8,11 @@
 }
 
 .user-nav {
-    color: var(--background-gray);
-    height: 0.5em;
+    background-color: var(--background-accent-darker) !important;
+    color: var(--text-light);
 }
 
+.top-nav {
+    margin-top: -1.3rem;
+    background-color: var(--background-accent) !important;
+}

@@ -29,9 +29,6 @@
                     </div>
                 </div>
 
-
-
-
                 <hr class="featurette-divider">
 
             <%--            Plan Your Adventure     --%>
@@ -46,7 +43,7 @@
 
                 <div class="col-12 col-lg-5 order-lg-1 d-flex justify-content-center">
                     <img src="${appURL}/images/plan-your-adventure.png" alt="Person with yellow jacket walking in forest"
-                         class="img-fluid rounded">
+                         class="img-fluid rounded custom-shadow">
                 </div>
             </div>
                 <hr class="featurette-divider">
@@ -64,7 +61,7 @@
 
                     <div class="col-12 col-lg-5 d-flex justify-content-center order-lg-2">
                         <img src="${appURL}/images/join-the-community.png" alt="Two people hiking and smiling"
-                             class="img-fluid rounded">
+                             class="img-fluid rounded custom-shadow">
                     </div>
                 </div>
 
@@ -114,7 +111,7 @@
                                 </c:if>
 
                                 <div class="col-md-4 mb-4">
-                                    <div class="card h-100">
+                                    <div class="card h-100 custom-shadow">
                                         <img src="${trail.trail_image}" class="card-img-top" alt="${trail.trail_name} hiking trail at Emerald Park.">
                                         <div class="card-body">
                                             <h5 class="card-title">${trail.trail_name} Trail</h5>
