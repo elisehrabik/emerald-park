@@ -34,7 +34,7 @@
                         <c:forEach items="${users}" var="user">
                         <tr>
                             <td>
-                                <a href="edit-user?user_id=${user.userId}" class="btn btn-sm btn-outline-primary mb-1 px-4 edit-color" style="width:100%">Edit</a>
+                                <a href="admin-update-user?user_id=${user.userId}" class="btn btn-sm btn-outline-primary mb-1 px-4 edit-color" style="width:100%">Edit</a>
 <%--                                <a href="delete-user?user_id=${user.userId}" class="btn btn-sm btn-outline-danger delete-color" style="width:100%">Delete</a>--%>
                             </td>
                             <td>${user.firstName}</td>

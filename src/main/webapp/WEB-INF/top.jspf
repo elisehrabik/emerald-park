@@ -62,7 +62,8 @@
                     pageTitle eq 'Login' or pageTitle eq 'Reset your password' or
                     pageTitle eq 'Add Maintenance Request' or pageTitle eq 'Add Trail' or
                     pageTitle eq 'Delete Trail' or pageTitle eq 'Complete Maintenance Request' or
-                    pageTitle eq 'Edit Trail' or pageTitle eq 'New password'}">
+                    pageTitle eq 'Edit Trail' or pageTitle eq 'New password' or
+                    pageTitle eq 'Edit User'}">
 <style>
     body {
         background: url('${appURL}/images/404_forest.jpg') no-repeat center center fixed;

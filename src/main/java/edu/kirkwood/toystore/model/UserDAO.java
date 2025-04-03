@@ -251,4 +251,57 @@ public class UserDAO {
             throw new RuntimeException(e);
         }
     }
+
+
+
+    public static boolean updateUserAdmin(User existingUser, User newUser) {
+        try (Connection connection = getConnection();
+             CallableStatement statement = connection.prepareCall("{CALL sp_update_user_status_privileges(?,?,?,?,?)}")
+        ) {
+            statement.setInt(1, existingUser.getUserId());
+            statement.setString(2, existingUser.getStatus());
+            statement.setString(3, existingUser.getPrivileges());
+
+            statement.setString(4, newUser.getStatus());
+            statement.setString(5, newUser.getPrivileges());
+
+            int rowsAffected = statement.executeUpdate();
+
+            return rowsAffected == 1;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static User getUserById(int userId) {
+        User user = null;
+        try (Connection connection = getConnection()) {
+            CallableStatement cstmt = connection.prepareCall("{call sp_get_user_by_id(?)}");
+            cstmt.setInt(1, userId);
+            ResultSet rs = cstmt.executeQuery();
+
+            if (rs.next()) {
+                String firstName = rs.getString("first_name");
+                String lastName = rs.getString("last_name");
+                String email = rs.getString("email");
+                String phone = rs.getString("phone");
+                char[] password = rs.getString("password").toCharArray();
+                String language = rs.getString("language");
+                String status = rs.getString("status");
+                String privileges = rs.getString("privileges");
+                Instant createdAt = rs.getTimestamp("created_at").toInstant();
+                String timezone = rs.getString("timezone");
+                String pronouns = rs.getString("pronouns");
+                LocalDate birthday = rs.getDate("birthday").toLocalDate();
+                String avatar = rs.getString("avatar");
+
+                user = new User(userId, firstName, lastName, email, phone, password, language, status, privileges, createdAt, timezone, pronouns, birthday, avatar);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return user;
+    }
+
+
 }
