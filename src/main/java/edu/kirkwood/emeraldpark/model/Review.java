@@ -2,28 +2,48 @@ package edu.kirkwood.emeraldpark.model;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneId;
+import java.util.Date;
 
 public class Review {
     private int review_id;
+    private int trail_id;
     private String trail_name;
-    private String email;
+    private int user_id;
+    private String first_name;
+    private String last_name;
     private LocalDate review_date;
     private int rating;
-    private LocalTime review_time;
     private String review_notes;
 
-    public Review() {
+    public Review() {}
 
-    }
-
-    public Review(int review_id, String trail_name, String email, LocalDate review_date, int rating, LocalTime review_time, String review_notes) {
+    public Review(int review_id, int trail_id, String trail_name, int user_id, String first_name, String last_name, LocalDate review_date, int rating, String review_notes) {
         this.review_id = review_id;
+        this.trail_id = trail_id;
         this.trail_name = trail_name;
-        this.email = email;
+        this.user_id = user_id;
+        this.first_name = first_name;
+        this.last_name = last_name;
         this.review_date = review_date;
         this.rating = rating;
-        this.review_time = review_time;
         this.review_notes = review_notes;
+    }
+
+    public int getReview_id() {
+        return review_id;
+    }
+
+    public void setReview_id(int review_id) {
+        this.review_id = review_id;
+    }
+
+    public int getTrail_id() {
+        return trail_id;
+    }
+
+    public void setTrail_id(int trail_id) {
+        this.trail_id = trail_id;
     }
 
     public String getTrail_name() {
@@ -34,12 +54,28 @@ public class Review {
         this.trail_name = trail_name;
     }
 
-    public String getEmail() {
-        return email;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
+    public String getFirst_name() {
+        return first_name;
+    }
+
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
+    }
+
+    public String getLast_name() {
+        return last_name;
+    }
+
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
     }
 
     public LocalDate getReview_date() {
@@ -58,14 +94,6 @@ public class Review {
         this.rating = rating;
     }
 
-    public LocalTime getReview_time() {
-        return review_time;
-    }
-
-    public void setReview_time(LocalTime review_time) {
-        this.review_time = review_time;
-    }
-
     public String getReview_notes() {
         return review_notes;
     }
@@ -74,23 +102,21 @@ public class Review {
         this.review_notes = review_notes;
     }
 
-    public int getReview_id() {
-        return review_id;
-    }
-
-    public void setReview_id(int review_id) {
-        this.review_id = review_id;
+    public Date getReview_dateAsDate() {
+        return review_date != null ? Date.from(review_date.atStartOfDay(ZoneId.systemDefault()).toInstant()) : null;
     }
 
     @Override
     public String toString() {
         return "Review{" +
                 "review_id=" + review_id +
+                ", trail_id=" + trail_id +
                 ", trail_name='" + trail_name + '\'' +
-                ", email='" + email + '\'' +
+                ", user_id=" + user_id +
+                ", first_name='" + first_name + '\'' +
+                ", last_name='" + last_name + '\'' +
                 ", review_date=" + review_date +
                 ", rating=" + rating +
-                ", review_time=" + review_time +
                 ", review_notes='" + review_notes + '\'' +
                 '}';
     }

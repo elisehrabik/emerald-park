@@ -15,24 +15,69 @@ public class ReviewDAO {
         getReviewsAdmin().forEach(System.out::println);
     }
     public static List<Review> getReviewsAdmin() {
-        List<Review> reviews = new ArrayList<>(); // makes array list
-        try(Connection connection = getConnection()){
-            CallableStatement statement = connection.prepareCall("{CALL sp_get_all_reviews_admin()}"); // call sp
-            ResultSet rs = statement.executeQuery(); // execute query
-            while(rs.next()) { // gets all the data
+        List<Review> reviews = new ArrayList<>();
+        try (Connection connection = getConnection()) {
+            CallableStatement statement = connection.prepareCall("{CALL sp_get_all_reviews_admin()}");
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
                 int review_id = rs.getInt("review_id");
+                int trail_id = rs.getInt("trail_id");
                 String trail_name = rs.getString("trail_name");
-                String email = rs.getString("email");
+                int user_id = rs.getInt("user_id");
+                String first_name = rs.getString("first_name");
+                String last_name = rs.getString("last_name");
                 LocalDate review_date = rs.getDate("review_date").toLocalDate();
                 int rating = rs.getInt("rating");
-                LocalTime review_time = rs.getTime("review_time").toLocalTime();
                 String review_notes = rs.getString("review_notes");
 
-                reviews.add(new Review(review_id, trail_name, email, review_date, rating, review_time, review_notes));
+                Review review = new Review(review_id, trail_id, trail_name, user_id, first_name, last_name,
+                        review_date, rating, review_notes);
+                reviews.add(review);
             }
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException("Query error - " + e.getMessage());
         }
         return reviews;
     }
+
+    public static Review getReviewById(int review_id) {
+        Review review = null;
+        try (Connection connection = getConnection()) {
+            CallableStatement statement = connection.prepareCall("{CALL sp_get_review_by_id(?)}");
+            statement.setInt(1, review_id);
+            ResultSet rs = statement.executeQuery();
+
+            if (rs.next()) {
+                int trail_id = rs.getInt("trail_id");
+                String trail_name = rs.getString("trail_name");
+                int user_id = rs.getInt("user_id");
+                String first_name = rs.getString("first_name");
+                String last_name = rs.getString("last_name");
+                LocalDate review_date = rs.getDate("review_date").toLocalDate();
+                int rating = rs.getInt("rating");
+                String review_notes = rs.getString("review_notes");
+
+                review = new Review(
+                        review_id, trail_id, trail_name, user_id, first_name, last_name,
+                        review_date, rating, review_notes
+                );
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Query error - " + e.getMessage());
+        }
+        return review;
+    }
+
+    public static boolean deleteReview(int review_id) {
+        try (Connection connection = getConnection();
+             CallableStatement callableStatement = connection.prepareCall("{CALL sp_delete_review(?)}")) {
+            callableStatement.setInt(1, review_id);
+            return callableStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
 }
