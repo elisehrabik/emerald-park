@@ -45,6 +45,13 @@ public class AdminUpdateTrail extends HttpServlet {
 
         req.setAttribute("id", trailId);
         req.setAttribute("trail", trail);
+        req.setAttribute("trailName", trail.getTrail_name());
+        req.setAttribute("trailDistance", trail.getTrail_distance());
+        req.setAttribute("trailDifficulty", trail.getTrail_difficulty().toString());
+        req.setAttribute("trailTime", trail.getTrail_time().toString());
+        req.setAttribute("trailDescription", trail.getTrail_description());
+        req.setAttribute("trailImage", trail.getTrail_image());
+        req.setAttribute("category_id", trail.getCategoryId());
         req.setAttribute("pageTitle", "Edit Trail");
         req.getRequestDispatcher("WEB-INF/update-trail.jsp").forward(req, resp);
     }

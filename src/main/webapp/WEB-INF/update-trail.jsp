@@ -39,15 +39,16 @@
         <!-- Trail Difficulty -->
         <div class="col-md-4">
             <label for="trailDifficulty" class="form-label text-light">Trail Difficulty</label>
-            <select class="form-select ${not empty trailDifficultyError ? 'is-invalid' : ''}"
-                    id="trailDifficulty" name="trailDifficulty" required>
+            <select class="form-select <c:choose>
+                <c:when test='${trailDifficultyError == true}'>is-invalid</c:when>
+                <c:when test='${trailDifficultyError == false}'>is-valid</c:when>
+                <c:otherwise></c:otherwise>
+                </c:choose>" id="trailDifficulty" name="trailDifficulty" required>
                 <option value="EASY" ${trailDifficulty == 'EASY' ? 'selected' : ''}>Easy</option>
                 <option value="MODERATE" ${trailDifficulty == 'MODERATE' ? 'selected' : ''}>Moderate</option>
-                <option value="HARD" ${trailDifficulty == 'HARD' ? 'selected' : ''}>Hard</option>
+                <option value="DIFFICULT" ${trailDifficulty == 'DIFFICULT' ? 'selected' : ''}>Difficult</option>
+                <option value="EXTREME" ${trailDifficulty == 'EXTREME' ? 'selected' : ''}>Extreme</option>
             </select>
-            <c:if test="${not empty trailDifficultyError}">
-                <div class="invalid-feedback">${trailDifficultyMessage}</div>
-            </c:if>
         </div>
 
         <!-- Trail Time -->

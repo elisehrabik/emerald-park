@@ -34,10 +34,15 @@
         </div>
         <div class="col-md-4">
             <label for="trailDifficulty" class="form-label text-light">Trail Difficulty</label>
-            <select class="form-select" id="trailDifficulty" name="trailDifficulty">
-                <option value="EASY" <c:if test="${trailDifficulty == 'EASY'}">selected</c:if>>Easy</option>
-                <option value="MODERATE" <c:if test="${trailDifficulty == 'MODERATE'}">selected</c:if>>Moderate</option>
-                <option value="HARD" <c:if test="${trailDifficulty == 'HARD'}">selected</c:if>>Hard</option>
+            <select class="form-select <c:choose>
+                <c:when test='${trailDifficultyError == true}'>is-invalid</c:when>
+                <c:when test='${trailDifficultyError == false}'>is-valid</c:when>
+                <c:otherwise></c:otherwise>
+                </c:choose>" id="trailDifficulty" name="trailDifficulty" required>
+            <option value="EASY" ${trailDifficulty == 'EASY' ? 'selected' : ''}>Easy</option>
+                <option value="MODERATE" ${trailDifficulty == 'MODERATE' ? 'selected' : ''}>Moderate</option>
+                <option value="DIFFICULT" ${trailDifficulty == 'DIFFICULT' ? 'selected' : ''}>Difficult</option>
+                <option value="EXTREME" ${trailDifficulty == 'EXTREME' ? 'selected' : ''}>Extreme</option>
             </select>
         </div>
         <div class="col-md-4">
