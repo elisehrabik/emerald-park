@@ -12,7 +12,14 @@
         <!-- Main Content (Trails) -->
         <div class="col-lg-9">
             <div class="col d-flex justify-content-between align-items-center">
-                <p class="lead">Showing trails ${firstTrailShown}-${lastTrailShown} of ${totalTrails}</p>
+                <c:choose>
+                    <c:when test="${totalTrails <= 0}">
+                        <p class="lead">No Trails Found</p>
+                    </c:when>
+                    <c:otherwise>
+                        <p class="lead">Showing trails ${firstTrailShown}-${lastTrailShown} of ${totalTrails}</p>
+                    </c:otherwise>
+                </c:choose>
                 <%@include file="/WEB-INF/pagination.jspf"%>
             </div>
 
