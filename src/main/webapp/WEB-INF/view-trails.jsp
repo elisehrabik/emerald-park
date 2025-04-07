@@ -27,14 +27,16 @@
             <div class="row g-4">
                 <c:forEach items="${trails}" var="trail">
                     <div class="col-sm-12 col-md-6 col-lg-4">
-                        <div class="card h-100 custom-shadow">
-                            <img src="${trail.trail_image}" class="card-img-top" alt="${trail.trail_name} hiking trail at Emerald Park.">
+                        <a href="view-trail?id=${trail.trail_id}">
+                        <div class="card h-100 custom-shadow hover-grow">
+                            <img src="${trail.trail_image}" class="card-img-top " alt="${trail.trail_name} hiking trail at Emerald Park.">
                             <div class="card-body">
                                 <h5 class="card-title">${trail.trail_name} Trail</h5>
                                 <p class="card-text"><small class="text-muted">${trail.trail_distance} miles | ${trail.trail_difficulty} | ${trail.categoryName}</small></p>
                                 <p class="card-text">${trail.trail_description}</p>
                             </div><!-- End Card Body -->
                         </div><!-- End Card -->
+                        </a>
                     </div><!-- End Column -->
                 </c:forEach>
             </div> <!-- End Product Row -->

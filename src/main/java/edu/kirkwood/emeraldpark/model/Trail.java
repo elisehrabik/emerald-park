@@ -1,5 +1,6 @@
 package edu.kirkwood.emeraldpark.model;
 
+import java.sql.Time;
 import java.time.LocalTime;
 
 public class Trail {
@@ -62,6 +63,21 @@ public class Trail {
 
     public void setTrail_time(LocalTime trail_time) {
         this.trail_time = trail_time;
+    }
+
+    public String getTrail_timeFormatted() {
+        if (trail_time != null) {
+            long minutes = trail_time.toSecondOfDay() / 60;
+            long hours = minutes / 60;
+            long remainingMinutes = minutes % 60;
+
+            if (hours == 0) {
+                return String.format("%d minutes", remainingMinutes);
+            } else {
+                return String.format("%d hr %d min", hours, remainingMinutes);
+            }
+        }
+        return "Unknown";
     }
 
     public String getTrail_description() {
