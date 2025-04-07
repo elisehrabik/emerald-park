@@ -1,5 +1,7 @@
 package edu.kirkwood.emeraldpark.controller;
 
+import edu.kirkwood.emeraldpark.model.Review;
+import edu.kirkwood.emeraldpark.model.ReviewDAO;
 import edu.kirkwood.emeraldpark.model.Trail;
 import edu.kirkwood.emeraldpark.model.TrailCategory;
 import edu.kirkwood.emeraldpark.model.TrailDAO;
@@ -44,7 +46,11 @@ public class ViewTrail extends HttpServlet {
             return;
         }
 
+        List<Review> reviews = ReviewDAO.getReviewsByTrailId(trail_id);
+
         req.setAttribute("trail", trail);
+        req.setAttribute("reviews", reviews);
+
 
         List<TrailCategory> trailCategories = TrailDAO.getAllCategories();
         req.setAttribute("trailCategories", trailCategories);

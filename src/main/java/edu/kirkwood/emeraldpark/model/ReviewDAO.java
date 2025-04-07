@@ -1,8 +1,5 @@
 package edu.kirkwood.emeraldpark.model;
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -77,6 +74,36 @@ public class ReviewDAO {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public static List<Review> getReviewsByTrailId(int trail_id) {
+        List<Review> reviews = new ArrayList<>();
+        try (Connection connection = getConnection()) {
+            CallableStatement statement = connection.prepareCall("{CALL sp_get_reviews_by_trail_id(?)}");
+            statement.setInt(1, trail_id);
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                int review_id = rs.getInt("review_id");
+                String trail_name = rs.getString("trail_name");
+                int user_id = rs.getInt("user_id");
+                String first_name = rs.getString("first_name");
+                String last_name = rs.getString("last_name");
+                LocalDate review_date = rs.getDate("review_date").toLocalDate();
+                int rating = rs.getInt("rating");
+                String review_notes = rs.getString("review_notes");
+
+                Review review = new Review(
+                        review_id, trail_id, trail_name, user_id, first_name, last_name,
+                        review_date, rating, review_notes
+                );
+
+                reviews.add(review);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Query error - " + e.getMessage());
+        }
+        return reviews;
     }
 
 

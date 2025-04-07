@@ -106,19 +106,22 @@
                         <div class="carousel-inner">
                             <c:forEach items="${trails}" var="trail" varStatus="status">
                                 <c:if test="${status.index % 3 == 0}">
-                                    <div class="carousel-item ${status.index == 0 ? 'active' : ''}">
+
+
+                                <div class="carousel-item ${status.index == 0 ? 'active' : ''}">
                                     <div class="row">
                                 </c:if>
 
-                                <div class="col-md-4 mb-4">
+                                <div class="col-md-4 mb-4"><a href="view-trail?id=${trail.trail_id}">
                                     <div class="card h-100 custom-shadow">
                                         <img src="${trail.trail_image}" class="card-img-top" alt="${trail.trail_name} hiking trail at Emerald Park.">
                                         <div class="card-body">
                                             <h5 class="card-title">${trail.trail_name} Trail</h5>
                                             <p class="card-text"><small class="text-muted">${trail.trail_distance} miles | ${trail.trail_difficulty}</small></p>
                                         </div>
-                                    </div>
+                                    </div></a>
                                 </div>
+
 
                                 <c:if test="${status.index % 3 == 2 || status.last}">
                                     </div>

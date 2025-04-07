@@ -20,5 +20,39 @@
             <a href="${pageContext.request.contextPath}/view-trails" class="button-dark">Back to Trails</a>
         </div>
     </div>
+
+    <div class="container mt-3">
+        <h3>Reviews:</h3>
+
+        <c:if test="${empty reviews}">
+            <p>No reviews yet for this trail.</p>
+        </c:if>
+
+        <c:forEach var="review" items="${reviews}">
+            <div class="review mb-3 d-flex align-items-center">
+                <div class="review-icon text-center">
+                    <i class="fa fa-user-circle fa-3x"></i>
+                    <strong class="d-block mt-2">${review.first_name}&nbsp${review.last_name}</strong>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="review-content ms-3">
+                    <div class="stars">
+                        <c:forEach var="i" begin="1" end="5">
+                            <span class="${review.rating >= i ? 'filled' : 'empty'}">&#9733;</span>
+                        </c:forEach>
+                    </div>
+
+                    <p class="fs-5">${review.review_notes}</p>
+
+                    <small class="text-muted">
+                        <fmt:formatDate value="${review.review_dateAsDate}" pattern="MMMM dd, yyyy"/>
+                    </small>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
+
     <hr>
 </div>
