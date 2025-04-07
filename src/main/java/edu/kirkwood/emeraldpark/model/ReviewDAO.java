@@ -1,5 +1,6 @@
 package edu.kirkwood.emeraldpark.model;
 import java.sql.*;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -23,11 +24,15 @@ public class ReviewDAO {
                 int user_id = rs.getInt("user_id");
                 String first_name = rs.getString("first_name");
                 String last_name = rs.getString("last_name");
+                String avatar = rs.getString("avatar");
+                String pronouns = rs.getString("pronouns");
+                Instant created_at = rs.getTimestamp("created_at").toInstant();
                 LocalDate review_date = rs.getDate("review_date").toLocalDate();
                 int rating = rs.getInt("rating");
                 String review_notes = rs.getString("review_notes");
 
                 Review review = new Review(review_id, trail_id, trail_name, user_id, first_name, last_name,
+                        avatar, pronouns, created_at,
                         review_date, rating, review_notes);
                 reviews.add(review);
             }
@@ -50,12 +55,16 @@ public class ReviewDAO {
                 int user_id = rs.getInt("user_id");
                 String first_name = rs.getString("first_name");
                 String last_name = rs.getString("last_name");
+                String avatar = rs.getString("avatar");
+                String pronouns = rs.getString("pronouns");
+                Instant created_at = rs.getTimestamp("created_at").toInstant();
                 LocalDate review_date = rs.getDate("review_date").toLocalDate();
                 int rating = rs.getInt("rating");
                 String review_notes = rs.getString("review_notes");
 
                 review = new Review(
                         review_id, trail_id, trail_name, user_id, first_name, last_name,
+                        avatar, pronouns, created_at,
                         review_date, rating, review_notes
                 );
             }
@@ -89,12 +98,16 @@ public class ReviewDAO {
                 int user_id = rs.getInt("user_id");
                 String first_name = rs.getString("first_name");
                 String last_name = rs.getString("last_name");
+                String avatar = rs.getString("avatar");
+                String pronouns = rs.getString("pronouns");
+                Instant created_at = rs.getTimestamp("created_at").toInstant();
                 LocalDate review_date = rs.getDate("review_date").toLocalDate();
                 int rating = rs.getInt("rating");
                 String review_notes = rs.getString("review_notes");
 
                 Review review = new Review(
                         review_id, trail_id, trail_name, user_id, first_name, last_name,
+                        avatar, pronouns, created_at,
                         review_date, rating, review_notes
                 );
 

@@ -1,5 +1,6 @@
 package edu.kirkwood.emeraldpark.model;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
@@ -12,22 +13,53 @@ public class Review {
     private int user_id;
     private String first_name;
     private String last_name;
+    private String avatar;
+    private String pronouns;
+    private Instant createdAt;
     private LocalDate review_date;
     private int rating;
     private String review_notes;
 
+
     public Review() {}
 
-    public Review(int review_id, int trail_id, String trail_name, int user_id, String first_name, String last_name, LocalDate review_date, int rating, String review_notes) {
+    public Review(int review_id, int trail_id, String trail_name, int user_id, String first_name, String last_name, String avatar, String pronouns, Instant createdAt, LocalDate review_date, int rating, String review_notes) {
         this.review_id = review_id;
         this.trail_id = trail_id;
         this.trail_name = trail_name;
         this.user_id = user_id;
         this.first_name = first_name;
         this.last_name = last_name;
+        this.avatar = avatar;
+        this.pronouns = pronouns;
+        this.createdAt = createdAt;
         this.review_date = review_date;
         this.rating = rating;
         this.review_notes = review_notes;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getPronouns() {
+        return pronouns;
+    }
+
+    public void setPronouns(String pronouns) {
+        this.pronouns = pronouns;
+    }
+
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
     }
 
     public int getReview_id() {
@@ -104,6 +136,10 @@ public class Review {
 
     public Date getReview_dateAsDate() {
         return review_date != null ? Date.from(review_date.atStartOfDay(ZoneId.systemDefault()).toInstant()) : null;
+    }
+
+    public Date getCreated_dateAsDate() {
+        return createdAt != null ? Date.from(createdAt) : null;
     }
 
     @Override

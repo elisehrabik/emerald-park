@@ -384,3 +384,7 @@ li {
 .trail-heading {
     text-align: left !important;
 }
+
+.user-icon {
+    color: var(--accent-1);
+}
