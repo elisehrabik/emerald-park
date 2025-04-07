@@ -311,6 +311,23 @@ select {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
 }
 
+.hover-no-shadow-right {
+    transition: transform 0.2s ease-in-out;
+}
+
+.hover-no-shadow-right:hover {
+    transform: translateY(-2px) rotate(0.02turn) scale(108%);
+
+}
+
+.hover-no-shadow-left {
+    transition: transform 0.2s ease-in-out;
+}
+
+.hover-no-shadow-left:hover {
+    transform: translateY(-2px) rotate(-0.02turn) scale(108%);
+}
+
 ul {
     margin: 0;
     padding: 0;
@@ -388,3 +405,5 @@ li {
 .user-icon {
     color: var(--accent-1);
 }
+
+
