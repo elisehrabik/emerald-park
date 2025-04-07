@@ -44,7 +44,14 @@
                             <td >${user.language}</td>
                             <td>${user.status}</td>
                             <td>${user.privileges}</td>
-                            <td>${user.createdAt}</td>
+                            <td>
+                                <c:if test="${not empty user.createdAtDate}">
+                                    <fmt:formatDate
+                                            value="${user.createdAtDate}"
+                                            pattern="MMMM d, yyyy h:mm a z"
+                                            timeZone="${activeUser.timezone}" />
+                                </c:if>
+                            </td>
                             <td>${user.timezone}</td>
                             </c:forEach>
                         </tbody>
