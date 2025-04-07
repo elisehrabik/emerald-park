@@ -29,7 +29,7 @@
             <p>No reviews yet for this trail.</p>
         </c:if>
         <c:forEach var="review" items="${reviews}">
-            <div class="review mb-3 d-flex align-items-center">
+            <div class="review mb-3 d-flex flex-column flex-md-row align-items-start align-items-md-center">
                 <div class="review-icon text-center" data-bs-toggle="modal" data-bs-target="#userModal-${review.user_id}" style="cursor: pointer;">
                     <i class="fa fa-${review.avatar} fa-3x user-icon"></i>
                     <strong class="d-block mt-2">
@@ -44,7 +44,7 @@
                     </strong>
                 </div>
 
-                <div class="divider"></div>
+                <div class="divider d-none d-md-block"></div>
 
                 <div class="review-content ms-3">
                     <div class="stars">
