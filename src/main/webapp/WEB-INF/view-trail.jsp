@@ -1,11 +1,12 @@
-<div class="container">
-    <h1 class="mb-4">${trail.trail_name}</h1>
+<div class="container mt-5">
+
     <div class="row">
         <div class="col-md-8">
             <img src="${trail.trail_image}" alt="${trail.trail_name}" class="img-fluid rounded">
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-4 justify-content-between">
+            <h1 class="mb-4 text-dark trail-heading">${trail.trail_name} Trail</h1>
             <h3>Description:</h3>
             <p class="mb-4 fs-5 border-bottom pb-3">${trail.trail_description}</p>
 
@@ -30,10 +31,12 @@
 
         <c:forEach var="review" items="${reviews}">
             <div class="review mb-3 d-flex align-items-center">
+                <a href="view-profile?id=${review.user_id}">
                 <div class="review-icon text-center">
                     <i class="fa fa-user-circle fa-3x"></i>
                     <strong class="d-block mt-2">${review.first_name}&nbsp${review.last_name}</strong>
                 </div>
+                </a>
 
                 <div class="divider"></div>
 
@@ -52,6 +55,7 @@
                 </div>
             </div>
         </c:forEach>
+        <a class="button-dark" href="add-review?id=${trail.trail_id}">Add Review</a>
     </div>
 
     <hr>
