@@ -120,4 +120,26 @@ public class ReviewDAO {
     }
 
 
+    public static boolean addReview(Review review) {
+        String sql = "INSERT INTO reviews (trail_id, user_id, review_date, rating, review_notes) " +
+                "VALUES (?, ?, ?, ?, ?)";
+
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, review.getTrail_id());
+            stmt.setInt(2, review.getUser_id());
+            stmt.setDate(3, java.sql.Date.valueOf(review.getReview_date()));
+            stmt.setInt(4, review.getRating());
+            stmt.setString(5, review.getReview_notes());
+
+            int rowsInserted = stmt.executeUpdate();
+            return rowsInserted > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }

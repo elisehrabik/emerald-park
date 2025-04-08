@@ -15,6 +15,7 @@
     --accent-2: rgba(65, 105, 85, 0.27);
     --accent-3: #edf2ed;
     --accent-4: #d9e5d9;
+    --accent-5: #79a890;
     --custom-shadow: rgba(0, 44, 24, 0.1);
 }
 
@@ -316,7 +317,7 @@ select {
 }
 
 .hover-no-shadow-right:hover {
-    transform: translateY(-2px) rotate(0.02turn) scale(108%);
+    transform: translateY(-2px) rotate(0.015turn) scale(108%);
 
 }
 
@@ -325,7 +326,7 @@ select {
 }
 
 .hover-no-shadow-left:hover {
-    transform: translateY(-2px) rotate(-0.02turn) scale(108%);
+    transform: translateY(-2px) rotate(-0.015turn) scale(108%);
 }
 
 ul {
@@ -407,3 +408,28 @@ li {
 }
 
 
+.star-rating {
+    direction: rtl;
+    display: inline-flex;
+    font-size: 2rem;
+    gap: 0.25rem;
+}
+
+.star-rating input[type="radio"] {
+    display: none;
+}
+
+.star-rating label {
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: var(--accent-5);
+}
+
+.star-rating input[type="radio"]:checked ~ label {
+    color: var(--accent-5);
+}
