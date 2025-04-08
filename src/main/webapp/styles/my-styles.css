@@ -16,6 +16,7 @@
     --accent-3: #edf2ed;
     --accent-4: #d9e5d9;
     --accent-5: #79a890;
+    --gray : #545454;
     --custom-shadow: rgba(0, 44, 24, 0.1);
 }
 
@@ -436,4 +437,15 @@ li {
 
 .nav-link.hover-link:hover {
     color: var(--accent-4) !important;
+}
+
+.nav-link {
+    color: var(--gray) !important;
+    /*font-weight: 600;*/
+}
+
+.nav-link.active {
+    color: var(--accent-1) !important;
+    border-bottom: 2px solid var(--accent-5);
+    font-weight: 700;
 }
