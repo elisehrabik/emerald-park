@@ -11,25 +11,25 @@
                     <div class="me-5">
                         <h5>Resources</h5>
                         <ul class="nav flex-column">
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Privacy Policy</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Terms of Use</a></li>
+                            <li class="nav-item mb-2"><a href="${appURL}/privacy-policy" class="nav-link p-0 text-body-secondary hover-link">Privacy Policy</a></li>
+                            <li class="nav-item mb-2"><a href="${appURL}/terms" class="nav-link p-0 text-body-secondary hover-link">Terms and Conditions</a></li>
                         </ul>
                     </div>
 
                     <div class="me-5">
                         <h5>Users</h5>
                         <ul class="nav flex-column">
-                            <li class="nav-item mb-2"><a href="${appURL}/signup" class="nav-link p-0 text-body-secondary">Sign Up</a></li>
-                            <li class="nav-item mb-2"><a href="${appURL}/login" class="nav-link p-0 text-body-secondary">Log in</a></li>
+                            <li class="nav-item mb-2"><a href="${appURL}/signup" class="nav-link p-0 text-body-secondary hover-link">Sign Up</a></li>
+                            <li class="nav-item mb-2"><a href="${appURL}/login" class="nav-link p-0 text-body-secondary hover-link">Log in</a></li>
                         </ul>
                     </div>
 
                     <div>
-                        <h5><a href="${appURL}/" class="text-body-secondary">Home</a></h5>
+                        <h5><a href="${appURL}/" class="text-body-secondary nav-link hover-link">Home</a></h5>
                         <ul class="nav flex-column">
-                            <li class="nav-item mb-2"><a href="${appURL}/view-trails" class="nav-link p-0 text-body-secondary">Trails</a></li>
-                            <li class="nav-item mb-2"><a href="${appURL}/about" class="nav-link p-0 text-body-secondary">About</a></li>
-                            <li class="nav-item mb-2"><a href="${appURL}/contact" class="nav-link p-0 text-body-secondary">Contact</a></li>
+                            <li class="nav-item mb-2"><a href="${appURL}/view-trails" class="nav-link p-0 text-body-secondary hover-link">Trails</a></li>
+                            <li class="nav-item mb-2"><a href="${appURL}/about" class="nav-link p-0 text-body-secondary hover-link">About</a></li>
+                            <li class="nav-item mb-2"><a href="${appURL}/contact" class="nav-link p-0 text-body-secondary hover-link">Contact</a></li>
                         </ul>
                     </div>
                 </div>

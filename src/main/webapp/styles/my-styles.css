@@ -433,3 +433,7 @@ li {
 .star-rating input[type="radio"]:checked ~ label {
     color: var(--accent-5);
 }
+
+.nav-link.hover-link:hover {
+    color: var(--accent-4) !important;
+}
