@@ -34,16 +34,16 @@
                         <c:forEach items="${users}" var="user">
                         <tr>
                             <td>
-                                <a href="admin-update-user?user_id=${user.userId}" class="btn btn-sm btn-outline-primary mb-1 px-4 edit-color" style="width:100%">Edit</a>
+                                <a href="admin-update-user?user_id=${fn:escapeXml(user.userId)}" class="btn btn-sm btn-outline-primary mb-1 px-4 edit-color" style="width:100%">Edit</a>
 <%--                                <a href="delete-user?user_id=${user.userId}" class="btn btn-sm btn-outline-danger delete-color" style="width:100%">Delete</a>--%>
                             </td>
-                            <td>${user.firstName}</td>
-                            <td style="width: 10em;">${user.lastName}</td>
-                            <td>${user.email}</td>
-                            <td>${user.phone}</td>
-                            <td >${user.language}</td>
-                            <td>${user.status}</td>
-                            <td>${user.privileges}</td>
+                            <td>${fn:escapeXml(user.firstName)}</td>
+                            <td style="width: 10em;">${fn:escapeXml(user.lastName)}</td>
+                            <td>${fn:escapeXml(user.email)}</td>
+                            <td>${fn:escapeXml(user.phone)}</td>
+                            <td >${fn:escapeXml(user.language)}</td>
+                            <td>${fn:escapeXml(user.status)}</td>
+                            <td>${fn:escapeXml(user.privileges)}</td>
                             <td>
                                 <c:if test="${not empty user.createdAtDate}">
                                     <fmt:formatDate
@@ -52,7 +52,7 @@
                                             timeZone="${activeUser.timezone}" />
                                 </c:if>
                             </td>
-                            <td>${user.timezone}</td>
+                            <td>${fn:escapeXml(user.timezone)}</td>
                             </c:forEach>
                         </tbody>
                     </table>
