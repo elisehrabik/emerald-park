@@ -78,13 +78,16 @@ public class EditProfile extends HttpServlet {
 
 
         try {
-            if(phone != null && !phone.equals(user.getPhone())) {
+            if (phone == null || phone.isBlank()) {
+                user.setPhone("");
+            } else if (!phone.equals(user.getPhone())) {
                 user.setPhone(phone);
             }
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             errorFound = true;
             req.setAttribute("phoneError", e.getMessage());
         }
+
 
         try {
             if(!language.equals(user.getLanguage())) {
@@ -114,17 +117,23 @@ public class EditProfile extends HttpServlet {
         }
 
         try {
-            LocalDate parsedBirthday = LocalDate.parse(birthday);
-            if (parsedBirthday.isAfter(LocalDate.now())) {
-                throw new IllegalArgumentException("Birthday cannot be in the future.");
+            if (birthday == null || birthday.isBlank()) {
+                user.setBirthday(LocalDate.of(1900, 1, 1));
+            } else {
+                LocalDate parsedBirthday = LocalDate.parse(birthday);
+                if (parsedBirthday.isAfter(LocalDate.now())) {
+                    throw new IllegalArgumentException("Birthday cannot be in the future.");
+                }
+                if (!parsedBirthday.equals(user.getBirthday())) {
+                    user.setBirthday(parsedBirthday);
+                }
             }
-            if (!parsedBirthday.equals(user.getBirthday())) {
-                user.setBirthday(parsedBirthday);
-            }
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | DateTimeParseException e) {
             errorFound = true;
             req.setAttribute("birthdayError", e.getMessage());
         }
+
+
 
         try {
             if(!avatar.equals(user.getAvatar())) {

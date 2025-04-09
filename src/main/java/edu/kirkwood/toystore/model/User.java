@@ -19,7 +19,7 @@ public class User implements Comparable<User> {
     private Instant createdAt;
     private String timezone;
     private String pronouns;
-    private LocalDate birthday = LocalDate.now();
+    private LocalDate birthday = LocalDate.of(1900, 1, 1);
     private String avatar;
 
     public User() {
@@ -96,11 +96,18 @@ public class User implements Comparable<User> {
     }
 
     public void setPhone(String phone) {
-        if(!Validators.isValidPhone(phone)) {
+        if (phone == null || phone.isBlank()) {
+            this.phone = "";
+            return;
+        }
+
+        if (!Validators.isValidPhone(phone)) {
             throw new IllegalArgumentException("Invalid phone number");
         }
+
         this.phone = phone;
     }
+
 
     public char[] getPassword() {
         return password;
@@ -181,8 +188,9 @@ public class User implements Comparable<User> {
 
 
     public void setBirthday(LocalDate birthday) {
-        this.birthday = birthday;
+        this.birthday = (birthday == null) ? LocalDate.of(1900, 1, 1) : birthday;
     }
+
 
     public String getAvatar() {
         return avatar;

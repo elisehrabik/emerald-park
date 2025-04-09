@@ -44,7 +44,16 @@
                                 <!-- Phone number -->
                                 <div class="col-md-6">
                                     <label class="form-label text-light" for="phone">Phone number</label>
-                                    <input type="text" class="<c:if test="${not empty phoneError}">is-invalid</c:if> form-control" id="phone" name="phone" value="${not empty phone ? phone : sessionScope.activeUser.phone}">
+                                    <input type="text"
+                                           class="<c:if test='${not empty phoneError}'>is-invalid</c:if> form-control"
+                                           id="phone"
+                                           name="phone"
+                                           value="<c:choose>
+                                           <c:when test='${not empty sessionScope.activeUser.phone and sessionScope.activeUser.phone != ""}'>
+                                               ${fn:escapeXml(sessionScope.activeUser.phone)}
+                                           </c:when>
+                                           <c:otherwise></c:otherwise>
+                                       </c:choose>">
                                     <c:if test="${not empty phoneError }"><div class="invalid-feedback">${phoneError}</div></c:if>
                                 </div>
 
