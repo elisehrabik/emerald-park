@@ -18,14 +18,17 @@
                         <div class="card-body transparent-overlay">
                             <h6 class="text-light">If you delete your account, you will lose your all data.</h6>
                             <form id="deleteAccountForm" method="POST" action="${appURL}/delete-account">
+
+                                <input type="hidden" id="correctEmail" value="${sessionScope.activeUser.email}" />
+
                                 <!-- Email id -->
                                 <div class="col-md-6 my-4">
                                     <label class="form-label text-light" for="email">Enter your email to confirm account deletion</label>
-                                    <input class="form-control <c:if test="${not empty results.emailError}">is-invalid</c:if>" type="text" id="email" name="email" value="${email}">
-                                    <c:if test="${not empty results.emailError }"><div class="invalid-feedback">${results.emailError}</div></c:if>
+                                    <input class="form-control" type="text" id="email" name="email" value="${email}">
+                                    <div class="invalid-feedback" id="emailError" style="display: none;"></div>
                                 </div>
 
-                                <button type="button" class="btn btn-primary mb-0 table-button delete-button" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
+                                <button type="button" class="btn btn-primary mb-0 table-button delete-button" id="openDeleteModal">
                                     Delete my account
                                 </button>
 
@@ -63,14 +66,44 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
+        const openDeleteModalBtn = document.getElementById("openDeleteModal");
         const confirmDeleteBtn = document.getElementById("confirmDelete");
-        const deleteAccountForm = document.getElementById("deleteAccountForm");
+        const deleteForm = document.getElementById("deleteAccountForm");
 
-        if (confirmDeleteBtn && deleteAccountForm) {
-            confirmDeleteBtn.addEventListener("click", function (e) {
-                e.preventDefault();
-                deleteAccountForm.submit();
-            });
-        }
+        openDeleteModalBtn.addEventListener("click", function () {
+            const emailInput = document.getElementById("email");
+            const enteredEmail = emailInput.value.trim();
+            const correctEmail = document.getElementById("correctEmail").value;
+            const emailError = document.getElementById("emailError");
+
+            emailInput.classList.remove("is-invalid");
+            emailError.style.display = "none";
+            emailError.textContent = "";
+
+            const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+            const isValid = emailRegex.test(enteredEmail);
+
+            if (!isValid) {
+                emailInput.classList.add("is-invalid");
+                emailError.textContent = "Please enter a valid email address.";
+                emailError.style.display = "block";
+                return;
+            }
+
+            if (enteredEmail !== correctEmail) {
+                emailInput.classList.add("is-invalid");
+                emailError.textContent = "The email entered does not match your account.";
+                emailError.style.display = "block";
+                return;
+            }
+
+            const modal = new bootstrap.Modal(document.getElementById("deleteAccountModal"));
+            modal.show();
+        });
+
+        confirmDeleteBtn.addEventListener("click", function () {
+            deleteForm.submit();
+        });
     });
 </script>
+
