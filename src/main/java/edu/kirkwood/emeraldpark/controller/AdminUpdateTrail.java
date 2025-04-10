@@ -124,6 +124,7 @@ public class AdminUpdateTrail extends HttpServlet {
         } else {
             try {
                 updatedTrail.setTrail_difficulty(TrailDifficulty.valueOf(trailDifficulty.toUpperCase()));
+                req.setAttribute("trailDifficulty", trailDifficulty);
             } catch (IllegalArgumentException e) {
                 req.setAttribute("trailDifficultyError", true);
                 req.setAttribute("trailDifficultyMessage", "Invalid difficulty level.");

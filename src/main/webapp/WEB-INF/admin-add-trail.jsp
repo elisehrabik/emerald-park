@@ -61,13 +61,23 @@
         </div>
         <div class="col-md-4">
             <label for="categoryId" class="form-label text-light">Category:</label>
-            <select class="form-select" id="categoryId" name="categoryId" required>
+            <select class="form-select <c:if test='${categoryIdError}'>is-invalid</c:if>" id="categoryId" name="categoryId">
                 <option value="">Select a category</option>
-                <option value="1" <c:if test="${categoryId == 1}">selected</c:if>>Hiking</option>
-                <option value="2" <c:if test="${categoryId == 2}">selected</c:if>>Biking</option>
-                <option value="3" <c:if test="${categoryId == 3}">selected</c:if>>Scenic</option>
+                <option value="1" <c:if test='${categoryId == 1}'>selected</c:if>>Hiking</option>
+                <option value="2" <c:if test='${categoryId == 2}'>selected</c:if>>Biking</option>
+                <option value="3" <c:if test='${categoryId == 3}'>selected</c:if>>Horse</option>
             </select>
+
+            <c:if test="${not empty categoryIdMessage}">
+                <div class="<c:choose>
+                        <c:when test='${categoryIdError}'>invalid-feedback</c:when>
+                        <c:otherwise>valid-feedback</c:otherwise>
+                    </c:choose>">
+                        ${categoryIdMessage}
+                </div>
+            </c:if>
         </div>
+
         <div class="col-md-6">
             <label for="trailImage" class="form-label text-light">Trail Image URL</label>
             <input type="text" class="form-control <c:choose><c:when test='${trailImageError == true}'>is-invalid</c:when><c:when test='${trailImageError == false}'>is-valid</c:when><c:otherwise></c:otherwise></c:choose>" id="trailImage" name="trailImage" value="${trailImage}">

@@ -68,7 +68,9 @@ public class AdminDeleteReview extends HttpServlet {
 
         boolean success = ReviewDAO.deleteReview(Integer.parseInt(review_id));
         if (success) {
-            req.setAttribute("reviewDeletedMessage", "Review deleted successfully.");
+            session.setAttribute("flashMessageSuccess", "Review deleted successfully.");
+            resp.sendRedirect(req.getContextPath() + "/reviews");
+            return;
         } else {
             req.setAttribute("reviewDeletedMessage", "Failed to delete review.");
         }

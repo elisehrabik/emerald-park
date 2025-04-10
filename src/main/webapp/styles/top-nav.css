@@ -3,9 +3,16 @@
 }
 
 .my-logo {
-    width:250px;
+    width: 250px;
     margin-left: 3rem;
 }
+
+    @media (max-width: 1000px) {
+        .my-logo {
+            margin-top: 1rem;
+            width: 200px;
+        }
+    }
 
 .user-nav {
     background-color: var(--background-accent-darker) !important;

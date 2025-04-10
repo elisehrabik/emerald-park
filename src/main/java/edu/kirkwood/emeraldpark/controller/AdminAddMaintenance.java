@@ -90,7 +90,8 @@ public class AdminAddMaintenance extends HttpServlet {
         }
         req.setAttribute("maintenanceType", maintenanceType);
 
-        LocalDate requestDate = LocalDate.now();
+        ZoneId userZone = ZoneId.of(userFromSession.getTimezone());
+        LocalDate requestDate = LocalDate.now(userZone);
         if (requestDateParam != null && !requestDateParam.trim().isEmpty()) {
             try {
                 requestDate = LocalDate.parse(requestDateParam);
@@ -102,7 +103,7 @@ public class AdminAddMaintenance extends HttpServlet {
         }
         maintenance.setRequest_date(requestDate);
 
-        Date requestDateAsDate = Date.from(requestDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        Date requestDateAsDate = Date.from(requestDate.atStartOfDay(userZone).toInstant());
 
         req.setAttribute("requestDate", requestDateAsDate);
         req.setAttribute("requestDateError", false);

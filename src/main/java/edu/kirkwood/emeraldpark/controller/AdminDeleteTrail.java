@@ -86,16 +86,18 @@ public class AdminDeleteTrail extends HttpServlet {
         }
 
         boolean success = TrailDAO.deleteTrail(Integer.parseInt(trailId));
+
         if (success) {
-            System.out.println("DEBUG: Trail deleted successfully.");
-            req.setAttribute("trailDeletedMessage", "Trail deleted successfully.");
+            System.out.println("DEBUG: Trail deleted successfully. Redirecting to admin-trails.jsp.");
+            session.setAttribute("flashMessageSuccess", "Trail deleted successfully.");
+            resp.sendRedirect(req.getContextPath() + "/trails");
+            return;
         } else {
             System.out.println("DEBUG: Failed to delete trail.");
             req.setAttribute("trailDeletedMessage", "Failed to delete trail.");
+            req.setAttribute("pageTitle", "Delete Trail");
+            req.getRequestDispatcher("WEB-INF/delete-trail.jsp").forward(req, resp);
         }
 
-        req.setAttribute("pageTitle", "Delete Trail");
-        req.getRequestDispatcher("WEB-INF/delete-trail.jsp").forward(req, resp);
-        System.out.println("DEBUG: doPost() method completed.");
     }
 }

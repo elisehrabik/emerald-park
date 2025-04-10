@@ -144,6 +144,7 @@ public class AdminAddTrail extends HttpServlet {
         }
         req.setAttribute("categoryId", categoryIdParam);
 
+
         if (!validationError) {
             boolean trailAdded = TrailDAO.addTrail(trail);
             req.setAttribute("trailAdded", trailAdded);

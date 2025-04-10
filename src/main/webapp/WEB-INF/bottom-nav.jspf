@@ -28,7 +28,6 @@
                         <h5><a href="${appURL}/" class="text-body-secondary nav-link hover-link">Home</a></h5>
                         <ul class="nav flex-column">
                             <li class="nav-item mb-2"><a href="${appURL}/view-trails" class="nav-link p-0 text-body-secondary hover-link">Trails</a></li>
-                            <li class="nav-item mb-2"><a href="${appURL}/about" class="nav-link p-0 text-body-secondary hover-link">About</a></li>
                             <li class="nav-item mb-2"><a href="${appURL}/contact" class="nav-link p-0 text-body-secondary hover-link">Contact</a></li>
                         </ul>
                     </div>
