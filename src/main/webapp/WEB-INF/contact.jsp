@@ -1,4 +1,4 @@
-<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+<div class="container col-xl-10 col-xxl-8 px-4 py-5 fade-up">
     <div class="row align-items-center g-lg-5 py-5">
         <!-- Text/Info Column -->
         <div class="col-lg-5 text-start text-light px-3 pb-3 px-md-4">
@@ -53,3 +53,5 @@
         </div>
     </div>
 </div>
+
+<script src="${appURL}/scripts/fade-up-animation.js"></script>

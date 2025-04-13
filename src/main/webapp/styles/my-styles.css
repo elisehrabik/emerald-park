@@ -480,3 +480,14 @@ li {
     background-color: var(--background-light);
 }
 
+/* Fade in + move up */
+.fade-up {
+    opacity: 20%;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+}
+
+.fade-up.active {
+    opacity: 1;
+    transform: translateY(0);
+}

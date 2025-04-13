@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-5 fade-up">
 
     <div class="row">
         <div class="col-md-8 position-relative">
@@ -143,3 +143,5 @@
     });
 
 </script>
+
+<script src="${appURL}/scripts/fade-up-animation.js"></script>

@@ -1,4 +1,4 @@
-<div class="container d-flex justify-content-center align-items-center mt-5" style="min-height: 50vh;">
+<div class="container d-flex justify-content-center align-items-center mt-5 fade-up" style="min-height: 50vh;">
     <main class="form-signin p-4 p-md-5 border rounded-3 bg-body-tertiary" style="width: 100%; max-width: 30rem;">
         <c:if test="${not empty loginFail}">
         <div class="alert alert-danger mb-2">${loginFail}</div>
@@ -27,3 +27,5 @@
     </form>
 </main>
 </div>
+
+<script src="${appURL}/scripts/fade-up-animation.js"></script>

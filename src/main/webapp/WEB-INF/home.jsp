@@ -16,7 +16,7 @@
 
             <%--            Welcome     --%>
 
-                <div class="container mt-5 mt-lg-3 mb-3">
+                <div class="container mt-5 mt-lg-3 mb-3 fade-up">
                     <div class="row justify-content-center text-center">
                         <div class="col-12 col-md-10 col-lg-8">
                             <h2 class="featurette-heading mb-3">Welcome to Emerald Park</h2>
@@ -32,38 +32,45 @@
                 <hr class="featurette-divider">
 
             <%--            Plan Your Adventure     --%>
-        <div class="row featurette">
-                <div class="col-12 col-lg-7 order-lg-2 text-center text-lg-start">
-                    <h2 class="featurette-heading lh-1">Plan Your Adventure</h2>
-                    <p class="lead">
-                        Detailed maps, difficulty-ratings, and reviews make it easy to find what kind of trail you’re looking for. No more biting off more than you can chew.
-                    </p>
-                    <a class="button-dark d-flex justify-content-center align-items-center mx-auto mx-lg-0 mb-5" href="${appURL}/view-trails">View All Trails</a>
+                <div class="row featurette justify-content-center fade-up">
+                    <div class="col-12 col-lg-7 order-lg-2 d-flex flex-column justify-content-center">
+                        <div class="mx-lg-auto px-lg-4" style="max-width: 600px;">
+                            <h2 class="featurette-heading lh-1">Plan Your Adventure</h2>
+                            <p class="lead">
+                                Detailed maps, difficulty-ratings, and reviews make it easy to find what kind of trail you’re looking for.
+                            </p>
+                            <a class="button-dark d-flex justify-content-center align-items-center mx-auto mx-lg-0 mb-5" href="${appURL}/view-trails">View All Trails</a>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-5 order-lg-1 d-flex justify-content-center">
+                        <img src="${appURL}/images/plan-your-adventure.png" alt="Person with yellow jacket walking in forest"
+                             class="img-fluid rounded custom-shadow">
+                    </div>
                 </div>
 
-                <div class="col-12 col-lg-5 order-lg-1 d-flex justify-content-center">
-                    <img src="${appURL}/images/plan-your-adventure.png" alt="Person with yellow jacket walking in forest"
-                         class="img-fluid rounded custom-shadow">
-                </div>
-            </div>
+
                 <hr class="featurette-divider">
 
 
             <%--            Join the Community     --%>
-                <div class="row featurette">
-                    <div class="col-12 col-lg-7 text-center text-lg-start d-flex flex-column justify-content-center order-lg-1">
-                        <h2 class="featurette-heading lh-1">Join the Community</h2>
-                        <p class="lead">
-                            The beauty of nature is meant to be shared. Visitors can share their experiences at Emerald Park and be informed of events.
-                        </p>
-                        <a class="button-dark d-flex justify-content-center align-items-center mx-auto mx-lg-0 mb-5" href="${appURL}/signup">Sign Up</a>
+                <div class="row featurette justify-content-between fade-up">
+                    <div class="col-12 col-lg-7 order-lg-1 d-flex flex-column justify-content-center">
+                        <div class="mx-lg-auto px-lg-4" style="max-width: 600px;">
+                            <h2 class="featurette-heading lh-1">Join the Community</h2>
+                            <p class="lead">
+                                The beauty of nature is meant to be shared. Visitors can share their experiences at Emerald Park and be informed of events.
+                            </p>
+                            <a class="button-dark d-flex justify-content-center align-items-center mx-auto mx-lg-0 mb-5" href="${appURL}/signup">Sign Up</a>
+                        </div>
                     </div>
 
-                    <div class="col-12 col-lg-5 d-flex justify-content-center order-lg-2">
+                    <div class="col-12 col-lg-5 order-lg-2 d-flex justify-content-center">
                         <img src="${appURL}/images/join-the-community.png" alt="Two people hiking and smiling"
                              class="img-fluid rounded custom-shadow">
                     </div>
                 </div>
+
 
                 <hr class="featurette-divider">
 
@@ -71,7 +78,7 @@
         <!-- /END THE FEATURETTES -->
 
             <%--    Choose Your Adventure   --%>
-                <div>
+                <div class="fade-up">
                     <h2 class="featurette-heading lh-1">Choose Your Adventure</h2>
                     <p class="lead mb-5 ">How will you explore? Click to see trails with your chosen mode of transport.</p>
             <div class="row">
@@ -98,7 +105,7 @@
                 <hr class="featurette-divider">
 
                 <%-- Trails --%>
-                <div class="container">
+                <div class="container fade-up">
                     <h2 class="featurette-heading lh-1">Dozens of Trails at Your Fingertips.</h2>
                     <p class="lead">Emerald Park has 30+ incredible trails for you to explore.</p>
 
@@ -146,3 +153,7 @@
                 </div>
     </div><!-- /.container -->
 </main>
+
+
+<script src="${appURL}/scripts/fade-up-animation.js"></script>
+
