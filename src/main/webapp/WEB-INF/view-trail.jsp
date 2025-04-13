@@ -1,9 +1,34 @@
 <div class="container mt-5">
 
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8 position-relative">
             <img src="${trail.trail_image}" alt="${trail.trail_name} trail" class="img-fluid rounded">
+
+            <form action="${isFavorite ? 'remove-favorite' : 'add-favorite'}" method="post"
+                  class="position-absolute top-0 end-0 mt-4 me-5">
+                <input type="hidden" name="trailId" value="${trail.trail_id}" />
+                <c:choose>
+                    <c:when test="${not empty activeUser}">
+                        <button type="submit" class="favorite-btn btn btn-link p-0 m-0 border-0"
+                                style="font-size: 3rem; color: white;">
+                            <i class="bi ${isFavorite ? 'bi-heart-fill' : 'bi-heart'}"></i>
+                        </button>
+                    </c:when>
+                    <c:otherwise>
+                        <form action="add-favorite" method="post"
+                              class="position-absolute top-0 end-0 m-2 z-3">
+                            <input type="hidden" name="trailId" value="${trail.trail_id}" />
+                            <button type="submit" class="btn btn-link p-0 m-0 border-0"
+                                    style="font-size: 1.5rem; color: white;">
+                                <i class="bi bi-heart"></i>
+                            </button>
+                        </form>
+                    </c:otherwise>
+
+                </c:choose>
+            </form>
         </div>
+
 
         <div class="col-md-4 justify-content-between">
             <h1 class="mb-4 text-dark trail-heading">${trail.trail_name} Trail</h1>
@@ -96,3 +121,25 @@
 
     <hr>
 </div>
+
+
+<script>
+    document.querySelectorAll('.favorite-btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+
+            const icon = this.querySelector('i');
+            const isFavorite = icon.classList.contains('bi-heart-fill');
+
+            if (isFavorite) {
+                icon.classList.remove('bi-heart-fill');
+                icon.classList.add('bi-heart');
+            } else {
+                icon.classList.remove('bi-heart');
+                icon.classList.add('bi-heart-fill');
+            }
+
+            this.submit();
+        });
+    });
+
+</script>

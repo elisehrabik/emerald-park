@@ -1,5 +1,6 @@
 <%@ include file="/WEB-INF/bottom-nav.jspf" %>
 <%--  Additional JavaScript  --%>
 
+</main>
 </body>
 </html>

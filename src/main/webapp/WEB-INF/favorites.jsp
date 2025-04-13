@@ -1,6 +1,7 @@
+
 <div class="container py-4">
     <div class="col d-flex justify-content-between align-items-center">
-        <h2 class="">Trails</h2>
+        <h2 class="">My Favorites</h2>
         <!-- Responsive toggler START -->
         <button class="btn btn-primary d-lg-none basic-button-green" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
             <i class="bi bi-list fs-4"></i>
@@ -10,23 +11,13 @@
 
     <div class="row">
         <!-- Main Content (Trails) -->
-        <div class="col-lg-9">
-            <div class="col d-flex justify-content-between align-items-center">
-                <c:choose>
-                    <c:when test="${totalTrails <= 0}">
-                        <p class="lead">No Trails Found</p>
-                    </c:when>
-                    <c:otherwise>
-                        <p class="lead">Showing trails ${firstTrailShown}-${lastTrailShown} of ${totalTrails}</p>
-                    </c:otherwise>
-                </c:choose>
-                <%@include file="/WEB-INF/pagination.jspf"%>
-            </div>
-
+        <div>
             <!-- Cards -->
-            <div class="row g-4">
-                <c:forEach items="${trails}" var="trail">
-                    <div class="col-sm-12 col-md-6 col-lg-4">
+            <c:choose>
+                <c:when test="${not empty trails}">
+                    <div class="row g-4">
+                    <c:forEach items="${trails}" var="trail">
+                        <div class="col-sm-12 col-md-6 col-lg-4">
                         <div class="card h-100 custom-shadow hover-grow position-relative">
 
                             <a href="view-trail?id=${trail.trail_id}">
@@ -74,15 +65,22 @@
 
                         </div> <!-- End Card -->
                     </div> <!-- End Column -->
-                </c:forEach>
-            </div> <!-- End Product Row -->
+                    </c:forEach>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <p class="lead mb-5">You haven't favorited any trails yet.</p>
+                    <a class="button-dark d-flex justify-content-center align-items-center mx-auto mx-lg-0 mb-5"
+                       href="${appURL}/view-trails">
+                        View All Trails
+                    </a>
+                    <div style="height: 8rem;"></div>
+
+                </c:otherwise>
+            </c:choose>
 
         </div><!-- End Main Content -->
 
-        <!-- Sidebar -->
-        <div class="col-lg-3 position-relative">
-            <%@include file="trails-sidebar.jspf"%>
-        </div><!-- End Sidebar -->
     </div><!-- End Row -->
 </div><!-- End Container -->
 
@@ -94,7 +92,6 @@
 
             const icon = this.querySelector('i');
             const isFavorite = icon.classList.contains('bi-heart-fill');
-
             if (isFavorite) {
                 icon.classList.remove('bi-heart-fill');
                 icon.classList.add('bi-heart');

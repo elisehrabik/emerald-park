@@ -48,6 +48,16 @@
                     <a class="nav-link ${pageTitle eq 'Contact' ? 'active text-accent' : ''}" href="${pageContext.request.contextPath}/contact">Contact</a>
                 </li>
 
+                <c:choose>
+                    <c:when test="${empty sessionScope.activeUser}">
+                    </c:when>
+                    <c:otherwise>
+                    <li class="nav-item me-4 my-nav-item" style="font-size: 1rem;">
+                        <a href="${appURL}/favorites" class="nav-link ${pageTitle eq 'Favorites' ? 'active text-accent' : ''}" style="color: var(--link-dark)">Favorites</a>
+                    </li>
+                    </c:otherwise>
+                </c:choose>
+
 
             <%--                Admin Dropdown--%>
                 <c:if test="${not empty sessionScope.activeUser && sessionScope.activeUser.status == 'active' && sessionScope.activeUser.privileges == 'admin'}">

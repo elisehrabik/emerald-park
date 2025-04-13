@@ -1,5 +1,6 @@
 package edu.kirkwood.emeraldpark.controller;
 
+import edu.kirkwood.emeraldpark.model.FavoriteDAO;
 import edu.kirkwood.emeraldpark.model.Trail;
 import edu.kirkwood.emeraldpark.model.TrailCategory;
 import edu.kirkwood.emeraldpark.model.TrailDAO;
@@ -13,12 +14,17 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @WebServlet(value="/view-trails")
 public class ViewTrails extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        User userFromSession = (User)session.getAttribute("activeUser");
+
         // Get the limit
         String limitStr = req.getParameter("limit");
         int limit = 6;
@@ -84,9 +90,17 @@ public class ViewTrails extends HttpServlet {
         }
         req.setAttribute("lastTrailShown", lastTrailShown);
 
-
+        req.setAttribute("activeUser", userFromSession);
         List<Trail> trails = TrailDAO.getTrails(limit, offset, categories, selectedDifficulties);
         List<TrailCategory> trailCategories = TrailDAO.getAllCategories();
+
+        Set<Integer> favoriteTrailIds = Set.of(); // default empty
+        if (userFromSession != null) {
+            favoriteTrailIds = new HashSet<>(FavoriteDAO.getFavoritesByUser(userFromSession.getUserId()));
+        }
+        req.setAttribute("favoriteTrailIds", favoriteTrailIds);
+
+
         req.setAttribute("trails", trails);
         req.setAttribute("trailCategories", trailCategories);
         req.setAttribute("selectedDifficulties", selectedDifficulties != null ? Arrays.asList(selectedDifficulties) : List.of());

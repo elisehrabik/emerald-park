@@ -115,9 +115,11 @@
 <%--</c:when>--%>
 </c:choose>
 
-
+<body>
 
 <%@include file="/WEB-INF/top-nav.jspf"%>
+
+    <main class="flex-grow-1">
 
 <%--    Alert container --%>
 <div class="container">
@@ -136,3 +138,4 @@
         </c:when>
     </c:choose>
 </div>
+

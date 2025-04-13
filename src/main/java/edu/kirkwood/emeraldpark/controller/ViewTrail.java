@@ -1,10 +1,6 @@
 package edu.kirkwood.emeraldpark.controller;
 
-import edu.kirkwood.emeraldpark.model.Review;
-import edu.kirkwood.emeraldpark.model.ReviewDAO;
-import edu.kirkwood.emeraldpark.model.Trail;
-import edu.kirkwood.emeraldpark.model.TrailCategory;
-import edu.kirkwood.emeraldpark.model.TrailDAO;
+import edu.kirkwood.emeraldpark.model.*;
 import edu.kirkwood.toystore.model.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -20,9 +16,11 @@ import java.util.List;
 public class ViewTrail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        User userFromSession = (User)session.getAttribute("activeUser");
+
         // Get trail id
         String trailIdStr = req.getParameter("id");
-        HttpSession session = req.getSession();
 
         if (trailIdStr == null || trailIdStr.isEmpty()) {
             session.setAttribute("flashMessageWarning", "Trail ID is required.");
@@ -54,6 +52,11 @@ public class ViewTrail extends HttpServlet {
 
         List<TrailCategory> trailCategories = TrailDAO.getAllCategories();
         req.setAttribute("trailCategories", trailCategories);
+
+        boolean isFavorite = userFromSession != null && FavoriteDAO.isFavorite(userFromSession.getUserId(), trail_id);
+        req.setAttribute("activeUser", userFromSession);
+        req.setAttribute("isFavorite", isFavorite);
+
 
         req.setAttribute("pageTitle", trail.getTrail_name() + "  Trail");
 
