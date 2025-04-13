@@ -79,10 +79,12 @@ a {
 
 .button-dark:hover {
     background-color: var(--accent-1);
+    color: white;
 }
 
 .button-dark:active {
     background-color: var(--button-dark) !important;
+    color: white !important;
 }
 
 .form-check-input:focus {
@@ -449,3 +451,25 @@ li {
     border-bottom: 2px solid var(--accent-5);
     font-weight: 700;
 }
+
+.form-check-input:focus {
+    box-shadow: 0 0 5px var(--accent-2);
+    border: none;
+}
+
+.form-check-input:checked {
+    background-color: var(--accent-1);
+    box-shadow: 0 0 5px var(--accent-2);
+    border: none;
+}
+
+.form-floating input {
+    border-radius: 10px !important;
+}
+
+.form-control:focus {
+    border-color: var(--button-dark);
+    box-shadow: 0 0 5px var(--accent-3);
+    background-color: var(--background-light);
+}
+

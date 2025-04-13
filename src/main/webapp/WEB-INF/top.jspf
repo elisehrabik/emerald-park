@@ -79,7 +79,8 @@
                     pageTitle eq 'Delete Trail' or pageTitle eq 'Complete Maintenance Request' or
                     pageTitle eq 'Edit Trail' or pageTitle eq 'New password' or
                     pageTitle eq 'Edit User' or pageTitle eq 'Delete Review'
-                    or pageTitle eq 'Add Review' or pageTitle eq 'Privacy Policy' or pageTitle eq 'Terms and Conditions'}">
+                    or pageTitle eq 'Add Review' or pageTitle eq 'Privacy Policy' or pageTitle eq 'Terms and Conditions'
+                    or pageTitle eq 'Terms and Conditions' or pageTitle eq 'Contact'}">
 <style>
     body {
         background: url('${appURL}/images/404_forest.jpg') no-repeat center center fixed;
