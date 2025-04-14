@@ -4,6 +4,7 @@
             width: 100%;
             height: 600px;
             border: 2px solid #444;
+            z-index: 1;
         }
     </style>
 

@@ -16,7 +16,7 @@
                     </c:when>
                     <c:otherwise>
                         <form action="add-favorite" method="post"
-                              class="position-absolute top-0 end-0 m-2 z-3">
+                              class="position-absolute top-0 end-0 m-2">
                             <input type="hidden" name="trailId" value="${trail.trail_id}" />
                             <button type="submit" class="btn btn-link p-0 m-0 border-0"
                                     style="font-size: 3rem; color: white;">

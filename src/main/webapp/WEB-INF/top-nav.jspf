@@ -2,12 +2,12 @@
 <%--        Log in, Signup, Signout, Profile--%>
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary user-nav py-1" style="z-index: 5;">
-    <div class="container-fluid user-nav">
+    <div class="container-fluid user-nav py-0">
         <div class="ms-auto d-flex align-items-center me-4 text-light">
             <c:choose>
                 <c:when test="${empty sessionScope.activeUser}">
-                    <a href="${appURL}/login" class="nav-link me-4 hover-bold" style="color: black">Login</a>
-                    <a href="${appURL}/signup" class="nav-link me-4" style="color: black">Sign-up</a>
+                    <a href="${appURL}/login" class="nav-link me-4 hover-bold" style="color: var(--link-dark)">Login</a>
+                    <a href="${appURL}/signup" class="nav-link me-4" style="color: var(--link-dark)">Sign-up</a>
                 </c:when>
                 <c:otherwise>
                     <a href="${appURL}/signout" class="nav-link me-4" style="color: var(--link-dark)">Sign out</a>
@@ -17,7 +17,7 @@
 
             <%--                Admin Dropdown--%>
             <c:if test="${not empty sessionScope.activeUser && sessionScope.activeUser.status == 'active' && sessionScope.activeUser.privileges == 'admin'}">
-                <li class="nav-item dropdown nav-link me-4">
+                <li class="nav-item dropdown nav-link me-4" style="color:var(--link-dark)">
                     <button class="btn dropdown-toggle px-2 py-1"
                             style="border: none; box-shadow: none;"
                             data-bs-toggle="dropdown" aria-expanded="false">
