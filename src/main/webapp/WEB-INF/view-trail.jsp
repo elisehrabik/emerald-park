@@ -1,4 +1,4 @@
-<div class="container mt-5 fade-up">
+<div class="container mt-5 ">
 
     <div class="row">
         <div class="col-md-8 position-relative">
@@ -19,7 +19,7 @@
                               class="position-absolute top-0 end-0 m-2 z-3">
                             <input type="hidden" name="trailId" value="${trail.trail_id}" />
                             <button type="submit" class="btn btn-link p-0 m-0 border-0"
-                                    style="font-size: 1.5rem; color: white;">
+                                    style="font-size: 3rem; color: white;">
                                 <i class="bi bi-heart"></i>
                             </button>
                         </form>
@@ -144,4 +144,4 @@
 
 </script>
 
-<script src="${appURL}/scripts/fade-up-animation.js"></script>
+<%--<script src="${appURL}/scripts/fade-up-animation.js"></script>--%>

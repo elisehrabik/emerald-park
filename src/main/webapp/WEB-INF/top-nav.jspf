@@ -1,7 +1,7 @@
 
 <%--        Log in, Signup, Signout, Profile--%>
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top user-nav" style=" height: 1.3rem; z-index: 5;">
+<nav class="navbar navbar-expand-lg bg-body-tertiary user-nav py-1" style="z-index: 5;">
     <div class="container-fluid user-nav">
         <div class="ms-auto d-flex align-items-center me-4 text-light">
             <c:choose>
@@ -11,9 +11,36 @@
                 </c:when>
                 <c:otherwise>
                     <a href="${appURL}/signout" class="nav-link me-4" style="color: var(--link-dark)">Sign out</a>
-                    <a href="${appURL}/edit-profile" class="nav-link me-4" style="color: var(--link-dark)">Edit Profile</a>
+                    <a href="${appURL}/edit-profile" class="nav-link me-3" style="color: var(--link-dark)">Edit Profile</a>
                 </c:otherwise>
             </c:choose>
+
+            <%--                Admin Dropdown--%>
+            <c:if test="${not empty sessionScope.activeUser && sessionScope.activeUser.status == 'active' && sessionScope.activeUser.privileges == 'admin'}">
+                <li class="nav-item dropdown nav-link me-4">
+                    <button class="btn dropdown-toggle px-2 py-1"
+                            style="border: none; box-shadow: none;"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        Admin
+                    </button>
+
+                    <ul class="dropdown-menu dropdown-menu-light" style="width: 120px !important; min-width: 120px !important;">
+                        <li class="admin-menu">
+                            <a class="dropdown-item" href="${appURL}/users">Users</a>
+                        </li>
+                        <li class="admin-menu">
+                            <a class="dropdown-item" href="${appURL}/trails">Trails</a>
+                        </li>
+                        <li class="admin-menu">
+                            <a class="dropdown-item" href="${appURL}/reviews">Reviews</a>
+                        </li>
+                        <li class="admin-menu">
+                            <a class="dropdown-item" href="${appURL}/maintenance">Maintenance</a>
+                        </li>
+
+                    </ul>
+                </li>
+            </c:if>
         </div>
     </div>
 </nav>
@@ -44,44 +71,23 @@
                     <a class="nav-link ${pageTitle eq 'All Trails' ? 'active text-accent' : ''}" href="${appURL}/view-trails">Trails</a>
                 </li>
 
-                <li class="nav-item me-4 my-nav-item" style="font-size: 1rem;">
-                    <a class="nav-link ${pageTitle eq 'Contact' ? 'active text-accent' : ''}" href="${pageContext.request.contextPath}/contact">Contact</a>
-                </li>
-
                 <c:choose>
                     <c:when test="${empty sessionScope.activeUser}">
                     </c:when>
                     <c:otherwise>
-                    <li class="nav-item me-4 my-nav-item" style="font-size: 1rem;">
-                        <a href="${appURL}/favorites" class="nav-link ${pageTitle eq 'Favorites' ? 'active text-accent' : ''}" style="color: var(--link-dark)">Favorites</a>
-                    </li>
+                        <li class="nav-item me-4 my-nav-item" style="font-size: 1rem;">
+                            <a href="${appURL}/favorites" class="nav-link ${pageTitle eq 'Favorites' ? 'active text-accent' : ''}" style="color: var(--link-dark)">Favorites</a>
+                        </li>
+                        <li class="nav-item me-4 my-nav-item" style="font-size: 1rem;">
+                            <a href="${appURL}/donate" class="nav-link ${pageTitle eq 'Donate' ? 'active text-accent' : ''}" style="color: var(--link-dark)">Donate</a>
+                        </li>
                     </c:otherwise>
                 </c:choose>
 
 
-            <%--                Admin Dropdown--%>
-                <c:if test="${not empty sessionScope.activeUser && sessionScope.activeUser.status == 'active' && sessionScope.activeUser.privileges == 'admin'}">
-                <li class="nav-item dropdown">
-                    <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="font-weight: bold; color:#000000A6;  padding: 8px 8px;">
-                        Admin
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-light" style="width: 120px !important; min-width: 120px !important;">
-                        <li class="admin-menu">
-                            <a class="dropdown-item" href="${appURL}/users">Users</a>
-                        </li>
-                        <li class="admin-menu">
-                            <a class="dropdown-item" href="${appURL}/trails">Trails</a>
-                        </li>
-                        <li class="admin-menu">
-                            <a class="dropdown-item" href="${appURL}/reviews">Reviews</a>
-                        </li>
-                        <li class="admin-menu">
-                            <a class="dropdown-item" href="${appURL}/maintenance">Maintenance</a>
-                        </li>
-
-                    </ul>
+                <li class="nav-item me-4 my-nav-item" style="font-size: 1rem;">
+                    <a class="nav-link ${pageTitle eq 'Contact' ? 'active text-accent' : ''}" href="${pageContext.request.contextPath}/contact">Contact</a>
                 </li>
-                </c:if>
 
             </ul>
         </div>

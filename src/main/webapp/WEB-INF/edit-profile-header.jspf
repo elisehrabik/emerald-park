@@ -6,6 +6,11 @@
                 <div class="card transparent-overlay3 card-body">
                     <!-- Profile info -->
                     <div class="col d-flex justify-content-center align-items-center">
+                        <!-- Responsive toggler START -->
+                        <button class="btn btn-primary d-lg-none me-5" style="background-color: var(--accent-1); border:none;" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
+                            <i class="bi bi-list fs-4"></i>
+                        </button>
+                        <!-- Responsive toggler END -->
                         <div>
                             <jsp:useBean id="now" class="java.util.Date" scope="page" />
                             <fmt:formatDate value="${now}" pattern="H" var="hour" timeZone="${sessionScope.activeUser.timezone}" />
@@ -33,11 +38,6 @@
                                 </li>
                             </ul>
                         </div>
-                        <!-- Responsive toggler START -->
-                        <button class="btn btn-primary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
-                            <i class="bi bi-list fs-4"></i>
-                        </button>
-                        <!-- Responsive toggler END -->
                     </div>
                 </div>
             </div>

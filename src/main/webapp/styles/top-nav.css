@@ -17,9 +17,16 @@
 .user-nav {
     background-color: var(--background-accent-darker) !important;
     color: var(--text-light);
+    /*margin-bottom: 1rem;*/
 }
 
 .top-nav {
-    margin-top: -1.3rem;
     background-color: var(--background-accent) !important;
+    transition: top 0.3s ease-in-out;
+
 }
+
+.navbar .nav-item.dropdown {
+    line-height: 1.2;
+}
+
