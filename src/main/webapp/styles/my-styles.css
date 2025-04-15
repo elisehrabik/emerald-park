@@ -491,3 +491,35 @@ li {
     opacity: 1;
     transform: translateY(0);
 }
+
+
+.map-container {
+    position: relative;
+}
+
+.trail-sidebar {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 250px;
+    padding: 1rem;
+    background-color: #fff;
+    border: 2px solid #444;
+    border-radius: 8px;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.d-none {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .trail-sidebar {
+        left: 50%;
+        top: auto;
+        bottom: 20px;
+        transform: translateX(-50%);
+        width: 90%;
+    }
+}
