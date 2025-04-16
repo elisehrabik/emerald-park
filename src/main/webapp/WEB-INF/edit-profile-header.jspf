@@ -10,8 +10,14 @@
                         <button class="btn btn-primary d-lg-none me-5" style="background-color: var(--accent-1); border:none;" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
                             <i class="bi bi-list fs-4"></i>
                         </button>
+
+                        <div class="icon-circle me-5" style="background-color: var(--accent-2); width: 6rem; height: 6rem; ">
+                        <i class="fa fa-${activeUser.avatar}  fa-4x user-icon"></i>
+                        </div>
                         <!-- Responsive toggler END -->
                         <div>
+
+
                             <jsp:useBean id="now" class="java.util.Date" scope="page" />
                             <fmt:formatDate value="${now}" pattern="H" var="hour" timeZone="${sessionScope.activeUser.timezone}" />
 

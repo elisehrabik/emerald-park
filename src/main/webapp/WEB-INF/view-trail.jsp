@@ -55,8 +55,11 @@
         </c:if>
         <c:forEach var="review" items="${reviews}">
             <div class="review mb-3 d-flex flex-column flex-md-row align-items-start align-items-md-center">
-                <div class="review-icon text-center" data-bs-toggle="modal" data-bs-target="#userModal-${review.user_id}" style="cursor: pointer;">
-                    <i class="fa fa-${review.avatar} fa-3x user-icon"></i>
+                <div class="review-icon d-flex flex-column align-items-center text-center"
+                     data-bs-toggle="modal" data-bs-target="#userModal-${review.user_id}" style="cursor: pointer;">
+                    <div class="icon-circle" style="background-color: white; width: 4rem; height: 4rem; border: 1px solid var(--accent-5); ">
+                        <i class="fa fa-${review.avatar}  fa-3x user-icon"></i>
+                    </div>
                     <strong class="d-block mt-2">
                         <c:choose>
                             <c:when test="${empty review.first_name and empty review.last_name}">
@@ -91,7 +94,9 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <i class="fa fa-${review.avatar}  fa-3x user-icon"></i>
+                    <div class="icon-circle" style="background-color: var(--accent-3); width: 4rem; height: 4rem; border: 1px solid var(--accent-5); ">
+                        <i class="fa fa-${review.avatar}  fa-3x user-icon"></i>
+                    </div>
                     <h5 class="modal-title ms-3" id="userModalLabel-${review.user_id}">
                         <c:choose>
                             <c:when test="${empty review.first_name and empty review.last_name}">

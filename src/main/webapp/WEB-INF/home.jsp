@@ -39,7 +39,7 @@
                             <p class="lead">
                                 Detailed maps, difficulty-ratings, and reviews make it easy to find what kind of trail you’re looking for.
                             </p>
-                            <a class="button-dark d-flex justify-content-center align-items-center mx-auto mx-lg-0 mb-5" href="${appURL}/view-trails">View All Trails</a>
+                            <a class="button-dark d-flex justify-content-center align-items-center mx-auto mx-lg-0 mb-5" href="${appURL}/map">See Map</a>
                         </div>
                     </div>
 

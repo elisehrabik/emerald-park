@@ -132,7 +132,7 @@
                                         <option value="dog" ${sessionScope.activeUser.avatar == 'dog' ? 'selected' : ''}>Dog</option>
                                         <option value="cat" ${sessionScope.activeUser.avatar == 'cat' ? 'selected' : ''}>Cat</option>
                                         <option value="fish" ${sessionScope.activeUser.avatar == 'fish' ? 'selected' : ''}>Fish</option>
-                                        <option value="mountain-sun" ${sessionScope.activeUser.avatar == 'mountain-sun' ? 'selected' : ''}>Mountain</option>
+                                        <option value="mountain" ${sessionScope.activeUser.avatar == 'mountain' ? 'selected' : ''}>Mountain</option>
                                         <option value="leaf" <c:if test="${sessionScope.activeUser.avatar == 'leaf'}">selected</c:if> >Leaf</option>
                                     </select>
                                     <c:if test="${not empty avatarError }"><div class="invalid-feedback">${avatarError}</div></c:if>

@@ -2,13 +2,13 @@
     #map {
         width: 100%;
         height: 600px;
-        margin-bottom: 0;
+        margin-bottom: -3rem;
         z-index: 1;
         background-color: #8FA496;
     }
 </style>
 
-<h2 style="text-align:center;">Interactive Trail Map</h2>
+<h2 class="mt-2" style="text-align:center;">Map of Emerald Park</h2>
 <div class="map-container">
     <div id="map"></div>
     <div id="trail-info" class="card h-100 custom-shadow position-absolute d-none trail-popup"
