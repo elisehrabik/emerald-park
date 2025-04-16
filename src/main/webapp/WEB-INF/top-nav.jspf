@@ -11,36 +11,49 @@
                 </c:when>
                 <c:otherwise>
                     <a href="${appURL}/signout" class="nav-link me-4" style="color: var(--link-dark)">Sign out</a>
-                    <a href="${appURL}/edit-profile" class="nav-link me-3" style="color: var(--link-dark)">Edit Profile</a>
+
+                    <%--                Admin Dropdown--%>
+                    <c:if test="${not empty sessionScope.activeUser && sessionScope.activeUser.status == 'active' && sessionScope.activeUser.privileges == 'admin'}">
+                        <li class="nav-item dropdown nav-link me-4" style="color:var(--link-dark)">
+                            <button class="btn dropdown-toggle px-2 py-1"
+                                    style="border: none; box-shadow: none;"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                Admin
+                            </button>
+
+                            <ul class="dropdown-menu dropdown-menu-light" style="width: 120px !important; min-width: 120px !important;">
+                                <li class="admin-menu">
+                                    <a class="dropdown-item" href="${appURL}/users">Users</a>
+                                </li>
+                                <li class="admin-menu">
+                                    <a class="dropdown-item" href="${appURL}/trails">Trails</a>
+                                </li>
+                                <li class="admin-menu">
+                                    <a class="dropdown-item" href="${appURL}/reviews">Reviews</a>
+                                </li>
+                                <li class="admin-menu">
+                                    <a class="dropdown-item" href="${appURL}/maintenance">Maintenance</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </c:if>
+
+                    <a href="${appURL}/edit-profile" class="nav-link me-3" style="color: var(--link-dark)">Profile</a>
+
+                    <c:if test="${not empty sessionScope.activeUser.avatar}">
+                        <a href="${appURL}/edit-profile" class="nav-link me-3">
+                            <div class="icon-circle">
+                                <i class="fa fa-${activeUser.avatar}  fa-2x user-icon"></i>
+                            </div>
+                        </a>
+                    </c:if>
+                    <c:if test="${empty sessionScope.activeUser.avatar}">
+                        <a href="${appURL}/edit-profile" class="nav-link me-3" style="color: var(--link-dark)">Edit Profile</a>
+                    </c:if>
                 </c:otherwise>
             </c:choose>
 
-            <%--                Admin Dropdown--%>
-            <c:if test="${not empty sessionScope.activeUser && sessionScope.activeUser.status == 'active' && sessionScope.activeUser.privileges == 'admin'}">
-                <li class="nav-item dropdown nav-link me-4" style="color:var(--link-dark)">
-                    <button class="btn dropdown-toggle px-2 py-1"
-                            style="border: none; box-shadow: none;"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                        Admin
-                    </button>
 
-                    <ul class="dropdown-menu dropdown-menu-light" style="width: 120px !important; min-width: 120px !important;">
-                        <li class="admin-menu">
-                            <a class="dropdown-item" href="${appURL}/users">Users</a>
-                        </li>
-                        <li class="admin-menu">
-                            <a class="dropdown-item" href="${appURL}/trails">Trails</a>
-                        </li>
-                        <li class="admin-menu">
-                            <a class="dropdown-item" href="${appURL}/reviews">Reviews</a>
-                        </li>
-                        <li class="admin-menu">
-                            <a class="dropdown-item" href="${appURL}/maintenance">Maintenance</a>
-                        </li>
-
-                    </ul>
-                </li>
-            </c:if>
         </div>
     </div>
 </nav>
