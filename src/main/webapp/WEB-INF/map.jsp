@@ -11,14 +11,20 @@
 <h2 style="text-align:center;">Interactive Trail Map</h2>
 <div class="map-container">
     <div id="map"></div>
-    <div id="trail-info" class="card h-100 custom-shadow position-absolute d-none" style="max-width: 400px; top: 1rem; right: 1rem; z-index: 1000;">
-        <a id="trail-link" href="#" class="text-decoration-none text-dark">
-            <img id="trail-image" class="card-img-top" alt="Trail image at Emerald Park">
+    <div id="trail-info" class="card h-100 custom-shadow position-absolute d-none trail-popup"
+         style="top: 0; right: 0; z-index: 1;">
+
+        <button type="button" class="btn-close position-absolute top-0 end-0 mt-3 me-3"
+                aria-label="Close" onclick="hideSidebar()"></button>
+
+        <a id="trail-link" href="#" class="text-decoration-none text-dark mt-5 mx-4">
+            <img id="trail-image" class="card-img-top" alt="Trail image at Emerald Park" style="border-radius: 5px;">
         </a>
 
-        <div class="card-body">
+        <div class="card-body p-4">
             <a id="trail-link-title" href="#" class="text-decoration-none text-dark">
                 <h5 class="card-title" id="trail-name">Trail Name</h5>
+            </a>
                 <p class="card-text">
                     <small class="text-muted">
                         <span id="trail-distance"></span> miles |
@@ -27,11 +33,10 @@
                     </small>
                 </p>
                 <p class="card-text" id="trail-description">Description goes here.</p>
-            </a>
 
-            <button onclick="hideSidebar()" class="btn btn-sm btn-secondary mt-2">Close</button>
         </div>
     </div>
+
 
 </div>
 
@@ -83,6 +88,8 @@
     // });
 
     // Load and render trail polylines from JSON
+    let selectedPolyline = null;
+
     fetch('data/trails.json')
         .then(res => res.json())
         .then(trails => {
@@ -91,19 +98,33 @@
                     color: '#394d40',
                     weight: 4,
                 });
+
                 polyline.options.trailId = trail.trail_id;
 
                 polyline
                     .bindTooltip(trail.name)
                     .on('mouseover', function () {
-                        this.setStyle({weight: 8});
+                        if (selectedPolyline !== this) {
+                            this.setStyle({ weight: 6 });
+                        }
                     })
                     .on('mouseout', function () {
-                        this.setStyle({weight: 4});
+                        if (selectedPolyline !== this) {
+                            this.setStyle({ weight: 4 });
+                        }
                     })
                     .on('click', function () {
+                        // Reset previously selected trail
+                        if (selectedPolyline) {
+                            selectedPolyline.setStyle({ weight: 4 });
+                        }
+
+                        // Set this as the new selected trail
+                        selectedPolyline = this;
+                        this.setStyle({ weight: 8 });
+
                         const trailId = String(this.options.trailId).trim();
-                        if (!trailId || trailId.length === 0) return;
+                        if (!trailId) return;
 
                         const url = window.appUrl + "/trail-popup?id=" + trailId;
 
@@ -116,7 +137,6 @@
                                 }
 
                                 document.getElementById("trail-name").textContent = data.trail_name + " Trail";
-                                // document.getElementById("trail-id").textContent = data.trail_id;
                                 document.getElementById("trail-distance").textContent = data.trail_distance;
                                 document.getElementById("trail-difficulty").textContent = data.trail_difficulty;
                                 document.getElementById("trail-category").textContent = data.categoryName;
@@ -127,7 +147,10 @@
                                 const appUrl = window.appUrl.endsWith('/')
                                     ? window.appUrl.slice(0, -1)
                                     : window.appUrl;
-                                document.getElementById("trail-link").href = appUrl + "/view-trail?id=" + data.trail_id;
+                                const trailUrl = appUrl + "/view-trail?id=" + data.trail_id;
+
+                                document.getElementById("trail-link").href = trailUrl;
+                                document.getElementById("trail-link-title").href = trailUrl;
 
                                 document.getElementById("trail-info").classList.remove("d-none");
                             })
@@ -141,6 +164,7 @@
         .catch(err => {
             console.error("Failed to load trails.json:", err);
         });
+
 
     function hideSidebar() {
         document.getElementById("trail-info").classList.add("d-none");

@@ -514,12 +514,17 @@ li {
     display: none;
 }
 
+.trail-popup {
+    max-width: 35rem;
+}
+
 @media (max-width: 768px) {
-    .trail-sidebar {
-        left: 50%;
-        top: auto;
-        bottom: 20px;
-        transform: translateX(-50%);
-        width: 90%;
+    .trail-popup {
+        max-width: 20rem;
+
     }
+}
+
+.leaflet-interactive:focus {
+    outline: none;
 }
