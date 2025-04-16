@@ -35,7 +35,7 @@
                 <div class="row featurette justify-content-center fade-up">
                     <div class="col-12 col-lg-7 order-lg-2 d-flex flex-column justify-content-center">
                         <div class="mx-lg-auto px-lg-4" style="max-width: 600px;">
-                            <h2 class="featurette-heading lh-1">Plan Your Adventure</h2>
+                            <h2 class="featurette-heading lh-1 mb-3">Plan Your Adventure</h2>
                             <p class="lead">
                                 Detailed maps, difficulty-ratings, and reviews make it easy to find what kind of trail you’re looking for.
                             </p>
@@ -57,7 +57,7 @@
                 <div class="row featurette justify-content-between fade-up">
                     <div class="col-12 col-lg-7 order-lg-1 d-flex flex-column justify-content-center">
                         <div class="mx-lg-auto px-lg-4" style="max-width: 600px;">
-                            <h2 class="featurette-heading lh-1">Join the Community</h2>
+                            <h2 class="featurette-heading lh-1 mb-3">Join the Community</h2>
                             <p class="lead">
                                 The beauty of nature is meant to be shared. Visitors can share their experiences at Emerald Park and be informed of events.
                             </p>
@@ -79,7 +79,7 @@
 
             <%--    Choose Your Adventure   --%>
                 <div class="fade-up">
-                    <h2 class="featurette-heading lh-1">Choose Your Adventure</h2>
+                    <h2 class="featurette-heading lh-1 mb-3">Choose Your Adventure</h2>
                     <p class="lead mb-5 ">How will you explore? Click to see trails with your chosen mode of transport.</p>
             <div class="row">
                 <div class="col-lg-4">
@@ -106,29 +106,31 @@
 
                 <%-- Trails --%>
                 <div class="container fade-up">
-                    <h2 class="featurette-heading lh-1">Dozens of Trails at Your Fingertips.</h2>
+                    <h2 class="featurette-heading lh-1 mb-3">Dozens of Trails at Your Fingertips.</h2>
                     <p class="lead">Emerald Park has 30+ incredible trails for you to explore.</p>
 
-                    <div id="trailCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <%-- Desktop Carousel: 3 per slide --%>
+                    <div id="trailCarouselDesktop" class="carousel slide d-none d-md-block" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <c:forEach items="${trails}" var="trail" varStatus="status">
                                 <c:if test="${status.index % 3 == 0}">
-
-
-                                <div class="carousel-item ${status.index == 0 ? 'active' : ''}">
+                                    <div class="carousel-item ${status.index == 0 ? 'active' : ''}">
                                     <div class="row">
                                 </c:if>
 
-                                <div class="col-md-4 mb-4"><a href="view-trail?id=${trail.trail_id}">
-                                    <div class="card h-100 custom-shadow">
-                                        <img src="${trail.trail_image}" class="card-img-top" alt="${trail.trail_name} hiking trail at Emerald Park.">
-                                        <div class="card-body">
-                                            <h5 class="card-title">${trail.trail_name} Trail</h5>
-                                            <p class="card-text"><small class="text-muted">${trail.trail_distance} miles | ${trail.trail_difficulty}</small></p>
-                                        </div>
-                                    </div></a>
-                                </div>
+                                <div class="col-md-4 mb-4">
 
+                                        <div class="card h-100 custom-shadow">
+                                            <img src="${trail.trail_image}" class="card-img-top" alt="${trail.trail_name}">
+                                            <div class="card-body">
+                                                <a href="view-trail?id=${trail.trail_id}">
+                                                    <h5 class="card-title">${trail.trail_name} Trail</h5>
+                                                </a>
+                                                <p class="card-text"><small class="text-muted">${trail.trail_distance} miles | ${trail.trail_difficulty}</small></p>
+                                            </div>
+                                        </div>
+
+                                </div>
 
                                 <c:if test="${status.index % 3 == 2 || status.last}">
                                     </div>
@@ -136,17 +138,45 @@
                                 </c:if>
                             </c:forEach>
                         </div>
-
-                        <button class="carousel-control-prev" type="button" data-bs-target="#trailCarousel" data-bs-slide="prev">
+                        <button class="carousel-control-prev" type="button" data-bs-target="#trailCarouselDesktop" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#trailCarousel" data-bs-slide="next">
+                        <button class="carousel-control-next" type="button" data-bs-target="#trailCarouselDesktop" data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
                     </div>
-<br>
+
+                    <%-- Mobile Carousel: 1 per slide --%>
+                    <div id="trailCarouselMobile" class="carousel slide d-block d-md-none" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <c:forEach items="${trails}" var="trail" varStatus="status">
+                                <div class="carousel-item ${status.index == 0 ? 'active' : ''}">
+                                    <a href="view-trail?id=${trail.trail_id}">
+                                        <div class="card custom-shadow mx-2">
+                                            <img src="${trail.trail_image}" class="card-img-top" alt="${trail.trail_name}">
+                                            <div class="card-body">
+                                                <h5 class="card-title">${trail.trail_name} Trail</h5>
+                                                <p class="card-text"><small class="text-muted">${trail.trail_distance} miles | ${trail.trail_difficulty}</small></p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </c:forEach>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#trailCarouselMobile" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#trailCarouselMobile" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+
+
+                    <br>
                     <div class="text-center mt-4 d-flex justify-content-center" style="align-items: center;">
                         <a class="button-dark" href="${appURL}/view-trails">View All Trails</a>
                     </div>

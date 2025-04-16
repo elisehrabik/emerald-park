@@ -482,7 +482,7 @@ li {
 
 /* Fade in + move up */
 .fade-up {
-    opacity: 20%;
+    opacity: 0;
     transform: translateY(30px);
     transition: all 0.6s ease-out;
 }
