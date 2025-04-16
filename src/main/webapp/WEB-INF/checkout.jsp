@@ -1,137 +1,127 @@
-<div class="container">
-    <main>
-                <div class="py-5 text-center">
-                    <h1 class="h2">Checkout form</h1>
-                </div>
-                <div class="row g-5">
-                    <div class="">
-                        <h4 class="mb-3">Billing address</h4>
-                        <form class="needs-validation" novalidate>
-                            <div class="row g-3">
-                                <div class="col-sm-6">
-                                    <label for="firstName" class="form-label">First name</label>
-                                    <input type="text" class="form-control" id="firstName" name="firstName" value="${firstName}">
-                                    <div class="invalid-feedback">
-                                        Valid first name is required.
-                                    </div>
+<main>
+
+    <!-- Page content START -->
+    <section class="pt-0 mt-5">
+        <div class="container">
+            <div class="row">
+                <!-- Main content START -->
+                <div class="">
+                    <!-- Checkout card START -->
+                    <div class="card transparent-overlay border rounded-3">
+                        <!-- Card header -->
+                        <div class="card-header transparent-overlay2 border-bottom">
+                            <h3 class="card-header-title mb-0">Checkout</h3>
+                        </div>
+
+                        <!-- Card body START -->
+                        <div class="card-body">
+                            <form class="row g-4" action="${appURL}/checkout" method="POST">
+                                <!-- Billing Info -->
+                                <h5 class="text-light">Billing Address</h5>
+
+                                <div class="col-md-6">
+                                    <label class="form-label text-light" for="firstName">First Name</label>
+                                    <input class="form-control <c:if test='${not empty firstNameError}'>is-invalid</c:if>" type="text" id="firstName" name="firstName" value="${firstName}">
+                                    <c:if test="${not empty firstNameError}">
+                                        <div class="invalid-feedback">${firstNameError}</div>
+                                    </c:if>
                                 </div>
 
-                                <div class="col-sm-6">
-                                    <label for="lastName" class="form-label">Last name</label>
-                                    <input type="text" class="form-control" id="lastName" name="lastName" value="${lastName}">
-                                    <div class="invalid-feedback">
-                                        Valid last name is required.
-                                    </div>
+                                <div class="col-md-6">
+                                    <label class="form-label text-light" for="lastName">Last Name</label>
+                                    <input class="form-control <c:if test='${not empty lastNameError}'>is-invalid</c:if>" type="text" id="lastName" name="lastName" value="${lastName}">
+                                    <c:if test="${not empty lastNameError}">
+                                        <div class="invalid-feedback">${lastNameError}</div>
+                                    </c:if>
                                 </div>
 
-                                <div class="col-12">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" value="${activeUser.email}">
-                                    <div class="invalid-feedback">
-                                        Please enter a valid email address for shipping updates.
-                                    </div>
+                                <div class="col-md-6">
+                                    <label class="form-label text-light" for="email">Email</label>
+                                    <input class="form-control" type="email" id="email" name="email" value="${activeUser.email}">
                                 </div>
 
-                                <div class="col-12">
-                                    <label for="address" class="form-label">Address</label>
-                                    <input type="text" class="form-control" id="address" name="address" placeholder="1234 Main St" value="${address}">
-                                    <div class="invalid-feedback">
-                                        Please enter your shipping address.
-                                    </div>
-                                </div>
-
-                                <div class="col-md-5">
-                                    <label for="city" class="form-label">City</label>
-                                    <input type="text" class="form-control" id="city" name="city" value="${city}">
-                                    <div class="invalid-feedback">
-                                        City required.
-                                    </div>
+                                <div class="col-md-6">
+                                    <label class="form-label text-light" for="address">Address</label>
+                                    <input class="form-control" type="text" id="address" name="address" value="${address}">
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label for="state" class="form-label">State</label>
+                                    <label class="form-label text-light" for="city">City</label>
+                                    <input class="form-control" type="text" id="city" name="city" value="${city}">
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="form-label text-light" for="state">State</label>
                                     <select class="form-select" id="state" name="state">
                                         <option value="">Choose...</option>
                                         <option value="IA" selected>Iowa</option>
                                     </select>
-                                    <div class="invalid-feedback">
-                                        Please provide a valid state.
-                                    </div>
                                 </div>
 
-                                <div class="col-md-3">
-                                    <label for="zip" class="form-label">Zip</label>
-                                    <input type="text" class="form-control" id="zip" name="zip" value="${zip}">
-                                    <div class="invalid-feedback">
-                                        Zip code required.
-                                    </div>
+                                <div class="col-md-4">
+                                    <label class="form-label text-light" for="zip">Zip</label>
+                                    <input class="form-control" type="text" id="zip" name="zip" value="${zip}">
                                 </div>
-                            </div>
 
-                            <hr class="my-4">
-                            <h4 class="mb-3">Payment</h4>
+                                <!-- Payment Info -->
+                                <h5 class="text-light mt-4">Payment</h5>
 
-                            <div class="row gy-3">
                                 <div class="col-md-6">
-                                    <label for="cc-name" class="form-label">Name on card</label>
-                                    <input type="text" class="form-control" id="cc-name" name="cc-name">
-                                    <small class="text-body-secondary">Full name as displayed on card</small>
-                                    <div class="invalid-feedback">
-                                        Name on card is required
-                                    </div>
+                                    <label class="form-label text-light" for="cc-name">Name on card</label>
+                                    <input class="form-control" type="text" id="cc-name" name="cc-name">
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="cc-number" class="form-label">Credit card number</label>
-                                    <input type="text" class="form-control" id="cc-number" name="cc-number">
-                                    <div class="invalid-feedback">
-                                        Credit card number is required
+                                    <label class="form-label text-light" for="cc-number">Credit card number</label>
+                                    <input class="form-control <c:if test='${not empty ccNumberError}'>is-invalid</c:if>" type="text" id="cc-number" name="cc-number">
+                                    <c:if test="${not empty ccNumberError}">
+                                        <div class="invalid-feedback">${ccNumberError}</div>
+                                    </c:if>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label text-light" for="cc-expiration">Expiration</label>
+                                    <input class="form-control <c:if test='${not empty ccExpirationError}'>is-invalid</c:if>" type="text" id="cc-expiration" name="cc-expiration">
+                                    <c:if test="${not empty ccExpirationError}">
+                                        <div class="invalid-feedback">${ccExpirationError}</div>
+                                    </c:if>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label text-light" for="cc-cvv">CVV</label>
+                                    <input class="form-control <c:if test='${not empty ccCvvError}'>is-invalid</c:if>" type="text" id="cc-cvv" name="cc-cvv">
+                                    <c:if test="${not empty ccCvvError}">
+                                        <div class="invalid-feedback">${ccCvvError}</div>
+                                    </c:if>
+                                </div>
+
+                                <!-- Summary -->
+                                <div class="col-12 mt-4">
+                                    <div class="bg-light p-3 rounded">
+                                        <h5 class="d-flex justify-content-between">
+                                            <span>Donation</span>
+                                            <span>$${donationAmount}</span>
+                                        </h5>
+                                        <hr>
+                                        <h5 class="d-flex justify-content-between">
+                                            <strong>Total</strong>
+                                            <strong>$${donationAmount}</strong>
+                                        </h5>
                                     </div>
                                 </div>
 
-                                <div class="col-md-3">
-                                    <label for="cc-expiration" class="form-label">Expiration</label>
-                                    <input type="text" class="form-control" id="cc-expiration" name="cc-expiration">
-                                    <div class="invalid-feedback">
-                                        Expiration date required
-                                    </div>
+                                <!-- Submit -->
+                                <div class="d-sm-flex justify-content-center mt-4">
+                                    <button type="submit" class="btn btn-primary table-button">Pay Now</button>
                                 </div>
-
-                                <div class="col-md-3">
-                                    <label for="cc-cvv" class="form-label">CVV</label>
-                                    <input type="text" class="form-control" id="cc-cvv" name="cc-cvv">
-                                    <div class="invalid-feedback">
-                                        Security code required
-                                    </div>
-                                </div>
-                            </div>
-
-                            <hr class="my-4">
-
-                            <div class="">
-                                <h4 class="d-flex justify-content-between align-items-center mb-3">
-                                    <span class="text-primary">Your cart</span>
-                                    <span class="badge bg-primary rounded-pill">$${donationAmount}</span>
-                                </h4>
-                                <ul class="list-group mb-3">
-                                    <li class="list-group-item d-flex justify-content-between lh-sm">
-                                        <div>
-                                            <h6 class="my-0">Donation</h6>
-                                        </div>
-                                        <span class="text-body-secondary">$${donationAmount}</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        <span>Total (USD)</span>
-                                        <strong>$${donationAmount}</strong>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <button class="w-100 btn btn-primary btn-lg" type="submit">Pay</button>
-                        </form>
+                            </form>
+                        </div>
+                        <!-- Card body END -->
                     </div>
-
-
+                    <!-- Checkout card END -->
                 </div>
-    </main>
-</div>
+                <!-- Main content END -->
+            </div>
+        </div>
+    </section>
+</main>
