@@ -25,31 +25,29 @@
                             </a>
 
                             <!-- Floating Heart -->
-                            <form action="${favoriteTrailIds.contains(trail.trail_id) ? 'remove-favorite' : 'add-favorite'}"
-                                  method="post"
-                                  class="position-absolute top-0 end-0 m-2 z-3">
-                                <input type="hidden" name="trailId" value="${trail.trail_id}" />
-                                <c:choose>
-                                    <c:when test="${not empty activeUser}">
+                            <c:choose>
+                                <c:when test="${not empty activeUser}">
+                                    <form action="${favoriteTrailIds.contains(trail.trail_id) ? 'remove-favorite' : 'add-favorite'}"
+                                          method="post"
+                                          class="position-absolute top-0 end-0 m-2 z-1">
+                                        <input type="hidden" name="trailId" value="${trail.trail_id}" />
                                         <button type="submit" class="favorite-btn btn btn-link p-0 m-0 border-0"
                                                 style="font-size: 1.5rem; color: white;">
                                             <i class="bi ${favoriteTrailIds.contains(trail.trail_id) ? 'bi-heart-fill' : 'bi-heart'}"></i>
                                         </button>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <form action="add-favorite" method="post"
-                                              class="position-absolute top-0 end-0 m-2 z-3">
-                                            <input type="hidden" name="trailId" value="${trail.trail_id}" />
-                                            <button type="submit" class="btn btn-link p-0 m-0 border-0"
-                                                    style="font-size: 1.5rem; color: white;">
-                                                <i class="bi bi-heart"></i>
-                                            </button>
-                                        </form>
-                                    </c:otherwise>
-
-                                </c:choose>
-                            </form>
-
+                                    </form>
+                                </c:when>
+                                <c:otherwise>
+                                    <form action="add-favorite" method="post"
+                                          class="position-absolute top-0 end-0 m-2 z-1">
+                                        <input type="hidden" name="trailId" value="${trail.trail_id}" />
+                                        <button type="submit" class="btn btn-link p-0 m-0 border-0"
+                                                style="font-size: 1.5rem; color: white;">
+                                            <i class="bi bi-heart"></i>
+                                        </button>
+                                    </form>
+                                </c:otherwise>
+                            </c:choose>
 
                             <div class="card-body">
                                 <a href="view-trail?id=${trail.trail_id}" class="text-decoration-none text-dark">
