@@ -10,11 +10,10 @@ import com.azure.core.util.polling.PollResponse;
 import com.azure.core.util.polling.SyncPoller;
 import edu.kirkwood.shared.Helpers;
 import edu.kirkwood.shared.Validators;
-import io.github.cdimascio.dotenv.Dotenv;
 
 public class AzureEmail {
     public static EmailClient getEmailClient() {
-        String connectionString = Dotenv.load().get("AZURE_EMAIL_CONNECTION");
+        String connectionString = System.getenv("AZURE_EMAIL_CONNECTION");
 
         EmailClient emailClient = new EmailClientBuilder()
                 .connectionString(connectionString)
@@ -28,8 +27,8 @@ public class AzureEmail {
         EmailAddress toAddress = new EmailAddress(toEmailAddress);
         String body = Helpers.html2text(bodyHTML);
         EmailMessage emailMessage = new EmailMessage()
-                .setSenderAddress(Dotenv.load().get("AZURE_EMAIL_FROM"))
-                .setToRecipients(Dotenv.load().get("ADMIN_EMAIL"))
+                .setSenderAddress(System.getenv("AZURE_EMAIL_FROM"))
+                .setToRecipients(System.getenv("ADMIN_EMAIL"))
                 .setSubject(subject)
                 .setBodyPlainText(body)
                 .setBodyHtml(bodyHTML)
@@ -83,7 +82,7 @@ public class AzureEmail {
             // Second thread is commented out to only send email to admin email
             //EmailThread emailThread2 = new EmailThread(toEmailAddress, subject, bodyHTML, replyTo);
             //emailThread2.start();
-            EmailThread emailThread1 = new EmailThread((Dotenv.load().get("ADMIN_EMAIL")), subject, bodyHTML, replyTo);
+            EmailThread emailThread1 = new EmailThread((System.getenv("ADMIN_EMAIL")), subject, bodyHTML, replyTo);
             emailThread1.start();
             try {
                 emailThread1.join();
@@ -95,10 +94,10 @@ public class AzureEmail {
             //String errorMessage2 = emailThread2.getErrorMessage(); && errorMessage2.isEmpty()
             if (errorMessage1.isEmpty()) {
                 // Set a success attribute
-                System.out.println("Message sent to " + (Dotenv.load().get("ADMIN_EMAIL")));
+                System.out.println("Message sent to " + (System.getenv("ADMIN_EMAIL")));
             } else {
                 // Set an error attribute
-                System.out.println("Message not sent to " + (Dotenv.load().get("ADMIN_EMAIL")) + " - " + errorMessage1);
+                System.out.println("Message not sent to " + (System.getenv("ADMIN_EMAIL")) + " - " + errorMessage1);
             }
         }
         // Forward req/resp to a JSP
