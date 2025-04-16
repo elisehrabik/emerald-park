@@ -4,10 +4,7 @@ import edu.kirkwood.shared.EmailThread;
 import jakarta.servlet.http.HttpServletRequest;
 import org.mindrot.jbcrypt.BCrypt;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -232,15 +229,26 @@ public class UserDAO {
     }
 
     public static boolean delete(User user) {
-        try(Connection connection = getConnection()) {
-            CallableStatement statement = connection.prepareCall("{CALL sp_delete_user(?)}");
-            statement.setInt(1, user.getUserId());
-            int rowsAffected = statement.executeUpdate();
-            return rowsAffected == 1;
+        try (Connection connection = getConnection()) {
+            // Step 1: Delete user's favorites
+            try (PreparedStatement deleteFavorites = connection.prepareStatement(
+                    "DELETE FROM favorites WHERE user_id = ?")) {
+                deleteFavorites.setInt(1, user.getUserId());
+                deleteFavorites.executeUpdate();
+            }
+
+            // Step 2: Delete the user via stored procedure
+            try (CallableStatement deleteUser = connection.prepareCall("{CALL sp_delete_user(?)}")) {
+                deleteUser.setInt(1, user.getUserId());
+                int rowsAffected = deleteUser.executeUpdate();
+                return rowsAffected == 1;
+            }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
 
     public static void deletePasswordReset(String email) {
         try (Connection connection = getConnection();

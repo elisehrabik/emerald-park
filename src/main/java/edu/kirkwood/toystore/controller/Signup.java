@@ -61,6 +61,10 @@ public class Signup extends HttpServlet {
             req.setAttribute("termsError", "You must agree to our terms of use");
         }
 
+        user.setFirstName("Anonymous");
+        user.setLastName("User");
+
+
         if(!errorFound) {
             user.setPrivileges("user");
             user.setStatus("active");
@@ -76,7 +80,8 @@ public class Signup extends HttpServlet {
                 HttpSession session = req.getSession(); // get an existing session if one exists
                 session.invalidate(); // remove any existing sessions
                 session = req.getSession(); // create a brand new session
-                session.setAttribute("activeUser", user);
+                User fullUser = UserDAO.get(email);
+                session.setAttribute("activeUser", fullUser);
                 session.setAttribute("flashMessageSuccess", "User successfully added");
                 resp.sendRedirect(resp.encodeRedirectURL(req.getContextPath() + "/")); // Redirects the user to the homepage
                 return;

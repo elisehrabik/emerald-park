@@ -17,7 +17,6 @@
                         <!-- Card body -->
                         <div class="card-body transparent-overlay">
                             <h6 class="text-light">If you delete your account, you will lose your all data.</h6>
-                            <form id="deleteAccountForm" method="POST" action="${appURL}/delete-account">
 
                                 <input type="hidden" id="correctEmail" value="${sessionScope.activeUser.email}" />
 
@@ -32,25 +31,28 @@
                                     Delete my account
                                 </button>
 
-
                                 <!-- Delete Account Confirmation Modal -->
                                 <div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="deleteAccountModalLabel">Confirm Account Deletion</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <form method="POST" action="${appURL}/delete-account" id="deleteAccountForm">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteAccountModalLabel">Confirm Account Deletion</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Are you sure you want to delete your account? This action cannot be undone.
+                                                    <input type="hidden" name="email" id="modalEmailInput">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                    <button type="submit" class="btn btn-danger">Yes, Delete My Account</button>
+                                                </div>
                                             </div>
-                                            <div class="modal-body">
-                                                Are you sure you want to delete your account? This action cannot be undone.
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                <button type="button" class="btn btn-danger" id="confirmDelete">Yes, Delete My Account</button>
-                                            </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
+
 
 
                             </form>
@@ -63,12 +65,10 @@
         </div>
     </section>
 </main>
-
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const openDeleteModalBtn = document.getElementById("openDeleteModal");
-        const confirmDeleteBtn = document.getElementById("confirmDelete");
-        const deleteForm = document.getElementById("deleteAccountForm");
+        const modalEmailInput = document.getElementById("modalEmailInput");
 
         openDeleteModalBtn.addEventListener("click", function () {
             const emailInput = document.getElementById("email");
@@ -97,13 +97,11 @@
                 return;
             }
 
+            // ✅ Set the email value just before showing the modal
+            modalEmailInput.value = enteredEmail;
+
             const modal = new bootstrap.Modal(document.getElementById("deleteAccountModal"));
             modal.show();
         });
-
-        confirmDeleteBtn.addEventListener("click", function () {
-            deleteForm.submit();
-        });
     });
 </script>
-
