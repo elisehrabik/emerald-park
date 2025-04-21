@@ -17,11 +17,11 @@ public class Donate extends HttpServlet {
         HttpSession session = req.getSession(false);
         User user = (User) session.getAttribute("activeUser");
 
-        if (user == null) {
-            session.setAttribute("flashMessageWarning", "Please log in to donate and receive premium content.");
-            resp.sendRedirect(req.getContextPath() + "/login");
-            return;
-        }
+//        if (user == null) {
+//            session.setAttribute("flashMessageWarning", "Please log in to donate and receive premium content.");
+//            resp.sendRedirect(req.getContextPath() + "/login");
+//            return;
+//        }
 
         req.setAttribute("pageTitle", "Donate");
         req.getRequestDispatcher("WEB-INF/donate.jsp").forward(req, resp);
@@ -30,10 +30,10 @@ public class Donate extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(false);
-        if (session == null || session.getAttribute("activeUser") == null) {
-            resp.sendRedirect("login");
-            return;
-        }
+//        if (session == null || session.getAttribute("activeUser") == null) {
+//            resp.sendRedirect("login");
+//            return;
+//        }
 
         String selectedOption = req.getParameter("donationOption");
         String customAmountParam = req.getParameter("customAmount");

@@ -18,15 +18,19 @@ public class ChargeCreditCard {
                 "test@test.com"
         );
     }
-    public static ANetApiResponse run(Double amount, String[] creditCardInfo, String[] billingInfo, String customerEmail) {
+
+    public static String run(Double amount, String[] creditCardInfo, String[] billingInfo, String customerEmail) {
         String apiLoginId = Config.getEnv("AUTHORIZE_API_LOGIN_ID");
         String transactionKey = Config.getEnv("AUTHORIZE_TRANSACTION_KEY");
+        // Set the request to operate in either the sandbox or production environment
         ApiOperationBase.setEnvironment(Environment.SANDBOX);
 
-        MerchantAuthenticationType merchantAuthenticationType = new MerchantAuthenticationType();
+        // Create object with merchant authentication details
+        MerchantAuthenticationType merchantAuthenticationType  = new MerchantAuthenticationType() ;
         merchantAuthenticationType.setName(apiLoginId);
         merchantAuthenticationType.setTransactionKey(transactionKey);
 
+        // Populate the payment data
         PaymentType paymentType = new PaymentType();
         CreditCardType creditCard = new CreditCardType();
         creditCard.setCardNumber(creditCardInfo[0]);
@@ -34,6 +38,7 @@ public class ChargeCreditCard {
         creditCard.setCardCode(creditCardInfo[2]);
         paymentType.setCreditCard(creditCard);
 
+        // Set email address (optional)
         CustomerDataType customer = new CustomerDataType();
         customer.setEmail(customerEmail);
 
@@ -47,23 +52,70 @@ public class ChargeCreditCard {
         billingAddress.setCountry(billingInfo[6]);
         billingAddress.setPhoneNumber(billingInfo[7]);
 
+
+        // Create the payment transaction object
         TransactionRequestType txnRequest = new TransactionRequestType();
         txnRequest.setTransactionType(TransactionTypeEnum.AUTH_CAPTURE_TRANSACTION.value());
         txnRequest.setPayment(paymentType);
         txnRequest.setCustomer(customer);
         txnRequest.setBillTo(billingAddress);
+//        if(useBillingAsShipping) {
+//            txnRequest.setShipTo(billingAddress);
+//        } else {
+//            txnRequest.setShipTo(shippingAddress);
+//        }
         txnRequest.setAmount(new BigDecimal(amount).setScale(2, RoundingMode.CEILING));
 
+        // Create the API request and set the parameters for this specific request
         CreateTransactionRequest apiRequest = new CreateTransactionRequest();
         apiRequest.setMerchantAuthentication(merchantAuthenticationType);
         apiRequest.setTransactionRequest(txnRequest);
 
+        // Call the controller
         CreateTransactionController controller = new CreateTransactionController(apiRequest);
         controller.execute();
 
-        CreateTransactionResponse response = controller.getApiResponse();
+        // Get the response
+        CreateTransactionResponse response = new CreateTransactionResponse();
+        response = controller.getApiResponse();
 
-        return response;
+        // Parse the response to determine results
+        if (response!=null) {
+            // If API Response is OK, go ahead and check the transaction response
+            if (response.getMessages().getResultCode() == MessageTypeEnum.OK) {
+                TransactionResponse result = response.getTransactionResponse();
+                if (result.getMessages() != null) {
+                    return "Successfully received donation, thank you!";
+                } else {
+                    return response.getTransactionResponse().getErrors().getError().get(0).getErrorText();
+                }
+            } else {
+                System.out.println("Failed Transaction.");
+                if (response.getTransactionResponse() != null && response.getTransactionResponse().getErrors() != null) {
+                    return response.getTransactionResponse().getErrors().getError().get(0).getErrorText();
+                } else {
+                    return response.getMessages().getMessage().get(0).getText();
+                }
+            }
+        } else {
+            ANetApiResponse errorResponse = controller.getErrorResponse();
+            if (!errorResponse.getMessages().getMessage().isEmpty()) {
+                String errorCode = errorResponse.getMessages().getMessage().get(0).getCode();
+                String errorMsg = errorResponse.getMessages().getMessage().get(0).getText();
+                if (errorCode.equals("E00003")) {
+                    if (errorMsg.contains("cardNumber")) {
+                        return "The credit card number is invalid";
+                    } else if (errorMsg.contains("expirationDate")) {
+                        return "The expiration date is invalid";
+                    } else if (errorMsg.contains("cardCode")) {
+                        return "The security code is invalid";
+                    } else {
+                        return "An error occurred. Please try again later.";
+                    }
+                }
+            }
+        }
+
+        return "An error occurred during processing.  Please try again.";
     }
-
 }

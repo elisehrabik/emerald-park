@@ -95,12 +95,12 @@
                         <li class="nav-item me-4 my-nav-item" style="font-size: 1rem;">
                             <a href="${appURL}/favorites" class="nav-link ${pageTitle eq 'Favorites' ? 'active text-accent' : ''}" style="color: var(--link-dark)">Favorites</a>
                         </li>
-                        <li class="nav-item me-4 my-nav-item" style="font-size: 1rem;">
-                            <a href="${appURL}/donate" class="nav-link ${pageTitle eq 'Donate' ? 'active text-accent' : ''}" style="color: var(--link-dark)">Donate</a>
-                        </li>
                     </c:otherwise>
                 </c:choose>
 
+                <li class="nav-item me-4 my-nav-item" style="font-size: 1rem;">
+                    <a href="${appURL}/donate" class="nav-link ${pageTitle eq 'Donate' ? 'active text-accent' : ''}" style="color: var(--link-dark)">Donate</a>
+                </li>
 
                 <li class="nav-item me-4 my-nav-item" style="font-size: 1rem;">
                     <a class="nav-link ${pageTitle eq 'Contact' ? 'active text-accent' : ''}" href="${pageContext.request.contextPath}/contact">Contact</a>
