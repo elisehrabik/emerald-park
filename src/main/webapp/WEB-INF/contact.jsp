@@ -19,7 +19,7 @@
             <c:if test="${not empty errorMessage}">
                 <div class="alert alert-danger mb-3">${errorMessage}</div>
             </c:if>
-            <form action="${appURL}/contact" method="post" class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+            <form action="${appURL}/contact" method="post" class="p-4 p-md-5 border rounded-3 bg-body-tertiary serverForm">
                 <div class="form-floating mb-3">
                     <input type="email" class="form-control <c:if test='${not empty emailError}'>is-invalid</c:if>" id="email" name="toEmailAddress" value="${toEmailAddress}" placeholder="name@example.com">
                     <label for="email">Your Email</label>
@@ -44,7 +44,7 @@
                     </c:if>
                 </div>
 
-                <button type="submit" class="w-100 btn btn-lg button-dark">Send Message</button>
+                <button type="submit" class="w-100 btn btn-lg button-dark submit-btn">Send Message</button>
 
                 <c:if test="${not empty messageSuccess}">
                     <div class="text-success mt-3">${messageSuccess}</div>
@@ -55,3 +55,18 @@
 </div>
 
 <script src="${appURL}/scripts/fade-up-animation.js"></script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector(".serverForm");
+        const button = form.querySelector(".submit-btn");
+
+        form.addEventListener("submit", function () {
+            // Disable the button
+            button.disabled = true;
+            // Add spinner + text
+            button.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin me-2"></i> Sending…';
+        });
+    });
+</script>
