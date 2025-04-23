@@ -1,4 +1,5 @@
 <main>
+
     <!-- Page content START -->
     <section class="pt-0 mt-5">
         <div class="container">
@@ -36,7 +37,13 @@
 
                                 <div class="col-md-6">
                                     <label class="form-label text-light" for="email">Email</label>
-                                    <input class="form-control" type="email" id="email" name="email" value="${activeUser.email}">
+                                    <input class="form-control <c:if test='${not empty emailError}'>is-invalid</c:if>"
+                                           type="email" id="email" name="email"
+                                           value="${email != null ? email : activeUser.email}">
+
+                                    <c:if test="${not empty emailError}">
+                                        <div class="invalid-feedback">${emailError}</div>
+                                    </c:if>
                                 </div>
 
                                 <div class="col-md-6">
@@ -67,12 +74,17 @@
 
                                 <div class="col-md-6">
                                     <label class="form-label text-light" for="cc-name">Name on card</label>
-                                    <input class="form-control" type="text" id="cc-name" name="cc-name">
+                                    <input class="form-control <c:if test='${not empty ccNameError}'>is-invalid</c:if>"
+                                           type="text" id="cc-name" name="cc-name" value="${ccName}">
+                                    <c:if test="${not empty ccNameError}">
+                                        <div class="invalid-feedback">${ccNameError}</div>
+                                    </c:if>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label class="form-label text-light" for="cc-number">Credit card number</label>
-                                    <input class="form-control <c:if test='${not empty ccNumberError}'>is-invalid</c:if>" type="text" id="cc-number" name="cc-number">
+                                    <input class="form-control <c:if test='${not empty ccNumberError}'>is-invalid</c:if>"
+                                           type="text" id="cc-number" name="cc-number" value="${ccNumber}">
                                     <c:if test="${not empty ccNumberError}">
                                         <div class="invalid-feedback">${ccNumberError}</div>
                                     </c:if>
@@ -80,7 +92,8 @@
 
                                 <div class="col-md-6">
                                     <label class="form-label text-light" for="cc-expiration">Expiration</label>
-                                    <input class="form-control <c:if test='${not empty ccExpirationError}'>is-invalid</c:if>" type="text" id="cc-expiration" name="cc-expiration">
+                                    <input class="form-control <c:if test='${not empty ccExpirationError}'>is-invalid</c:if>"
+                                           type="text" id="cc-expiration" name="cc-expiration" value="${ccExpiration}">
                                     <c:if test="${not empty ccExpirationError}">
                                         <div class="invalid-feedback">${ccExpirationError}</div>
                                     </c:if>
@@ -88,7 +101,8 @@
 
                                 <div class="col-md-6">
                                     <label class="form-label text-light" for="cc-cvv">CVV</label>
-                                    <input class="form-control <c:if test='${not empty ccCvvError}'>is-invalid</c:if>" type="text" id="cc-cvv" name="cc-cvv">
+                                    <input class="form-control <c:if test='${not empty ccCvvError}'>is-invalid</c:if>"
+                                           type="text" id="cc-cvv" name="cc-cvv" value="${ccCvv}">
                                     <c:if test="${not empty ccCvvError}">
                                         <div class="invalid-feedback">${ccCvvError}</div>
                                     </c:if>
