@@ -47,7 +47,7 @@
     // Initialize the map using Simple CRS (for fictional/custom maps)
     const map = L.map('map', {
         crs: L.CRS.Simple,
-        minZoom: -1,
+        minZoom: -2,
         maxZoom: 2,
         zoomSnap: 0.25
     });
@@ -97,31 +97,43 @@
                 const polyline = L.polyline(trail.coordinates, {
                     color: '#394d40',
                     weight: 4,
-                });
+                }).addTo(map);
 
                 polyline.options.trailId = trail.trail_id;
 
+                // Bind tooltip once (default: hover)
+                polyline.bindTooltip(trail.name, {
+                    permanent: false,
+                    direction: "top",
+                    offset: [0, -6],
+                    className: "trail-label"
+                });
+
+                // Hover events
                 polyline
-                    .bindTooltip(trail.name)
                     .on('mouseover', function () {
                         if (selectedPolyline !== this) {
                             this.setStyle({ weight: 6 });
+                            this.openTooltip();
                         }
                     })
                     .on('mouseout', function () {
                         if (selectedPolyline !== this) {
                             this.setStyle({ weight: 4 });
+                            this.closeTooltip();
                         }
                     })
                     .on('click', function () {
                         // Reset previously selected trail
                         if (selectedPolyline) {
                             selectedPolyline.setStyle({ weight: 4 });
+                            selectedPolyline.closeTooltip();
                         }
 
-                        // Set this as the new selected trail
+                        // Select current trail
                         selectedPolyline = this;
                         this.setStyle({ weight: 8 });
+                        this.openTooltip();
 
                         const trailId = String(this.options.trailId).trim();
                         if (!trailId) return;
@@ -157,6 +169,24 @@
                             .catch(err => {
                                 console.error("Error fetching trail info:", err);
                             });
+                    });
+
+                // Invisible click buffer for mobile tap targets
+                const clickBuffer = L.polyline(trail.coordinates, {
+                    color: '#000',
+                    opacity: 0.0,
+                    weight: 20,
+                    interactive: true,
+                    pane: 'shadowPane'
+                })
+                    .on('click', function () {
+                        polyline.fire('click');
+                    })
+                    .on('mouseover', function () {
+                        polyline.fire('mouseover');
+                    })
+                    .on('mouseout', function () {
+                        polyline.fire('mouseout');
                     })
                     .addTo(map);
             });
@@ -164,6 +194,7 @@
         .catch(err => {
             console.error("Failed to load trails.json:", err);
         });
+
 
 
     function hideSidebar() {
