@@ -11,19 +11,18 @@
 <h2 class="mt-2" style="text-align:center;">Map of Emerald Park</h2>
 <div class="map-container">
     <div id="map"></div>
-    <div id="trail-info" class="card h-100 custom-shadow position-absolute d-none trail-popup"
-         style="top: 0; right: 0; z-index: 1;">
+    <div id="trail-info" class="card h-100 custom-shadow position-absolute d-none trail-popup">
 
         <button type="button" class="btn-close position-absolute top-0 end-0 mt-3 me-3"
                 aria-label="Close" onclick="hideSidebar()"></button>
 
         <a id="trail-link" href="#" class="text-decoration-none text-dark mt-5 mx-4">
-            <img id="trail-image" class="card-img-top" alt="Trail image at Emerald Park" style="border-radius: 5px;">
+            <img id="trail-image" class="card-img-top trail-popup-img" alt="Trail image at Emerald Park" style="border-radius: 5px;">
         </a>
 
         <div class="card-body p-4">
             <a id="trail-link-title" href="#" class="text-decoration-none text-dark">
-                <h5 class="card-title" id="trail-name">Trail Name</h5>
+                <h5 class="card-title trail-popup-title" id="trail-name">Trail Name</h5>
             </a>
                 <p class="card-text">
                     <small class="text-muted">
@@ -47,7 +46,7 @@
     // Initialize the map using Simple CRS (for fictional/custom maps)
     const map = L.map('map', {
         crs: L.CRS.Simple,
-        minZoom: -1,
+        minZoom: -2,
         maxZoom: 2,
         zoomSnap: 0.25
     });

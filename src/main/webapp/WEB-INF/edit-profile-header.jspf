@@ -5,19 +5,42 @@
             <div class="col-12">
                 <div class="card transparent-overlay3 card-body">
                     <!-- Profile info -->
-                    <div class="col d-flex justify-content-center align-items-center">
-                        <!-- Responsive toggler START -->
-                        <button class="btn btn-primary d-lg-none me-5" style="background-color: var(--accent-1); border:none;" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
-                            <i class="bi bi-list fs-4"></i>
-                        </button>
+                    <!-- Mobile stacked, desktop inline -->
+                    <div class="d-flex justify-content-center">
+                        <div class="d-flex flex-column flex-md-row align-items-md-center text-center text-md-start">
+                        <!-- Row 1 on mobile: menu button + icon -->
+                        <div class="d-flex justify-content-between align-items-center w-100 mb-3 d-md-none">
+                            <!-- Menu button left -->
+                            <button class="btn btn-primary" style="background-color: var(--accent-1); border: none; margin-left: -1rem;"
+                                    type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
+                                <i class="bi bi-list fs-4"></i>
+                            </button>
 
-                        <div class="icon-circle me-5" style="background-color: var(--accent-2); width: 6rem; height: 6rem; ">
-                        <i class="fa fa-${activeUser.avatar}  fa-4x user-icon"></i>
+                            <!-- Icon centered (flex grow and center via margin auto) -->
+                            <div class="mx-auto">
+                                <div class="icon-circle" style="background-color: var(--accent-2); width: 6rem; height: 6rem; margin-left: -1rem;">
+                                    <i class="fa fa-${activeUser.avatar} fa-4x user-icon"></i>
+                                </div>
+                            </div>
                         </div>
-                        <!-- Responsive toggler END -->
-                        <div>
 
+                        <!-- Desktop view (menu + icon inline) -->
+                        <div class="d-none d-md-flex align-items-center me-4">
+                            <!-- Menu button -->
+                            <button class="btn btn-primary me-4 d-lg-none"
+                                    style="background-color: var(--accent-1); border: none;"
+                                    type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
+                                <i class="bi bi-list fs-4"></i>
+                            </button>
 
+                            <!-- Avatar -->
+                            <div class="icon-circle" style="background-color: var(--accent-2); width: 6rem; height: 6rem;">
+                                <i class="fa fa-${activeUser.avatar} fa-4x user-icon"></i>
+                            </div>
+                        </div>
+
+                        <!-- Text content -->
+                        <div class="w-100 w-md-auto">
                             <jsp:useBean id="now" class="java.util.Date" scope="page" />
                             <fmt:formatDate value="${now}" pattern="H" var="hour" timeZone="${sessionScope.activeUser.timezone}" />
 
@@ -45,6 +68,8 @@
                             </ul>
                         </div>
                     </div>
+
+                </div>
                 </div>
             </div>
             <!-- Profile banner END -->

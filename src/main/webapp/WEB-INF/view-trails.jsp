@@ -11,16 +11,18 @@
     <div class="row">
         <!-- Main Content (Trails) -->
         <div class="col-lg-9">
-            <div class="col d-flex justify-content-between align-items-center">
+            <div class="col d-flex justify-content-between align-items-center ">
                 <c:choose>
                     <c:when test="${totalTrails <= 0}">
-                        <p class="lead">No Trails Found</p>
+                        <p class="trail-count-text">No Trails Found</p>
                     </c:when>
                     <c:otherwise>
-                        <p class="lead">Showing trails ${firstTrailShown}-${lastTrailShown} of ${totalTrails}</p>
+                        <p class="trail-count-text">Showing trails ${firstTrailShown}-${lastTrailShown} of ${totalTrails}</p>
                     </c:otherwise>
                 </c:choose>
-                <%@include file="/WEB-INF/pagination.jspf"%>
+                <div class="d-flex flex-wrap justify-content-center align-items-center gap-2 pagination-container pagination-wrapper fs-6 fs-lg-5">
+                    <%@include file="/WEB-INF/pagination.jspf"%>
+                </div>
             </div>
 
             <!-- Cards -->
@@ -75,11 +77,16 @@
                     </div> <!-- End Column -->
                 </c:forEach>
             </div> <!-- End Product Row -->
+<%--            <div class="d-flex justify-content-end mt-4 pagination-wrapper">--%>
+
+            <div class="d-flex flex-wrap justify-content-end align-items-center gap-2 pagination-container mt-3" style="margin-bottom: -4rem;">
+                <%@include file="/WEB-INF/pagination.jspf"%>
+            </div>
 
         </div><!-- End Main Content -->
 
         <!-- Sidebar -->
-        <div class="col-lg-3 position-relative">
+        <div class="col-lg-3 position-relative mt-4 mt-lg-0 pagination-wrapper">
             <%@include file="trails-sidebar.jspf"%>
         </div><!-- End Sidebar -->
     </div><!-- End Row -->

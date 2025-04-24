@@ -286,6 +286,40 @@ select {
     box-shadow: 0 0 5px var(--accent-1) !important;
 }
 
+.pagination-wrapper {
+    font-size: 0.875rem; /* 14px for mobile */
+}
+
+@media (min-width: 992px) {
+    .pagination-wrapper {
+        font-size: 1rem; /* 16px for large screens */
+    }
+}
+
+.pagination .page-link {
+    font-size: inherit;
+}
+
+@media (max-width: 991px) {
+    .pagination .page-link {
+        padding: 0.3rem 0.6rem;
+    }
+}
+
+
+
+
+.trail-count-text {
+    font-size: 1rem;
+}
+
+@media (min-width: 992px) {
+    .trail-count-text {
+        font-size: 1.2rem;
+    }
+}
+
+
 /*Show Limit Sidebar Radio Buttons*/
 
 .btn-outline-success {
@@ -413,6 +447,13 @@ li {
     text-align: left !important;
 }
 
+@media (max-width: 768px) {
+    .trail-heading {
+        margin-top: 1.5rem;
+    }
+}
+
+
 .user-icon {
     color: var(--accent-1);
 }
@@ -516,14 +557,34 @@ li {
 
 .trail-popup {
     max-width: 35rem;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
 }
 
+/* Mobile adjustment */
 @media (max-width: 768px) {
     .trail-popup {
-        max-width: 20rem;
+        top: auto;
+        bottom: -1rem;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        width: 100%;
+        max-height: 20vh;
+    }
+
+    .trail-popup-title {
+        margin-top: -3rem;
+    }
+
+    .trail-popup-img {
+        display: none;
 
     }
 }
+
+
 
 .leaflet-interactive:focus {
     outline: none;

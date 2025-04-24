@@ -55,11 +55,16 @@
         </c:if>
         <c:forEach var="review" items="${reviews}">
             <div class="review mb-3 d-flex flex-column flex-md-row align-items-start align-items-md-center">
-                <div class="review-icon d-flex flex-column align-items-center text-center"
+                <div class="review-icon d-flex flex-column align-items-start align-items-md-center text-start text-md-center ms-3 ms-md-2"
                      data-bs-toggle="modal" data-bs-target="#userModal-${review.user_id}" style="cursor: pointer;">
-                    <div class="icon-circle" style="background-color: white; width: 4rem; height: 4rem; border: 1px solid var(--accent-5); ">
-                        <i class="fa fa-${review.avatar}  fa-3x user-icon"></i>
+                    <div class="review-icon d-flex flex-column align-items-start align-items-md-center text-start text-md-center"
+                         data-bs-toggle="modal" data-bs-target="#userModal-${review.user_id}" style="cursor: pointer;">
+                        <div class="icon-circle" style="background-color: white; width: 4rem; height: 4rem; border: 1px solid var(--accent-5);">
+                            <i class="fa fa-${review.avatar} fa-3x user-icon"></i>
+                        </div>
                     </div>
+
+
                     <strong class="d-block mt-2">
                         <c:choose>
                             <c:when test="${empty review.first_name and empty review.last_name}">

@@ -6,17 +6,17 @@
         <div class="ms-auto d-flex align-items-center me-4 text-light">
             <c:choose>
                 <c:when test="${empty sessionScope.activeUser}">
-                    <a href="${appURL}/login" class="nav-link me-4 hover-bold" style="color: var(--link-dark)">Login</a>
-                    <a href="${appURL}/signup" class="nav-link me-4" style="color: var(--link-dark)">Sign-up</a>
+                    <a href="${appURL}/login" class="nav-link me-4 hover-bold" style="color: var(--text-dark) !important">Login</a>
+                    <a href="${appURL}/signup" class="nav-link me-4" style="color: var(--text-dark) !important">Sign-up</a>
                 </c:when>
                 <c:otherwise>
                     <a href="${appURL}/signout" class="nav-link me-4" style="color: var(--link-dark)">Sign out</a>
 
                     <%--                Admin Dropdown--%>
                     <c:if test="${not empty sessionScope.activeUser && sessionScope.activeUser.status == 'active' && sessionScope.activeUser.privileges == 'admin'}">
-                        <li class="nav-item dropdown nav-link me-4" style="color:var(--link-dark)">
+                        <li class="nav-item dropdown nav-link me-4" style="color:var(--link-dark) !important">
                             <button class="btn dropdown-toggle px-2 py-1"
-                                    style="border: none; box-shadow: none;"
+                                    style="border: none; box-shadow: none; color:var(--gray) !important"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                 Admin
                             </button>
